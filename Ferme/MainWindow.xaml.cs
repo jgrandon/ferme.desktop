@@ -29,9 +29,11 @@ namespace WpfFragmentos
             InitializeComponent();
             misCli = new List<Clientes>();
             Clientes defaultUser = new Clientes();
-            defaultUser.Usuario = "admin";
             defaultUser.Contraseña = "1234";
             misCli.Add(defaultUser);
+
+            defaultUser.Usuario = "admin";
+
         }
 
         private void BtnRegistrar_Click(object sender, RoutedEventArgs e)

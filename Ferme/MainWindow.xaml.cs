@@ -24,76 +24,44 @@ namespace WpfFragmentos
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        FermeEntities DB;
         public MainWindow()
         {
             InitializeComponent();
-            misCli = new List<Clientes>();
-            Clientes defaultUser = new Clientes();
-            defaultUser.Usuario = "admin";
-            defaultUser.Contraseña = "1234";
-            misCli.Add(defaultUser);
+            DB = new FermeEntities();
         }
-
-        private void BtnRegistrar_Click(object sender, RoutedEventArgs e)
-        {
-            Formulario miformulario = new Formulario();
-            miformulario.SetClientes(misCli);
-            miformulario.Show();
-            this.Close();                
-        }
-
-        public void setUsers(List<Clientes> users)
-        {
-            misCli = users;
-        }
-
-        List<Clientes> misCli;
-
         private async void BtnIngresar_Click(object sender, RoutedEventArgs e)
         {
 
-
-            Clientes cli = new Clientes();
-
-            if( !isCredentialsValid() )
+            users user = new users();
+            if (!isCredentialsValid())
             {
                 await this.ShowMessageAsync("Alerta", "Debe ingresar Usuario y Contraseña");
             }
             else
             {
-                Clientes client = GetUserByCredentials();
-                if (client!= null)
+                users client = GetUserByCredentials();
+                if (client != null)
                 {
                     await this.ShowMessageAsync("Hola", string.Format("BIENVENIDO"));
                     Menu menu = new Menu();
-                    menu.setUsers(misCli);
                     this.Close();
                     menu.ShowDialog();
-
                 }
                 else
                 {
                     await this.ShowMessageAsync("Aviso", string.Format("Tus Datos son incorrectos"));
                 }
-
-/* DEBUGG
-                foreach(Clientes cc in misCli)
-                {
-                    await this.ShowMessageAsync("DEBUG", string.Format("Usuario " + cc.Usuario ));
-                }
-*/
             }
-                //misCli.Add(cli);
-
-
         }
 
-        private Clientes GetUserByCredentials()
+
+        private users GetUserByCredentials()
         {
-            Clientes user = null;
-            foreach(Clientes u in misCli)
+            users user = null;
+            foreach (users u in DB.users)
             {
-                if( u.Usuario.Equals(txtUsuario.Text) && u.Contraseña.Equals(txtContraseña.Password) )
+                if (u.username.Equals(txtUsuario.Text) && u.password.Equals(txtContraseña.Password))
                 {
                     user = u;
                 }
@@ -105,5 +73,7 @@ namespace WpfFragmentos
         {
             return !string.IsNullOrEmpty(txtContraseña.Password) && !string.IsNullOrEmpty(txtUsuario.Text);
         }
+
+
     }
 }

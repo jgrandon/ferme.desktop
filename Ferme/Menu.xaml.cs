@@ -24,18 +24,15 @@ namespace Ferme
     /// </summary>
     public partial class Menu : MetroWindow
     {
-        private List<Clientes> users;
+        FermeEntities DB;
 
 
         public Menu()
         {
             InitializeComponent();
+            DB = new FermeEntities();
         }
 
-        public void setUsers(List<Clientes> users)
-        {
-            this.users = users;
-        }
 
         private void Tile_Click(object sender, RoutedEventArgs e)
         {
@@ -45,7 +42,6 @@ namespace Ferme
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
             MainWindow miMainWindows = new MainWindow();
-            miMainWindows.setUsers(users);
             miMainWindows.Show();
             this.Close();
         }
@@ -55,29 +51,49 @@ namespace Ferme
             FlyUsuarioNuevo.IsOpen = true;
         }
 
+
         private async void BtnIngresar_Click(object sender, RoutedEventArgs e)
         {
             Clientes newUser = new Clientes();
 
-            if ( !IsUserValid() )
+            if (!IsUserValid())
             {
                 await this.ShowMessageAsync("Error", "Debe llenar todos los datos del Usuario");
             }
-            else if ( !IsPasswordValid() )
+            else if (!IsPasswordValid())
             {
                 await this.ShowMessageAsync("Error", "La contraseña no coincide con su confirmacion");
-
             }
-            else 
+            else
             {
-                newUser.Usuario = txtNuevoUsuario.Text;
-                newUser.Contraseña = txtNuevaContraseña.Password;
-                users.Add(newUser);
 
-                await this.ShowMessageAsync("Exito", "Usuario A gregado");
+                var user = new users()
+                {
+                    id = getNewUserId(),
+                    name = "",
+                    username = txtNuevoUsuario.Text,
+                    password = txtNuevaContraseña.Password
+                };
+                DB.users.Add(user);
+
+                await this.ShowMessageAsync("Exito", user.id.ToString() );
+
+                DB.SaveChanges();
+
+                //await this.ShowMessageAsync("Exito", "Usuario A gregado");
                 ClearUserForm();
             }
 
+        }
+
+        private int getNewUserId()
+        {
+            var max = 0;
+            foreach( users user in DB.users)
+            {
+                if (user.id > max) max = user.id;
+            }
+            return max + 1;
         }
 
         private void ClearUserForm()
@@ -99,5 +115,6 @@ namespace Ferme
         {
             return txtNuevaContraseña.Password.Equals(txtRepetirContraseña.Password);
         }
+
     }
 }

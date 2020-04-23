@@ -9,12 +9,15 @@
         mc:Ignorable="d"
         Title="Menu" Height="549" Width="1024" WindowStartupLocation="CenterScreen">
     <Grid Background="#FF0F0E0E">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1009*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-        <Controls:Tile Margin="25,169,796,235" Width="Auto" Height="Auto" Title=" REGISTRO PRODUCTO">
-            <Image Source ="registro-producto.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
+        <Controls:Tile x:Name="txtRegisProducto" Margin="25,169,796,236" Width="Auto" Height="Auto" Click="txtRegisProducto_Click" Title="REGISTRO PRODUCTO" >
+            <Image x:Name="ImgPro" Source ="registro-producto.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
         </Controls:Tile>
         <Controls:Tile x:Name="TitleAgregarUsuario" Margin="25,28,796,376" Width="Auto" Height="Auto" Title="     AGREGAR USUARIO" Click="TitleAgregarUsuario_Click">
             <Image Source ="Imagenes/User-New.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
@@ -26,7 +29,7 @@
         <Controls:Tile Margin="255,28,566,376" Width="Auto" Height="Auto" Title="    REGISTRO FACTURAS" Click="Tile_Click">
             <Image Source ="Imagenes/Facturas.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
         </Controls:Tile>
-        <Controls:Tile Margin="255,169,566,235" Width="Auto" Height="Auto" Title="    REGISTRO BOLETAS" Click="Tile_Click">
+        <Controls:Tile Margin="255,169,566,236" Width="Auto" Height="Auto" Title="    REGISTRO BOLETAS" Click="Tile_Click">
             <Image Source ="Imagenes/registro-boletas.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
         </Controls:Tile>
         <Controls:Flyout x:Name="FlyUsuarioNuevo" Margin="687,0,0,0" Width="322" Foreground="#FFF9F6F6" HeaderStringFormat="" Header="AGREGAR NUEVO USUARIO" Position="Right">
@@ -35,11 +38,30 @@
             </Controls:Flyout.Background>
             <Canvas >
                 <Image Height="174" Canvas.Left="41" Canvas.Top="10" Width="237" Stretch="Fill" Source="Imagenes/User-Login.png"/>
-                <TextBox x:Name="txtNuevoUsuario" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="            Ingrese Usuario"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="41" Canvas.Top="221"/>
-                <PasswordBox x:Name="txtNuevaContraseña" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="          Ingrese Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="41" Canvas.Top="281" Width="237" Height="29" />
+                <TextBox x:Name="txtNuevoUsuario" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="            Ingrese Usuario"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="41" Canvas.Top="238" />
+                <PasswordBox x:Name="txtNuevaContraseña" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="          Ingrese Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="41" Canvas.Top="290" Width="237" Height="30" />
                 <PasswordBox x:Name="txtRepetirContraseña" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="          Repita Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="41" Canvas.Top="338" Width="237" Height="29" />
                 <Button x:Name="BtnRegistrar" Content="REGISTRAR" HorizontalAlignment="Left" VerticalAlignment="Top" Width="237" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnIngresar_Click" Canvas.Left="41" Canvas.Top="388"/>
+                <TextBox x:Name="txtNombreUsuario" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="          Nombre y Apellido"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="41" Canvas.Top="189"/>
             </Canvas>
+        </Controls:Flyout>
+
+        <Controls:Flyout x:Name="FlyRegisProducto" Margin="464,0,0,0" Width="542" Foreground="#FFF9F6F6" >
+
+            <Controls:Flyout.Background>
+                <SolidColorBrush Color="#FF302C2C" Opacity="0.9"/>
+            </Controls:Flyout.Background>
+
+            <Canvas >
+                <TextBox x:Name="txtCodigoProducto" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Codigo"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="10" Canvas.Top="33" />
+                <PasswordBox x:Name="txtProveedorProd" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Proveedor"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="295" Canvas.Top="29" Width="237" Height="30" />
+                <PasswordBox x:Name="txtRepetirContraseñ" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Precio"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="10" Canvas.Top="154" Width="237" Height="28" />
+                <TextBox x:Name="txtNombreProducto" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Nombre Producto"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="10" Canvas.Top="92"/>
+                <PasswordBox x:Name="txtStockProduc" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Stock"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="10" Canvas.Top="220" Width="237" Height="28" />
+                <DatePicker Controls:TextBoxHelper.Watermark="Fecha de Vencimiento"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="295" Canvas.Top="161" Width="237" Background="#FF2B2828" Foreground="White" FontSize="16" FontFamily="Georgia" />
+                <Button x:Name="BtnStock" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.3,-0.815" Canvas.Left="340" Canvas.Top="312" Background="#FF1E25BD" Foreground="#FFFBF4F4" FontFamily="Georgia"/>
+            </Canvas>
+
         </Controls:Flyout>
 
     </Grid>

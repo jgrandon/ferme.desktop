@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfFragmentos;
 
+
 namespace Ferme
 {
     /// <summary>
@@ -49,6 +50,7 @@ namespace Ferme
         private void TitleAgregarUsuario_Click(object sender, RoutedEventArgs e)
         {
             FlyUsuarioNuevo.IsOpen = true;
+            FlyRegisProducto.IsOpen = false;
         }
 
 
@@ -70,7 +72,7 @@ namespace Ferme
                 var user = new users()
                 {
                     id = getNewUserId(),
-                    name = "",
+                    name = txtNombreUsuario.Text,
                     username = txtNuevoUsuario.Text,
                     password = txtNuevaContraseña.Password
                 };
@@ -98,6 +100,7 @@ namespace Ferme
 
         private void ClearUserForm()
         {
+            txtNombreUsuario.Text = string.Empty;
             txtNuevoUsuario.Text = string.Empty;
             txtNuevaContraseña.Password = string.Empty;
             txtRepetirContraseña.Password = string.Empty;
@@ -107,6 +110,7 @@ namespace Ferme
         private Boolean IsUserValid()
         {
             return !string.IsNullOrEmpty(txtNuevoUsuario.Text)
+                     && !string.IsNullOrEmpty(txtNombreUsuario.Text)
                     && !string.IsNullOrEmpty(txtNuevaContraseña.Password)
                     && !string.IsNullOrEmpty(txtRepetirContraseña.Password);
         }
@@ -116,5 +120,14 @@ namespace Ferme
             return txtNuevaContraseña.Password.Equals(txtRepetirContraseña.Password);
         }
 
+        private void txtRegisProducto_Click(object sender, RoutedEventArgs e)
+        {
+            FlyUsuarioNuevo.IsOpen = false;
+            FlyRegisProducto.IsOpen = true;
+        }
+
+       
+
+      
     }
 }

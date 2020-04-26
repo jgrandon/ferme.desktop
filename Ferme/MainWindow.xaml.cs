@@ -27,19 +27,27 @@ namespace WpfFragmentos
         public MainWindow()
         {
             InitializeComponent();
+            misCli = new List<Clientes>();
+            Clientes defaultUser = new Clientes();
+            defaultUser.Usuario = "admin";
+            defaultUser.Contraseña = "1234";
+            misCli.Add(defaultUser);
         }
 
         private void BtnRegistrar_Click(object sender, RoutedEventArgs e)
         {
             Formulario miformulario = new Formulario();
-
+            miformulario.SetClientes(misCli);
             miformulario.Show();
-            this.Close();
-           
-                
+            this.Close();                
         }
 
-        List<Clientes> misCli = new List<Clientes>();
+        public void setUsers(List<Clientes> users)
+        {
+            misCli = users;
+        }
+
+        List<Clientes> misCli;
 
         private async void BtnIngresar_Click(object sender, RoutedEventArgs e)
         {
@@ -47,22 +55,55 @@ namespace WpfFragmentos
 
             Clientes cli = new Clientes();
 
-            if (txtUsuario.Text == "admin" && txtContraseña.Password == "1234")
-
+            if( !isCredentialsValid() )
             {
-                await this.ShowMessageAsync("Hola", string.Format("BIENVENIDO"));
-                Menu ver = new Menu();
-                this.Close();
-                ver.ShowDialog();
+                await this.ShowMessageAsync("Alerta", "Debe ingresar Usuario y Contraseña");
             }
             else
             {
-                await this.ShowMessageAsync("Aviso", string.Format("Tus Datos son incorrectos"));
-                misCli.Add(cli);
+                Clientes client = GetUserByCredentials();
+                if (client!= null)
+                {
+                    await this.ShowMessageAsync("Hola", string.Format("BIENVENIDO"));
+                    Menu menu = new Menu();
+                    menu.setUsers(misCli);
+                    this.Close();
+                    menu.ShowDialog();
 
-              
+                }
+                else
+                {
+                    await this.ShowMessageAsync("Aviso", string.Format("Tus Datos son incorrectos"));
+                }
 
+/* DEBUGG
+                foreach(Clientes cc in misCli)
+                {
+                    await this.ShowMessageAsync("DEBUG", string.Format("Usuario " + cc.Usuario ));
+                }
+*/
             }
+                //misCli.Add(cli);
+
+
+        }
+
+        private Clientes GetUserByCredentials()
+        {
+            Clientes user = null;
+            foreach(Clientes u in misCli)
+            {
+                if( u.Usuario.Equals(txtUsuario.Text) && u.Contraseña.Equals(txtContraseña.Password) )
+                {
+                    user = u;
+                }
+            }
+            return user;
+        }
+
+        private Boolean isCredentialsValid()
+        {
+            return !string.IsNullOrEmpty(txtContraseña.Password) && !string.IsNullOrEmpty(txtUsuario.Text);
         }
     }
 }

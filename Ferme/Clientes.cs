@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 namespace Ferme
 {
-    class Clientes 
+    public class Clientes 
     {   
         private string rut;
         private string apellidos;

@@ -7,47 +7,28 @@
         xmlns:local="clr-namespace:Ferme"
         
         mc:Ignorable="d"
-        Title="Menu" Height="549" Width="1024" WindowStartupLocation="CenterScreen" Loaded="MetroWindow_Loaded">
-    <Controls:MetroWindow.Resources>
-        <local:usuariosDataSet x:Key="usuariosDataSet"/>
-        <CollectionViewSource x:Key="loginEmpleadosViewSource" Source="{Binding LoginEmpleados, Source={StaticResource usuariosDataSet}}"/>
-        <CollectionViewSource x:Key="boletasViewSource" Source="{Binding Boletas, Source={StaticResource usuariosDataSet}}"/>
-        <CollectionViewSource x:Key="vendedoresViewSource" Source="{Binding Vendedores, Source={StaticResource usuariosDataSet}}"/>
-    </Controls:MetroWindow.Resources>
+        Title="Menu" Height="549" Width="1024" WindowStartupLocation="CenterScreen">
     <Grid Background="#FF0F0E0E">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1009*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-        <Controls:Tile x:Name="TitleRegistroProducto" Margin="25,169,796,235" Width="Auto" Height="Auto" Title=" REGISTRO PRODUCTO" Click="TitleRegistroProducto_Click">
+        <Controls:Tile Margin="25,169,796,235" Width="Auto" Height="Auto" Title=" REGISTRO PRODUCTO">
             <Image Source ="registro-producto.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
         </Controls:Tile>
         <Controls:Tile x:Name="TitleAgregarUsuario" Margin="25,28,796,376" Width="Auto" Height="Auto" Title="     AGREGAR USUARIO" Click="TitleAgregarUsuario_Click">
             <Image Source ="Imagenes/User-New.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
         </Controls:Tile>
-        <Controls:Tile x:Name="TitleProveedor" Margin="25,311,796,93" Width="Auto" Height="Auto" Title="   REGIST PROVEEDOR" Click="TileProveedor_Click">
+        <Controls:Tile Margin="25,311,796,93" Width="Auto" Height="Auto" Title="   REGIST PROVEEDOR" Click="Tile_Click">
             <Image Source ="Imagenes/registro-proovedor.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
         </Controls:Tile>
         <Button x:Name="BtnCancelar" Content="CERRAR SESION" HorizontalAlignment="Left" Margin="497,468,0,0" VerticalAlignment="Top" Width="138" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnCancelar_Click"/>
-        <Controls:Tile x:Name="TitleRegistroFactura" Margin="255,28,566,376" Width="Auto" Height="Auto" Title="    REGISTRO FACTURAS" Click="TitleRegistroFactura_Click">
+        <Controls:Tile Margin="255,28,566,376" Width="Auto" Height="Auto" Title="    REGISTRO FACTURAS" Click="Tile_Click">
             <Image Source ="Imagenes/Facturas.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
         </Controls:Tile>
-        <Controls:Tile x:Name="TitleRegistroBoleta" Margin="255,169,566,235" Width="Auto" Height="Auto" Title="    REGISTRO BOLETAS" Click="TitleRegistroBoleta_Click">
+        <Controls:Tile Margin="255,169,566,235" Width="Auto" Height="Auto" Title="    REGISTRO BOLETAS" Click="Tile_Click">
             <Image Source ="Imagenes/registro-boletas.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
         </Controls:Tile>
-        <Controls:Flyout x:Name="FlyProveedor" Margin="497,0,0,0" Position="Right" Header="Registro Proveedor" Background="#FF302C2C" Foreground="#FFFBF6F6">
-            <Canvas >
-
-                <TextBox x:Name="txtIdProveedor" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Id" RenderTransformOrigin="4.281,0.635" Width="250" Canvas.Left="40" Canvas.Top="54" Background="#FF2B2828" Foreground="White" FontSize="16" />
-                <TextBox x:Name="txtNombreProveedor" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese Nombre" RenderTransformOrigin="4.281,0.635" Width="250" Canvas.Left="40" Canvas.Top="108" Background="#FF2B2828" Foreground="White" FontSize="16" />
-                <TextBox x:Name="txtDireccionProveedor" Controls:TextBoxHelper.ClearTextButton="True"  Controls:TextBoxHelper.Watermark="Ingrese Direccion" RenderTransformOrigin="4.281,0.635" Width="250" Canvas.Left="40" Canvas.Top="336" Background="#FF2B2828" Foreground="White" FontSize="16" />
-                <TextBox x:Name="txtTelefonoProveedor" Controls:TextBoxHelper.ClearTextButton="True"  Controls:TextBoxHelper.Watermark="Ingrese Telefono" RenderTransformOrigin="4.281,0.635" Width="250" Canvas.Left="40" Canvas.Top="220" Background="#FF2B2828" Foreground="White" FontSize="16" />
-                <TextBox x:Name="txtEmailProveedor" Controls:TextBoxHelper.ClearTextButton="True"  Controls:TextBoxHelper.Watermark="Ingrese Email" RenderTransformOrigin="4.281,0.635" Width="250" Canvas.Left="40" Canvas.Top="276" Background="#FF2B2828" Foreground="White" FontSize="16" />
-                <TextBox x:Name="txtRutProveedor" Controls:TextBoxHelper.ClearTextButton="True"  Controls:TextBoxHelper.Watermark="Ingrese Rut" RenderTransformOrigin="4.281,0.635" Width="250" Canvas.Left="40" Canvas.Top="162" Background="#FF2B2828" Foreground="White" FontSize="16" />
-                <TextBox x:Name="txtBuscarProveedor" Controls:TextBoxHelper.ClearTextButton="True"  Controls:TextBoxHelper.Watermark="Buscar Rut" RenderTransformOrigin="4.281,0.635" Width="183" Canvas.Left="315" Canvas.Top="91" Background="#FF2B2828" Foreground="White" FontSize="16" />
-                <Button x:Name="BtnBuscar" Content="BUSCAR" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnIngresar_Click" Canvas.Left="342" Canvas.Top="139" Height="49" FontSize="14"/>
-            </Canvas>
-        </Controls:Flyout>
         <Controls:Flyout x:Name="FlyUsuarioNuevo" Margin="687,0,0,0" Width="322" Foreground="#FFF9F6F6" HeaderStringFormat="" Header="AGREGAR NUEVO USUARIO" Position="Right">
             <Controls:Flyout.Background>
                 <SolidColorBrush Color="#FF302C2C" Opacity="0.9"/>
@@ -58,99 +39,8 @@
                 <PasswordBox x:Name="txtNuevaContraseña" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="          Ingrese Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="41" Canvas.Top="281" Width="237" Height="29" />
                 <PasswordBox x:Name="txtRepetirContraseña" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="          Repita Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="41" Canvas.Top="338" Width="237" Height="29" />
                 <Button x:Name="BtnRegistrar" Content="REGISTRAR" HorizontalAlignment="Left" VerticalAlignment="Top" Width="237" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnIngresar_Click" Canvas.Left="41" Canvas.Top="388"/>
-                <Grid x:Name="grid1" DataContext="{StaticResource loginEmpleadosViewSource}" HorizontalAlignment="Left" Canvas.Left="29" Canvas.Top="285" VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                </Grid>
             </Canvas>
         </Controls:Flyout>
-
-        <Controls:Flyout x:Name="FlyBoletas" Header="REGISTRO DE BOLETAS" Background="#FF302C2C" Foreground="#FFF9F6F6" Width="779" Position="Right" Grid.ColumnSpan="2">
-            <Canvas DataContext="{StaticResource boletasViewSource}">
-                <TextBox x:Name="txtCodigoEmpledo" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Codigo Empleado" RenderTransformOrigin="4.281,0.635" Width="250" Canvas.Left="141" Canvas.Top="10" Background="#FF2B2828" Foreground="White" FontSize="16" FontFamily="Georgia" />
-                <Button x:Name="BtnGuardarFactura" Content="BUSCAR" HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnIngresar_Click" Canvas.Left="181" Canvas.Top="75" Height="40"/>
-                <ComboBox Canvas.Left="141" Canvas.Top="44" Width="250" Controls:TextBoxHelper.Watermark="Registro" Background="#FF2B2828" Foreground="#FFFBF4F4" FontSize="16" FontFamily="Georgia" >
-                    <ComboBoxItem Content="Boletas Diarias" HorizontalAlignment="Left" Width="248"/>
-                    <ComboBoxItem Content="Boletas Mensuales" HorizontalAlignment="Left" Width="248"/>
-                </ComboBox>
-                <DataGrid x:Name="boletasDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Height="200" ItemsSource="{Binding}" Canvas.Left="10" RowDetailsVisibilityMode="VisibleWhenSelected" Canvas.Top="136" Width="746" Background="#FF2B2828" Foreground="White">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="folioColumn" Binding="{Binding folio}" Header="folio" Width="SizeToHeader"/>
-                        <DataGridTemplateColumn x:Name="fechaColumn" Header="fecha" Width="SizeToHeader">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <DatePicker SelectedDate="{Binding fecha, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn x:Name="monto_totalColumn" Binding="{Binding monto_total}" Header="monto total" Width="SizeToHeader"/>
-                        <DataGridTextColumn x:Name="detalle_boleta_forma_pagoColumn" Binding="{Binding Detalle_boleta_forma_pago}" Header="Detalle boleta forma pago" Width="SizeToHeader"/>
-                        <DataGridTextColumn x:Name="clientes_cod_cliColumn" Binding="{Binding Clientes_cod_cli}" Header="Clientes cod cli" Width="SizeToHeader"/>
-                        <DataGridTextColumn x:Name="vendedores_cod_venColumn" Binding="{Binding Vendedores_cod_ven}" Header="Vendedores cod ven" Width="SizeToHeader"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-                <Grid x:Name="grid7" DataContext="{StaticResource vendedoresViewSource}" HorizontalAlignment="Left" Canvas.Left="556" Canvas.Top="51" VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                </Grid>
-            </Canvas>
-
-        </Controls:Flyout>
-        <Grid x:Name="grid2" DataContext="{StaticResource boletasViewSource}" HorizontalAlignment="Left" Margin="370,352,0,0" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid x:Name="grid4" HorizontalAlignment="Left" Margin="8,0,0,0" VerticalAlignment="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-            </Grid>
-        </Grid>
-        <Grid x:Name="grid3" DataContext="{StaticResource boletasViewSource}" HorizontalAlignment="Left" Margin="329,362,0,0" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-        </Grid>
-        <Grid x:Name="grid5" DataContext="{StaticResource boletasViewSource}" HorizontalAlignment="Left" Margin="356,360,0,0" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-        </Grid>
-        <Grid x:Name="grid6" DataContext="{StaticResource boletasViewSource}" HorizontalAlignment="Left" Margin="300,386,0,0" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-        </Grid>
 
     </Grid>
 </Controls:MetroWindow>

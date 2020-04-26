@@ -30,7 +30,12 @@ namespace Ferme
             InitializeComponent();
         }
 
-        List<Clientes> misClientes = new List<Clientes>();
+        public List<Clientes> misClientes;
+
+        public void SetClientes(List<Clientes> clientes)
+        {
+            misClientes = clientes;
+        }
 
        
         private async void BtnGuardar_Click(object sender, RoutedEventArgs e)
@@ -66,6 +71,12 @@ namespace Ferme
             {
                 await this.ShowMessageAsync("Aviso", string.Format("Cliente Agregado Con Exito"));
                 misClientes.Add(clientito);
+
+                foreach (Clientes c in misClientes)
+                {
+                    await this.ShowMessageAsync("Aviso", string.Format(c.Usuario));
+                }
+                //Console.Write(misClientes.ToString());
                
             }
 

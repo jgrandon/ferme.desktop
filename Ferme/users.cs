@@ -12,17 +12,11 @@ namespace Ferme
     using System;
     using System.Collections.Generic;
     
-    public partial class users
+    public partial class USERS
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public users()
-        {
-            this.id = 0;
-        }
-    
-        public int id { get; set; }
-        public string name { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
+        public decimal ID { get; set; }
+        public string NAME { get; set; }
+        public string USERNAME { get; set; }
+        public string PASSWORD { get; set; }
     }
 }

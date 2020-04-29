@@ -25,6 +25,6 @@ namespace Ferme
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<USERS> USERS { get; set; }
     }
 }

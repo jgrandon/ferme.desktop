@@ -67,16 +67,16 @@ namespace Ferme
             else
             {
 
-                var user = new users()
+                var user = new USERS()
                 {
-                    id = getNewUserId(),
-                    name = "",
-                    username = txtNuevoUsuario.Text,
-                    password = txtNuevaContraseña.Password
+                    ID = getNewUserId(),
+                    NAME = "",
+                    USERNAME = txtNuevoUsuario.Text,
+                    PASSWORD = txtNuevaContraseña.Password
                 };
-                DB.users.Add(user);
+                DB.USERS.Add(user);
 
-                await this.ShowMessageAsync("Exito", user.id.ToString() );
+                await this.ShowMessageAsync("Exito", user.ID.ToString() );
 
                 DB.SaveChanges();
 
@@ -89,9 +89,9 @@ namespace Ferme
         private int getNewUserId()
         {
             var max = 0;
-            foreach( users user in DB.users)
+            foreach( USERS user in DB.USERS)
             {
-                if (user.id > max) max = user.id;
+                if (user.ID > max) max = Decimal.ToInt32(user.ID);
             }
             return max + 1;
         }

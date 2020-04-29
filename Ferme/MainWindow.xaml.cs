@@ -33,14 +33,14 @@ namespace WpfFragmentos
         private async void BtnIngresar_Click(object sender, RoutedEventArgs e)
         {
 
-            users user = new users();
+            USERS user = new USERS();
             if (!isCredentialsValid())
             {
                 await this.ShowMessageAsync("Alerta", "Debe ingresar Usuario y Contraseña");
             }
             else
             {
-                users client = GetUserByCredentials();
+                USERS client = GetUserByCredentials();
                 if (client != null)
                 {
                     await this.ShowMessageAsync("Hola", string.Format("BIENVENIDO"));
@@ -56,12 +56,12 @@ namespace WpfFragmentos
         }
 
 
-        private users GetUserByCredentials()
+        private USERS GetUserByCredentials()
         {
-            users user = null;
-            foreach (users u in DB.users)
+            USERS user = null;
+            foreach (USERS u in DB.USERS)
             {
-                if (u.username.Equals(txtUsuario.Text) && u.password.Equals(txtContraseña.Password))
+                if (u.USERNAME.Equals(txtUsuario.Text) && u.PASSWORD.Equals(txtContraseña.Password))
                 {
                     user = u;
                 }

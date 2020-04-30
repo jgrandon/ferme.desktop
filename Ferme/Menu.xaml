@@ -7,38 +7,40 @@
         xmlns:local="clr-namespace:Ferme"
         
         mc:Ignorable="d"
-        Title="Menu" Height="549" Width="1024" WindowStartupLocation="CenterScreen">
-    <Grid Background="#FF0F0E0E">
+        Title="Menu" Height="610.5" Width="1087" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF0F0E0E" HorizontalAlignment="Left" Width="1077" Height="579" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1009*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-        <Controls:Tile Margin="25,169,796,235" Width="Auto" Height="Auto" Title=" REGISTRO PRODUCTO">
-            <Image Source ="registro-producto.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
+        <Controls:Tile Margin="10,155,882,325" Width="Auto" Height="Auto" Title=" REGISTRO PRODUCTO">
+            <Image Source ="registro-producto.png" Width="152" Height="74" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
         </Controls:Tile>
-        <Controls:Tile x:Name="TitleAgregarUsuario" Margin="25,28,796,376" Width="Auto" Height="Auto" Title="     AGREGAR USUARIO" Click="TitleAgregarUsuario_Click">
+        <Controls:Tile x:Name="TitleAgregarUsuario" Margin="10,44,882,445" Width="Auto" Height="Auto" Title="     AGREGAR USUARIO" Click="TitleAgregarUsuario_Click">
             <Image Source ="Imagenes/User-New.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
         </Controls:Tile>
-        <Controls:Tile Margin="25,311,796,93" Width="Auto" Height="Auto" Title="   REGIST PROVEEDOR" Click="Tile_Click">
+        <Controls:Tile Margin="1,284,882,197" Width="Auto" Height="Auto" Title="   REGIST PROVEEDOR" Click="Tile_Click">
             <Image Source ="Imagenes/registro-proovedor.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
         </Controls:Tile>
-        <Button x:Name="BtnCancelar" Content="CERRAR SESION" HorizontalAlignment="Left" Margin="497,468,0,0" VerticalAlignment="Top" Width="138" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnCancelar_Click"/>
-        <Controls:Tile Margin="255,28,566,376" Width="Auto" Height="Auto" Title="    REGISTRO FACTURAS" Click="Tile_Click">
+        <Button x:Name="BtnCancelar" Content="CERRAR SESION" HorizontalAlignment="Left" Margin="142,478,0,0" VerticalAlignment="Top" Width="138" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnCancelar_Click"/>
+        <Controls:Tile Margin="234,44,654,445" Width="Auto" Height="Auto" Title="    REGISTRO FACTURAS" Click="Tile_Click">
             <Image Source ="Imagenes/Facturas.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
         </Controls:Tile>
-        <Controls:Tile Margin="255,169,566,235" Width="Auto" Height="Auto" Title="    REGISTRO BOLETAS" Click="Tile_Click">
-            <Image Source ="Imagenes/registro-boletas.png" Width="152" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
+        <Controls:Tile Margin="234,160,654,325" Width="Auto" Height="Auto" Title="    REGISTRO BOLETAS" Click="Tile_Click">
+            <Image Source ="Imagenes/registro-boletas.png" Width="126" Height="84" RenderTransformOrigin="1.164,0.607" HorizontalAlignment="Right" Stretch="Fill"/>
         </Controls:Tile>
-        <Controls:Flyout x:Name="FlyUsuarioNuevo" Margin="687,0,0,0" Width="322" Foreground="#FFF9F6F6" HeaderStringFormat="" Header="AGREGAR NUEVO USUARIO" Position="Right">
+        <Controls:Flyout x:Name="FlyUsuarioNuevo" Margin="730,0,0,0" Foreground="#FFF9F6F6" HeaderStringFormat="" Header="AGREGAR NUEVO USUARIO" Position="Right" Height="579" VerticalAlignment="Top" HorizontalAlignment="Left" Width="330">
             <Controls:Flyout.Background>
                 <SolidColorBrush Color="#FF302C2C" Opacity="0.9"/>
             </Controls:Flyout.Background>
-            <Canvas >
+            <Canvas Margin="-39,0,71,0" HorizontalAlignment="Right" Width="298" >
                 <Image Height="174" Canvas.Left="41" Canvas.Top="10" Width="237" Stretch="Fill" Source="Imagenes/User-Login.png"/>
                 <TextBox x:Name="txtNuevoUsuario" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="            Ingrese Usuario"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="41" Canvas.Top="221"/>
                 <PasswordBox x:Name="txtNuevaContraseña" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="          Ingrese Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="41" Canvas.Top="281" Width="237" Height="29" />
                 <PasswordBox x:Name="txtRepetirContraseña" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="          Repita Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="41" Canvas.Top="338" Width="237" Height="29" />
-                <Button x:Name="BtnRegistrar" Content="REGISTRAR" HorizontalAlignment="Left" VerticalAlignment="Top" Width="237" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnIngresar_Click" Canvas.Left="41" Canvas.Top="388"/>
+                <Button x:Name="BtnRegistrar" Content="REGISTRAR" HorizontalAlignment="Left" VerticalAlignment="Top" Width="237" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnIngresar_Click" Canvas.Left="41" Canvas.Top="372"/>
+                <DataGrid x:Name="dt_ListaP" HorizontalAlignment="Left" Height="380" VerticalAlignment="Top" Width="228" Canvas.Left="-237" Canvas.Top="51"/>
+                <Button x:Name="btn_actualizar" Content="Actualizar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="237" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Canvas.Left="41" Canvas.Top="406"  Click="btn_actualizar_Click"/>
             </Canvas>
         </Controls:Flyout>
 

@@ -26,5 +26,7 @@ namespace Ferme
         }
     
         public virtual DbSet<USERS> USERS { get; set; }
+
+       
     }
 }

@@ -1,8 +1,10 @@
 ﻿using Ferme;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +25,10 @@ namespace Ferme
     /// Lógica de interacción para Menu.xaml
     /// </summary>
     public partial class Menu : MetroWindow
+
+        
     {
+        OracleConnection FR = new OracleConnection("DATA SOURCE = localhost:1521 / xe; PERSIST SECURITY INFO=True; PASSWORD = ferme;  USER ID = FERME ;");
         FermeEntities DB;
 
 
@@ -116,5 +121,22 @@ namespace Ferme
             return txtNuevaContraseña.Password.Equals(txtRepetirContraseña.Password);
         }
 
+        private void btn_actualizar_Click(object sender, RoutedEventArgs e)
+        {
+            FR.Open();
+            OracleCommand ComandoLista = new OracleCommand("ListPersonas", FR);
+            ComandoLista.CommandType = System.Data.CommandType.StoredProcedure;
+            ComandoLista.Parameters.Add("registros",OracleDbType.RefCursor).Direction=ParameterDirection.Output;
+            OracleDataAdapter adaptador = new OracleDataAdapter();
+            adaptador.SelectCommand = ComandoLista;
+            DataTable tabla = new DataTable();
+            adaptador.Fill(tabla);
+            dt_ListaP.ItemsSource = tabla.DefaultView;
+        }
+
+        private void dt_ListaP_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

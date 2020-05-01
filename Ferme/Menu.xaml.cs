@@ -44,7 +44,7 @@ namespace Ferme
 
         }
 
-        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
+        private void Btn(object sender, RoutedEventArgs e)
         {
             MainWindow miMainWindows = new MainWindow();
             miMainWindows.Show();
@@ -132,11 +132,33 @@ namespace Ferme
             DataTable tabla = new DataTable();
             adaptador.Fill(tabla);
             dt_ListaP.ItemsSource = tabla.DefaultView;
+            FR.Close();
         }
 
         private void dt_ListaP_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void TitleUsuarios_Click(object sender, RoutedEventArgs e)
+        {
+            ListaUsuarios.IsOpen = true;
+        }
+
+
+        private void btn_agregar_usuario(object sender, RoutedEventArgs e)
+        {
+            FlyUsuarioNuevo.IsOpen = true;
+        }
+
+        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            FlyUsuarioNuevo.IsOpen = true;
         }
     }
 }

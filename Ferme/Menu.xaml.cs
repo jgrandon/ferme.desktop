@@ -75,13 +75,13 @@ namespace Ferme
                 var user = new USERS()
                 {
                     ID = getNewUserId(),
-                    NAME = "",
+                    NAME = txtNombre.Text,
                     USERNAME = txtNuevoUsuario.Text,
                     PASSWORD = txtNuevaContraseña.Password
                 };
                 DB.USERS.Add(user);
 
-                await this.ShowMessageAsync("Exito", user.ID.ToString() );
+                await this.ShowMessageAsync("Exito usuario Agregado si ID ES ", user.ID.ToString() );
 
                 DB.SaveChanges();
 

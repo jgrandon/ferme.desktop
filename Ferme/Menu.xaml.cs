@@ -39,10 +39,7 @@ namespace Ferme
         }
 
 
-        private void Tile_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+      
 
         private void Btn(object sender, RoutedEventArgs e)
         {
@@ -53,7 +50,7 @@ namespace Ferme
 
         private void TitleAgregarUsuario_Click(object sender, RoutedEventArgs e)
         {
-            FlyUsuarioNuevo.IsOpen = true;
+           
         }
 
 
@@ -74,14 +71,17 @@ namespace Ferme
 
                 var user = new USERS()
                 {
-                    ID = getNewUserId(),
-                    NAME = txtNombre.Text,
+                   
+
+                ID = getNewUserId(),
+                    TIPO_USUARIO = ComboBoxTipo.Text,
+                    NAME = txtNombreUsuario.Text,
                     USERNAME = txtNuevoUsuario.Text,
                     PASSWORD = txtNuevaContraseña.Password
                 };
                 DB.USERS.Add(user);
 
-                await this.ShowMessageAsync("Exito usuario Agregado si ID ES ", user.ID.ToString() );
+                await this.ShowMessageAsync("Exito", user.ID.ToString() );
 
                 DB.SaveChanges();
 
@@ -90,6 +90,9 @@ namespace Ferme
             }
 
         }
+
+
+        
 
         private int getNewUserId()
         {
@@ -103,6 +106,8 @@ namespace Ferme
 
         private void ClearUserForm()
         {
+            ComboBoxTipo.Text = string.Empty;
+            txtNombreUsuario.Text = string.Empty;
             txtNuevoUsuario.Text = string.Empty;
             txtNuevaContraseña.Password = string.Empty;
             txtRepetirContraseña.Password = string.Empty;
@@ -131,7 +136,7 @@ namespace Ferme
             adaptador.SelectCommand = ComandoLista;
             DataTable tabla = new DataTable();
             adaptador.Fill(tabla);
-            dt_ListaP.ItemsSource = tabla.DefaultView;
+            
             FR.Close();
         }
 
@@ -142,23 +147,47 @@ namespace Ferme
 
         private void TitleUsuarios_Click(object sender, RoutedEventArgs e)
         {
-            ListaUsuarios.IsOpen = true;
+            FlyDespeUsuarios.IsOpen = true;
+            FlyDespeProveedor.IsOpen = false;
         }
 
 
         private void btn_agregar_usuario(object sender, RoutedEventArgs e)
         {
-            FlyUsuarioNuevo.IsOpen = true;
+            FlyEmpleadoNuevo.IsOpen = true;
         }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow miMainWindows = new MainWindow();
 
+            miMainWindows.Show();
+            this.Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            FlyUsuarioNuevo.IsOpen = true;
+            FlyEmpleadoNuevo.IsOpen = true;
         }
+
+     
+
+      
+
+        private void TitleRegistrarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            FlyEmpleadoNuevo.IsOpen = true;
+        }
+
+       
+
+        private void TitleProveedor_Click(object sender, RoutedEventArgs e)
+        {
+            FlyDespeProveedor.IsOpen = true;
+            FlyDespeUsuarios.IsOpen = false;
+
+        }
+
+     
     }
 }

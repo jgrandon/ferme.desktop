@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FermeModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FermeModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="USERS">
           <Key>
             <PropertyRef Name="ID" />
@@ -13,12 +13,12 @@
           <Property Name="NAME" Type="varchar2" MaxLength="50" />
           <Property Name="USERNAME" Type="varchar2" MaxLength="50" />
           <Property Name="PASSWORD" Type="varchar2" MaxLength="50" />
+          <Property Name="TIPO_USUARIO" Type="varchar2" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="FermeModelStoreContainer">
           <EntitySet Name="USERS" EntityType="Self.USERS" Schema="FERME" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FermeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -30,6 +30,7 @@
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_USUARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="FermeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="USERS" EntityType="Self.USERS" />
@@ -43,6 +44,7 @@
           <EntitySetMapping Name="USERS">
             <EntityTypeMapping TypeName="FermeModel.USERS">
               <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="TIPO_USUARIO" ColumnName="TIPO_USUARIO" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />

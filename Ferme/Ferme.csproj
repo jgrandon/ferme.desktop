@@ -230,6 +230,7 @@
       <DependentUpon>FermeModel.edmx</DependentUpon>
       <LastGenOutput>FermeModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Imagenes\House.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

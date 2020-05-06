@@ -89,8 +89,11 @@ namespace Ferme
             //await this.ShowMessageAsync("Exito", content );
         }
 
-
-
-
+        private void BtnInicio_Click(object sender, RoutedEventArgs e)
+        {
+            Menu men = new Menu();
+            men.Show();
+            this.Close();
+        }
     }
 }

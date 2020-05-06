@@ -16,5 +16,9 @@
         <Button x:Name="BtnEliminar" Content="ELIMINAR" HorizontalAlignment="Left" Margin="655,89,0,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnEliminar_Click"/>
         <Button x:Name="BtnMostrarList" Content="MOSTRAR LISTA" HorizontalAlignment="Left" Margin="109,89,0,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnMostrarList_Click"/>
         <TextBox HorizontalAlignment="Left" Height="44" Margin="268,10,0,0" TextWrapping="Wrap" Text="             Lista de Usuarios" VerticalAlignment="Top" Width="308" Background="#FF302C2C" BorderBrush="#FF302C2C" Foreground="White" FontFamily="Georgia" FontSize="24"/>
+        <Button x:Name="BtnInicio" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Width="75" Height="54" Background="#FF302C2C" BorderBrush="#FF302C2C" Click="BtnInicio_Click">
+            <Image HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="65" Source="Imagenes/House.png" Stretch="Fill"/>
+        </Button>
+
     </Grid>
 </Controls:MetroWindow>

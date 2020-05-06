@@ -10,7 +10,7 @@
         Title="Menu" Height="701" Width="1087" WindowStartupLocation="CenterScreen">
     <Grid Background="#FF0F0E0E" HorizontalAlignment="Left" Width="1077" Height="703" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1009*"/>
+            <ColumnDefinition Width="1070*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
         <Controls:Flyout x:Name="FlyEmpleadoNuevo" Margin="651,62,5,10" Foreground="#FFF9F6F6" HeaderStringFormat="" Header="AGREGAR EMPLEADO &#xD;&#xA;" Position="Right" VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -63,7 +63,7 @@
         <Controls:Flyout x:Name="FlyDespeUsuarios" Width="313" Margin="318,125,0,375" Background="#CC119EDA" Foreground="#FFF9F6F6">
             <Canvas>
                 <Controls:Tile x:Name="TitleRegistrarUsuario" Margin="0" Width="313" Height="45" Title="  REGISTRAR USUARIOS" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="-15" Click="TitleRegistrarUsuario_Click" />
-                <Controls:Tile x:Name="TitleListaUsuario" Margin="0" Width="313" Height="44" Title="  LISTA DE USUARIOS" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="48" Content="º" />
+                <Controls:Tile x:Name="TitleListaUsuario" Margin="0" Width="313" Height="44" Title="  LISTA DE USUARIOS" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="48" Content="º" Click="TitleListaUsuario_Click" />
             </Canvas>
         </Controls:Flyout>
         <Controls:Flyout x:Name="FlyDespeProveedor" Width="314" Margin="318,398,0,101" Background="#CC119EDA" Foreground="#FFF9F6F6">
@@ -71,12 +71,6 @@
                 <Controls:Tile x:Name="TitleRegistrarProveedor" Margin="0" Width="313" Height="45" Title="  REGISTRAR PROVEEDORES" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="-15" />
                 <Controls:Tile x:Name="TitleListaProveedores" Margin="0" Width="313" Height="44" Title="  LISTA DE PROVEEDORES" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="48" />
             </Canvas>
-        </Controls:Flyout>
-
-
-        <Controls:Flyout Margin="17,1,-283,0" Grid.Column="1" Width="273">
-
-
         </Controls:Flyout>
 
     </Grid>

@@ -19,6 +19,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfFragmentos;
 
+
 namespace Ferme
 {
     /// <summary>
@@ -188,6 +189,13 @@ namespace Ferme
 
         }
 
-     
+        private void TitleListaUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            ListadoUsers Lista = new ListadoUsers();
+            this.Close();
+            Lista.ShowDialog();
+
+
+        }
     }
 }

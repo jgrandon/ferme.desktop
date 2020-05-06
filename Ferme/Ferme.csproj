@@ -55,6 +55,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Drawing" />
@@ -87,6 +88,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FermeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ListadoUsers.xaml.cs">
+      <DependentUpon>ListadoUsers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="USERS.cs">
       <DependentUpon>FermeModel.tt</DependentUpon>
     </Compile>
@@ -97,6 +101,10 @@
     <Page Include="ListadoClientes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ListadoUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -169,7 +177,6 @@
     <None Include="FermeModel.edmx.diagram">
       <DependentUpon>FermeModel.edmx</DependentUpon>
     </None>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

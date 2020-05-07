@@ -197,5 +197,11 @@ namespace Ferme
 
 
         }
+
+        private void Tile_Click(object sender, RoutedEventArgs e)
+        {
+            var FromPro = new FormularioProducto ();
+            FromPro.Show();
+        }
     }
 }

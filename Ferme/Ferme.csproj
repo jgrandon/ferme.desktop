@@ -16,7 +16,7 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -83,13 +83,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CapaDatos\ClsProductos.cs" />
+    <Compile Include="CapaDatos\ConexionBD.cs" />
+    <Compile Include="FAMILIA_PRODUCTO.cs">
+      <DependentUpon>FermeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FermeModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FermeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FormularioProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioProducto.Designer.cs">
+      <DependentUpon>FormularioProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListadoUsers.xaml.cs">
       <DependentUpon>ListadoUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PRODUCTO.cs">
+      <DependentUpon>FermeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROVEEDOR.cs">
+      <DependentUpon>FermeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TIPO_PRODUCTO.cs">
+      <DependentUpon>FermeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="USERS.cs">
       <DependentUpon>FermeModel.tt</DependentUpon>
@@ -166,6 +186,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="FormularioProducto.resx">
+      <DependentUpon>FormularioProducto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -231,6 +254,9 @@
       <LastGenOutput>FermeModel.cs</LastGenOutput>
     </Content>
     <Resource Include="Imagenes\House.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CarpetaProductos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

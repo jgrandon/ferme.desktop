@@ -37,7 +37,7 @@
                     <Image Height="58" Width="98" Stretch="Fill" Source="Imagenes/User-New.png" VerticalAlignment="Center" HorizontalAlignment="Right" RenderTransformOrigin="-0.209,-1.198" Canvas.Left="222" Canvas.Top="-10"/>
                 </Canvas>
             </Controls:Tile>
-            <Controls:Tile Margin="0" Width="313" Height="45" Title=" REGISTRO PRODUCTO" Canvas.Top="73">
+            <Controls:Tile Margin="0" Width="313" Height="45" Title=" REGISTRO PRODUCTO" Canvas.Top="73" Click="Tile_Click">
                 <Canvas HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="303">
                     <Image HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="100" Stretch="Fill" Source="registro-producto.png" Canvas.Left="222" RenderTransformOrigin="0.715,0.246" Canvas.Top="-10"/>
                 </Canvas>

@@ -48,7 +48,7 @@ namespace Ferme
         private void BtnMostrarList_Click(object sender, RoutedEventArgs e)
         {
             FR.Open();
-            OracleCommand ComandoList = new OracleCommand("Lista_Usuarios", FR);
+            OracleCommand ComandoList = new OracleCommand("ListPersonas", FR);
             ComandoList.CommandType = System.Data.CommandType.StoredProcedure;
             ComandoList.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
             OracleDataAdapter adaptador = new OracleDataAdapter();

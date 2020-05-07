@@ -5,6 +5,39 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FermeModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FAMILIA_PRODUCTO">
+          <Key>
+            <PropertyRef Name="IDFAMILIA_PRODUCTO" />
+          </Key>
+          <Property Name="IDFAMILIA_PRODUCTO" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="50" />
+          <Property Name="DESCRIPCION" Type="varchar2" MaxLength="50" />
+          <Property Name="PRECIO" Type="number" Precision="38" Scale="0" />
+          <Property Name="IDTIPO_PRODUCTO" Type="varchar2" MaxLength="20" />
+          <Property Name="IDFAMILIA_PRODUCTO" Type="varchar2" MaxLength="20" />
+          <Property Name="IDPROVEEDOR" Type="varchar2" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="PROVEEDOR">
+          <Key>
+            <PropertyRef Name="IDPROVEEDOR" />
+          </Key>
+          <Property Name="IDPROVEEDOR" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TIPO_PRODUCTO">
+          <Key>
+            <PropertyRef Name="IDTIPO_PRODUCTO" />
+          </Key>
+          <Property Name="IDTIPO_PRODUCTO" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="50" />
+        </EntityType>
         <EntityType Name="USERS">
           <Key>
             <PropertyRef Name="ID" />
@@ -15,8 +48,74 @@
           <Property Name="PASSWORD" Type="varchar2" MaxLength="50" />
           <Property Name="TIPO_USUARIO" Type="varchar2" MaxLength="50" />
         </EntityType>
+        <Association Name="PRODUCTO_FK1">
+          <End Role="TIPO_PRODUCTO" Type="Self.TIPO_PRODUCTO" Multiplicity="0..1" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_PRODUCTO">
+              <PropertyRef Name="IDTIPO_PRODUCTO" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="IDTIPO_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTO_FK2">
+          <End Role="FAMILIA_PRODUCTO" Type="Self.FAMILIA_PRODUCTO" Multiplicity="0..1" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAMILIA_PRODUCTO">
+              <PropertyRef Name="IDFAMILIA_PRODUCTO" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="IDFAMILIA_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTO_FK3">
+          <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="0..1" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDOR">
+              <PropertyRef Name="IDPROVEEDOR" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="IDPROVEEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ELIMINARPRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FERME">
+          <Parameter Name="IDP" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="INSERTARPRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FERME">
+          <Parameter Name="ID_PRO" Type="varchar2" Mode="In" />
+          <Parameter Name="NOMBRE_PRO" Type="varchar2" Mode="In" />
+          <Parameter Name="DESCRIPCION_PRO" Type="varchar2" Mode="In" />
+          <Parameter Name="PRECIO_PRO" Type="number" Mode="In" />
+          <Parameter Name="IDTIPOS_PRODUCTO" Type="varchar2" Mode="In" />
+          <Parameter Name="IDFAMILIAS_PRODUCTO" Type="varchar2" Mode="In" />
+          <Parameter Name="IDPROVEDORE" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="LISTPERSONAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FERME" />
+        <Function Name="LISTPRODUCTOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FERME" />
         <EntityContainer Name="FermeModelStoreContainer">
+          <EntitySet Name="FAMILIA_PRODUCTO" EntityType="Self.FAMILIA_PRODUCTO" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="TIPO_PRODUCTO" EntityType="Self.TIPO_PRODUCTO" Schema="FERME" store:Type="Tables" />
           <EntitySet Name="USERS" EntityType="Self.USERS" Schema="FERME" store:Type="Tables" />
+          <AssociationSet Name="PRODUCTO_FK1" Association="Self.PRODUCTO_FK1">
+            <End Role="TIPO_PRODUCTO" EntitySet="TIPO_PRODUCTO" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTO_FK2" Association="Self.PRODUCTO_FK2">
+            <End Role="FAMILIA_PRODUCTO" EntitySet="FAMILIA_PRODUCTO" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTO_FK3" Association="Self.PRODUCTO_FK3">
+            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -34,7 +133,121 @@
         </EntityType>
         <EntityContainer Name="FermeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="USERS" EntityType="Self.USERS" />
+          <EntitySet Name="FAMILIA_PRODUCTO" EntityType="FermeModel.FAMILIA_PRODUCTO" />
+          <EntitySet Name="PRODUCTO" EntityType="FermeModel.PRODUCTO" />
+          <EntitySet Name="PROVEEDOR" EntityType="FermeModel.PROVEEDOR" />
+          <EntitySet Name="TIPO_PRODUCTO" EntityType="FermeModel.TIPO_PRODUCTO" />
+          <AssociationSet Name="PRODUCTO_FK2" Association="FermeModel.PRODUCTO_FK2">
+            <End Role="FAMILIA_PRODUCTO" EntitySet="FAMILIA_PRODUCTO" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTO_FK1" Association="FermeModel.PRODUCTO_FK1">
+            <End Role="TIPO_PRODUCTO" EntitySet="TIPO_PRODUCTO" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTO_FK3" Association="FermeModel.PRODUCTO_FK3">
+            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <FunctionImport Name="LISTPERSONAS" />
+          <FunctionImport Name="INSERTARPRO">
+            <Parameter Name="ID_PRO" Mode="In" Type="String" />
+            <Parameter Name="NOMBRE_PRO" Mode="In" Type="String" />
+            <Parameter Name="DESCRIPCION_PRO" Mode="In" Type="String" />
+            <Parameter Name="PRECIO_PRO" Mode="In" Type="Decimal" />
+            <Parameter Name="IDTIPOS_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="IDFAMILIAS_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="IDPROVEDORE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LISTPRODUCTOS" />
+          <FunctionImport Name="ACTUALIZARPRO">
+            <Parameter Name="ID" Mode="In" Type="String" />
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="DESCRIPCION" Mode="In" Type="String" />
+            <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="IDTIPO_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="IDFAMILIA_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="IDPROVEEDOR" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINARPRO">
+            <Parameter Name="IDP" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <EntityType Name="FAMILIA_PRODUCTO">
+          <Key>
+            <PropertyRef Name="IDFAMILIA_PRODUCTO" />
+          </Key>
+          <Property Name="IDFAMILIA_PRODUCTO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PRODUCTO" Relationship="FermeModel.PRODUCTO_FK2" FromRole="FAMILIA_PRODUCTO" ToRole="PRODUCTO" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRECIO" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="IDTIPO_PRODUCTO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IDFAMILIA_PRODUCTO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IDPROVEEDOR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FAMILIA_PRODUCTO" Relationship="FermeModel.PRODUCTO_FK2" FromRole="PRODUCTO" ToRole="FAMILIA_PRODUCTO" />
+          <NavigationProperty Name="TIPO_PRODUCTO" Relationship="FermeModel.PRODUCTO_FK1" FromRole="PRODUCTO" ToRole="TIPO_PRODUCTO" />
+          <NavigationProperty Name="PROVEEDOR" Relationship="FermeModel.PRODUCTO_FK3" FromRole="PRODUCTO" ToRole="PROVEEDOR" />
+        </EntityType>
+        <EntityType Name="PROVEEDOR">
+          <Key>
+            <PropertyRef Name="IDPROVEEDOR" />
+          </Key>
+          <Property Name="IDPROVEEDOR" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PRODUCTO" Relationship="FermeModel.PRODUCTO_FK3" FromRole="PROVEEDOR" ToRole="PRODUCTO" />
+        </EntityType>
+        <EntityType Name="TIPO_PRODUCTO">
+          <Key>
+            <PropertyRef Name="IDTIPO_PRODUCTO" />
+          </Key>
+          <Property Name="IDTIPO_PRODUCTO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PRODUCTO" Relationship="FermeModel.PRODUCTO_FK1" FromRole="TIPO_PRODUCTO" ToRole="PRODUCTO" />
+        </EntityType>
+        <Association Name="PRODUCTO_FK2">
+          <End Type="FermeModel.FAMILIA_PRODUCTO" Role="FAMILIA_PRODUCTO" Multiplicity="0..1" />
+          <End Type="FermeModel.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAMILIA_PRODUCTO">
+              <PropertyRef Name="IDFAMILIA_PRODUCTO" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="IDFAMILIA_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTO_FK1">
+          <End Type="FermeModel.TIPO_PRODUCTO" Role="TIPO_PRODUCTO" Multiplicity="0..1" />
+          <End Type="FermeModel.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_PRODUCTO">
+              <PropertyRef Name="IDTIPO_PRODUCTO" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="IDTIPO_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTO_FK3">
+          <End Type="FermeModel.PROVEEDOR" Role="PROVEEDOR" Multiplicity="0..1" />
+          <End Type="FermeModel.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDOR">
+              <PropertyRef Name="IDPROVEEDOR" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="IDPROVEEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -52,6 +265,47 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="FAMILIA_PRODUCTO">
+            <EntityTypeMapping TypeName="FermeModel.FAMILIA_PRODUCTO">
+              <MappingFragment StoreEntitySet="FAMILIA_PRODUCTO">
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="IDFAMILIA_PRODUCTO" ColumnName="IDFAMILIA_PRODUCTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTO">
+            <EntityTypeMapping TypeName="FermeModel.PRODUCTO">
+              <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="IDPROVEEDOR" ColumnName="IDPROVEEDOR" />
+                <ScalarProperty Name="IDFAMILIA_PRODUCTO" ColumnName="IDFAMILIA_PRODUCTO" />
+                <ScalarProperty Name="IDTIPO_PRODUCTO" ColumnName="IDTIPO_PRODUCTO" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVEEDOR">
+            <EntityTypeMapping TypeName="FermeModel.PROVEEDOR">
+              <MappingFragment StoreEntitySet="PROVEEDOR">
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="IDPROVEEDOR" ColumnName="IDPROVEEDOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_PRODUCTO">
+            <EntityTypeMapping TypeName="FermeModel.TIPO_PRODUCTO">
+              <MappingFragment StoreEntitySet="TIPO_PRODUCTO">
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="IDTIPO_PRODUCTO" ColumnName="IDTIPO_PRODUCTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="LISTPERSONAS" FunctionName="FermeModel.Store.LISTPERSONAS" />
+          <FunctionImportMapping FunctionImportName="INSERTARPRO" FunctionName="FermeModel.Store.INSERTARPRO" />
+          <FunctionImportMapping FunctionImportName="LISTPRODUCTOS" FunctionName="FermeModel.Store.LISTPRODUCTOS" />
+          <FunctionImportMapping FunctionImportName="ELIMINARPRO" FunctionName="FermeModel.Store.ELIMINARPRO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

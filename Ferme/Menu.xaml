@@ -7,13 +7,16 @@
         xmlns:local="clr-namespace:Ferme"
         
         mc:Ignorable="d"
-        Title="Menu" Height="701" Width="1087" WindowStartupLocation="CenterScreen">
-    <Grid Background="#FF0F0E0E" HorizontalAlignment="Left" Width="1077" Height="703" VerticalAlignment="Bottom">
+        Title="Menu" Height="701" Width="1228.5" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF0F0E0E" HorizontalAlignment="Left" Width="1218" Height="703" VerticalAlignment="Bottom" Margin="0,-33,0,0">
+
+
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1070*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-        <Controls:Flyout x:Name="FlyEmpleadoNuevo" Margin="651,62,5,10" Foreground="#FFF9F6F6" HeaderStringFormat="" Header="AGREGAR EMPLEADO &#xD;&#xA;" Position="Right" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Controls:Flyout x:Name="FlyEmpleadoNuevo" Margin="801,62,5,10" Foreground="#FFF9F6F6" HeaderStringFormat="" Header="AGREGAR EMPLEADO &#xD;&#xA;" Position="Right" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Controls:Flyout.Background>
                 <SolidColorBrush Color="#FF302C2C" Opacity="0.9"/>
             </Controls:Flyout.Background>
@@ -60,18 +63,18 @@
             <Button x:Name="BtnCancelar" Content="CERRAR SESION" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnCancelar_Click" Canvas.Left="79" Canvas.Top="543"/>
         </Canvas>
         <Image HorizontalAlignment="Left" Height="84" Margin="0,36,0,0" VerticalAlignment="Top" Width="313" Source="Imagenes/logoo.jpg" Stretch="Fill"/>
-        <Controls:Flyout x:Name="FlyDespeUsuarios" Width="313" Margin="318,125,0,375" Background="#CC119EDA" Foreground="#FFF9F6F6">
+        <Controls:Flyout x:Name="FlyDespeUsuarios" Width="244" Margin="318,125,0,375" Background="#CC119EDA" Foreground="#FFF9F6F6">
             <Canvas>
-                <Controls:Tile x:Name="TitleRegistrarUsuario" Margin="0" Width="313" Height="45" Title="  REGISTRAR USUARIOS" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="-15" Click="TitleRegistrarUsuario_Click" />
-                <Controls:Tile x:Name="TitleListaUsuario" Margin="0" Width="313" Height="44" Title="  LISTA DE USUARIOS" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="48" Content="º" Click="TitleListaUsuario_Click" />
+                <Controls:Tile x:Name="TitleRegistrarUsuario" Margin="0" Width="244" Height="45" Title="  REGISTRAR USUARIOS" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="-15" Click="TitleRegistrarUsuario_Click" />
+                <Controls:Tile x:Name="TitleListaUsuario" Margin="0" Width="244" Height="44" Title="  LISTA DE USUARIOS" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="48" Content="º" Click="TitleListaUsuario_Click" />
             </Canvas>
         </Controls:Flyout>
-        <Controls:Flyout x:Name="FlyDespeProveedor" Width="314" Margin="318,398,0,101" Background="#CC119EDA" Foreground="#FFF9F6F6">
+        <Controls:Flyout x:Name="FlyDespeProveedor" Width="244" Margin="318,352,0,147" Background="#CC119EDA" Foreground="#FFF9F6F6">
             <Canvas>
-                <Controls:Tile x:Name="TitleRegistrarProveedor" Margin="0" Width="313" Height="45" Title="  REGISTRAR PROVEEDORES" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="-15" />
-                <Controls:Tile x:Name="TitleListaProveedores" Margin="0" Width="313" Height="44" Title="  LISTA DE PROVEEDORES" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="48" />
+                <Controls:Tile x:Name="TitleRegistrarProveedor" Margin="0" Width="244" Height="45" Title="  REGISTRAR PROVEEDORES" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="-15" />
+                <Controls:Tile x:Name="TitleListaProveedores" Margin="0" Width="244" Height="44" Title="  LISTA DE PROVEEDORES" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="48" />
             </Canvas>
         </Controls:Flyout>
-
+        <ComboBox HorizontalAlignment="Left" Margin="801,783,0,-106" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Controls:MetroWindow>

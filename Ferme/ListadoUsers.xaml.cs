@@ -21,6 +21,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfFragmentos;
 
+
 namespace Ferme
 {
     /// <summary>
@@ -64,29 +65,47 @@ namespace Ferme
         {
             USERS deletedUser = DB.USERS.Find(selectedUserId);
             var nombre = deletedUser.NAME;
-            DB.USERS.Remove(deletedUser);
-            DB.SaveChanges();
-            await this.ShowMessageAsync("Exito", "Se elimino correctamente el usuario " + nombre);
+            
+            var resultado = await this.ShowMessageAsync("Exito", "Desea eliminar a: " + nombre,
+                       MahApps.Metro.Controls.Dialogs.MessageDialogStyle.AffirmativeAndNegative);
+            if (resultado == MessageDialogResult.Affirmative)
+            {
+                DB.USERS.Remove(deletedUser);
+                DB.SaveChanges();
+                await this.ShowMessageAsync("resultado", "Se elimino " + nombre +" de la lista");
+            }
+            else
+            {
+               await this.ShowMessageAsync("resultado", "No eliminaste a: " + nombre);
+            }
+
 
         }
 
         private void DataGridListUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //[]
-            //{ }
+            
             var row = DataGridListUser.SelectedItem as DataRowView;
+
+          
 
             if (row == null)
             {
                 BtnEliminar.IsEnabled = false;
+                 BtnModificar.IsEnabled = false;
+
             }
+            
+          
             else
             { 
                 selectedUserId = Int32.Parse(row.Row.ItemArray[0].ToString());
                 BtnEliminar.IsEnabled = true;
+                BtnModificar.IsEnabled = true;
             }
 
-            //await this.ShowMessageAsync("Exito", content );
+           
+          
         }
 
         private void BtnInicio_Click(object sender, RoutedEventArgs e)
@@ -94,6 +113,13 @@ namespace Ferme
             Menu men = new Menu();
             men.Show();
             this.Close();
+        }
+
+        private  void BtnModificar_Click(object sender, RoutedEventArgs e)
+        {
+           
+
+
         }
     }
 }

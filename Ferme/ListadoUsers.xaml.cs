@@ -73,6 +73,19 @@ namespace Ferme
                 DB.USERS.Remove(deletedUser);
                 DB.SaveChanges();
                 await this.ShowMessageAsync("resultado", "Se elimino " + nombre +" de la lista");
+
+                FR.Open();
+                OracleCommand ComandoList = new OracleCommand("Lista_Usuarios", FR);
+                ComandoList.CommandType = System.Data.CommandType.StoredProcedure;
+                ComandoList.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+                OracleDataAdapter adaptador = new OracleDataAdapter();
+                adaptador.SelectCommand = ComandoList;
+                DataTable tabla = new DataTable();
+                adaptador.Fill(tabla);
+                DataGridListUser.ItemsSource = tabla.DefaultView;
+                FR.Close();
+
+
             }
             else
             {

@@ -52,34 +52,35 @@
             // cmbTiposP
             // 
             this.cmbTiposP.FormattingEnabled = true;
-            this.cmbTiposP.Location = new System.Drawing.Point(866, 189);
+            this.cmbTiposP.Location = new System.Drawing.Point(1010, 204);
             this.cmbTiposP.Name = "cmbTiposP";
-            this.cmbTiposP.Size = new System.Drawing.Size(121, 21);
+            this.cmbTiposP.Size = new System.Drawing.Size(140, 22);
             this.cmbTiposP.TabIndex = 0;
             this.cmbTiposP.SelectedIndexChanged += new System.EventHandler(this.cmbTiposP_SelectedIndexChanged);
             // 
             // cmbProveedor
             // 
             this.cmbProveedor.FormattingEnabled = true;
-            this.cmbProveedor.Location = new System.Drawing.Point(866, 216);
+            this.cmbProveedor.Location = new System.Drawing.Point(1010, 233);
             this.cmbProveedor.Name = "cmbProveedor";
-            this.cmbProveedor.Size = new System.Drawing.Size(121, 21);
+            this.cmbProveedor.Size = new System.Drawing.Size(140, 22);
             this.cmbProveedor.TabIndex = 1;
             // 
             // cmbTipoProducto
             // 
             this.cmbTipoProducto.FormattingEnabled = true;
-            this.cmbTipoProducto.Location = new System.Drawing.Point(866, 162);
+            this.cmbTipoProducto.Location = new System.Drawing.Point(1010, 174);
             this.cmbTipoProducto.Name = "cmbTipoProducto";
-            this.cmbTipoProducto.Size = new System.Drawing.Size(121, 21);
+            this.cmbTipoProducto.Size = new System.Drawing.Size(140, 22);
             this.cmbTipoProducto.TabIndex = 2;
             // 
             // txtFamiliaP
             // 
             this.txtFamiliaP.AutoSize = true;
-            this.txtFamiliaP.Location = new System.Drawing.Point(760, 165);
+            this.txtFamiliaP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtFamiliaP.Location = new System.Drawing.Point(885, 177);
             this.txtFamiliaP.Name = "txtFamiliaP";
-            this.txtFamiliaP.Size = new System.Drawing.Size(85, 13);
+            this.txtFamiliaP.Size = new System.Drawing.Size(106, 14);
             this.txtFamiliaP.TabIndex = 3;
             this.txtFamiliaP.Text = "Familia Producto";
             this.txtFamiliaP.Click += new System.EventHandler(this.label1_Click);
@@ -87,9 +88,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(760, 192);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(885, 204);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.Size = new System.Drawing.Size(86, 14);
             this.label1.TabIndex = 4;
             this.label1.Text = "Tipo Producto";
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
@@ -97,121 +99,140 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(769, 224);
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(887, 233);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.Size = new System.Drawing.Size(65, 14);
             this.label2.TabIndex = 5;
             this.label2.Text = "Proveedor";
             // 
             // txtDescripcionP
             // 
-            this.txtDescripcionP.Location = new System.Drawing.Point(866, 136);
+            this.txtDescripcionP.Location = new System.Drawing.Point(1010, 146);
             this.txtDescripcionP.Name = "txtDescripcionP";
-            this.txtDescripcionP.Size = new System.Drawing.Size(121, 20);
+            this.txtDescripcionP.Size = new System.Drawing.Size(140, 20);
             this.txtDescripcionP.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(771, 139);
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Location = new System.Drawing.Point(887, 146);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
+            this.label3.Size = new System.Drawing.Size(73, 14);
             this.label3.TabIndex = 7;
             this.label3.Text = "Descripcion";
             // 
             // txtNombreP
             // 
-            this.txtNombreP.Location = new System.Drawing.Point(866, 103);
+            this.txtNombreP.Location = new System.Drawing.Point(1010, 111);
             this.txtNombreP.Name = "txtNombreP";
-            this.txtNombreP.Size = new System.Drawing.Size(121, 20);
+            this.txtNombreP.Size = new System.Drawing.Size(140, 20);
             this.txtNombreP.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(781, 106);
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label4.Location = new System.Drawing.Point(887, 111);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 13);
+            this.label4.Size = new System.Drawing.Size(53, 14);
             this.label4.TabIndex = 9;
             this.label4.Text = "Nombre";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(866, 243);
+            this.txtPrecio.Location = new System.Drawing.Point(1010, 262);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(121, 20);
+            this.txtPrecio.Size = new System.Drawing.Size(140, 20);
             this.txtPrecio.TabIndex = 10;
             // 
             // Precio
             // 
             this.Precio.AutoSize = true;
-            this.Precio.Location = new System.Drawing.Point(788, 250);
+            this.Precio.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Precio.Location = new System.Drawing.Point(887, 262);
             this.Precio.Name = "Precio";
-            this.Precio.Size = new System.Drawing.Size(37, 13);
+            this.Precio.Size = new System.Drawing.Size(42, 14);
             this.Precio.TabIndex = 11;
             this.Precio.Text = "Precio";
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(21, 44);
+            this.dataGridView1.Location = new System.Drawing.Point(24, 47);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(733, 308);
+            this.dataGridView1.Size = new System.Drawing.Size(855, 332);
             this.dataGridView1.TabIndex = 12;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // bntAgregarP
             // 
-            this.bntAgregarP.Location = new System.Drawing.Point(774, 292);
+            this.bntAgregarP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bntAgregarP.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bntAgregarP.FlatAppearance.BorderSize = 0;
+            this.bntAgregarP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bntAgregarP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.bntAgregarP.Location = new System.Drawing.Point(988, 354);
             this.bntAgregarP.Name = "bntAgregarP";
-            this.bntAgregarP.Size = new System.Drawing.Size(87, 23);
+            this.bntAgregarP.Size = new System.Drawing.Size(101, 25);
             this.bntAgregarP.TabIndex = 13;
-            this.bntAgregarP.Text = "Agregar";
-            this.bntAgregarP.UseVisualStyleBackColor = true;
+            this.bntAgregarP.Text = "AGREGAR";
+            this.bntAgregarP.UseVisualStyleBackColor = false;
             this.bntAgregarP.Click += new System.EventHandler(this.bntAgregarP_Click);
             // 
             // btnActualizarP
             // 
-            this.btnActualizarP.Location = new System.Drawing.Point(890, 292);
+            this.btnActualizarP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnActualizarP.FlatAppearance.BorderSize = 0;
+            this.btnActualizarP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizarP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnActualizarP.Location = new System.Drawing.Point(1059, 409);
             this.btnActualizarP.Name = "btnActualizarP";
-            this.btnActualizarP.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizarP.Size = new System.Drawing.Size(94, 25);
             this.btnActualizarP.TabIndex = 14;
-            this.btnActualizarP.Text = "Actualizar";
-            this.btnActualizarP.UseVisualStyleBackColor = true;
+            this.btnActualizarP.Text = "ACTUALIZAR";
+            this.btnActualizarP.UseVisualStyleBackColor = false;
             this.btnActualizarP.Click += new System.EventHandler(this.btnActualizarP_Click);
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(865, 77);
+            this.txtID.Location = new System.Drawing.Point(1009, 83);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(122, 20);
+            this.txtID.Size = new System.Drawing.Size(142, 20);
             this.txtID.TabIndex = 15;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(781, 77);
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label5.Location = new System.Drawing.Point(887, 83);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(18, 13);
+            this.label5.Size = new System.Drawing.Size(19, 14);
             this.label5.TabIndex = 16;
             this.label5.Text = "ID";
             // 
             // txtEliminarP
             // 
-            this.txtEliminarP.Location = new System.Drawing.Point(774, 346);
+            this.txtEliminarP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.txtEliminarP.FlatAppearance.BorderSize = 0;
+            this.txtEliminarP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.txtEliminarP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtEliminarP.Location = new System.Drawing.Point(920, 409);
             this.txtEliminarP.Name = "txtEliminarP";
-            this.txtEliminarP.Size = new System.Drawing.Size(87, 23);
+            this.txtEliminarP.Size = new System.Drawing.Size(101, 25);
             this.txtEliminarP.TabIndex = 17;
-            this.txtEliminarP.Text = "Eliminar";
-            this.txtEliminarP.UseVisualStyleBackColor = true;
+            this.txtEliminarP.Text = "ELIMINAR";
+            this.txtEliminarP.UseVisualStyleBackColor = false;
             this.txtEliminarP.Click += new System.EventHandler(this.txtEliminarP_Click);
             // 
             // FormularioProducto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(999, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ClientSize = new System.Drawing.Size(1165, 485);
             this.Controls.Add(this.txtEliminarP);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtID);
@@ -230,6 +251,7 @@
             this.Controls.Add(this.cmbTipoProducto);
             this.Controls.Add(this.cmbProveedor);
             this.Controls.Add(this.cmbTiposP);
+            this.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FormularioProducto";
             this.Text = "FormularioProducto";
             this.Load += new System.EventHandler(this.FormularioProducto_Load);

@@ -19,6 +19,8 @@
         <Button x:Name="BtnInicio" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Width="75" Height="54" Background="#FF302C2C" BorderBrush="#FF302C2C" Click="BtnInicio_Click">
             <Image HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="65" Source="Imagenes/House.png" Stretch="Fill"/>
         </Button>
+        <Controls:Flyout Height="398" Margin="592,112,10,11" Background="Black"/>
+
 
     </Grid>
 </Controls:MetroWindow>

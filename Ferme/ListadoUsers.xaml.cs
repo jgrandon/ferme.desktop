@@ -48,7 +48,7 @@ namespace Ferme
         private void BtnMostrarList_Click(object sender, RoutedEventArgs e)
         {
             FR.Open();
-            OracleCommand ComandoList = new OracleCommand("ListPersonas", FR);
+            OracleCommand ComandoList = new OracleCommand("Lista_Usuarios", FR);
             ComandoList.CommandType = System.Data.CommandType.StoredProcedure;
             ComandoList.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
             OracleDataAdapter adaptador = new OracleDataAdapter();
@@ -64,9 +64,33 @@ namespace Ferme
         {
             USERS deletedUser = DB.USERS.Find(selectedUserId);
             var nombre = deletedUser.NAME;
-            DB.USERS.Remove(deletedUser);
-            DB.SaveChanges();
-            await this.ShowMessageAsync("Exito", "Se elimino correctamente el usuario " + nombre);
+
+            var resultado = await this.ShowMessageAsync("Exito", "Desea eliminar a: " + nombre,
+                       MahApps.Metro.Controls.Dialogs.MessageDialogStyle.AffirmativeAndNegative);
+            if (resultado == MessageDialogResult.Affirmative)
+            {
+                DB.USERS.Remove(deletedUser);
+                DB.SaveChanges();
+                await this.ShowMessageAsync("resultado", "Se elimino " + nombre + " de la lista");
+
+                FR.Open();
+                OracleCommand ComandoList = new OracleCommand("Lista_Usuarios", FR);
+                ComandoList.CommandType = System.Data.CommandType.StoredProcedure;
+                ComandoList.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+                OracleDataAdapter adaptador = new OracleDataAdapter();
+                adaptador.SelectCommand = ComandoList;
+                DataTable tabla = new DataTable();
+                adaptador.Fill(tabla);
+                DataGridListUser.ItemsSource = tabla.DefaultView;
+                FR.Close();
+
+
+            }
+            else
+            {
+                await this.ShowMessageAsync("resultado", "No eliminaste a: " + nombre);
+            }
+
 
         }
 

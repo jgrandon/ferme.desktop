@@ -26,7 +26,6 @@
                 <PasswordBox x:Name="txtNuevaContraseña" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="          Ingrese Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="77" Canvas.Top="365" Width="237" Height="29" />
                 <PasswordBox x:Name="txtRepetirContraseña" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="          Repita Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="77" Canvas.Top="425" Width="237" Height="29" />
                 <Button x:Name="BtnRegistrar" Content="REGISTRAR" HorizontalAlignment="Left" VerticalAlignment="Top" Width="237" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnIngresar_Click" Canvas.Left="77" Canvas.Top="478"/>
-                <Button x:Name="btn_actualizar" Content="Actualizar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="237" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Canvas.Left="77" Canvas.Top="508"  Click="btn_actualizar_Click"/>
                 <TextBox x:Name="txtNombreUsuario" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="            Nombre Y Apellido"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="77" Canvas.Top="170"/>
                 <ComboBox x:Name="ComboBoxTipo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="237" Foreground="White" Height="22"  Background="#FF2B2828" FontSize="16" FontFamily="Georgia" Controls:TextBoxHelper.Watermark="            Tipo de Usuario" Canvas.Left="77" Canvas.Top="236" >
                     <ComboBoxItem x:Name="item1" Content="  Vendedor" HorizontalAlignment="Left" Width="312" Background="#FF2B2828" Foreground="White" BorderBrush="#CC119EDA" Margin="0,0,-2,0" Height="46"/>
@@ -40,7 +39,7 @@
                     <Image Height="58" Width="98" Stretch="Fill" Source="Imagenes/User-New.png" VerticalAlignment="Center" HorizontalAlignment="Right" RenderTransformOrigin="-0.209,-1.198" Canvas.Left="222" Canvas.Top="-10"/>
                 </Canvas>
             </Controls:Tile>
-            <Controls:Tile Margin="0" Width="313" Height="45" Title=" REGISTRO PRODUCTO" Canvas.Top="73">
+            <Controls:Tile Margin="0" Width="313" Height="45" Title=" REGISTRO PRODUCTO" Canvas.Top="73" Click="Tile_Click">
                 <Canvas HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="303">
                     <Image HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="100" Stretch="Fill" Source="registro-producto.png" Canvas.Left="222" RenderTransformOrigin="0.715,0.246" Canvas.Top="-10"/>
                 </Canvas>
@@ -69,12 +68,20 @@
                 <Controls:Tile x:Name="TitleListaUsuario" Margin="0" Width="244" Height="44" Title="  LISTA DE USUARIOS" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="48" Content="º" Click="TitleListaUsuario_Click" />
             </Canvas>
         </Controls:Flyout>
-        <Controls:Flyout x:Name="FlyDespeProveedor" Width="244" Margin="318,352,0,147" Background="#CC119EDA" Foreground="#FFF9F6F6">
-            <Canvas>
-                <Controls:Tile x:Name="TitleRegistrarProveedor" Margin="0" Width="244" Height="45" Title="  REGISTRAR PROVEEDORES" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="-15" />
-                <Controls:Tile x:Name="TitleListaProveedores" Margin="0" Width="244" Height="44" Title="  LISTA DE PROVEEDORES" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="48" />
+        <Controls:Flyout x:Name="FlyRegisProveedor" Width="244" Margin="567,125,0,148" Background="#CC119EDA" Foreground="#FFF9F6F6" RenderTransformOrigin="-0.254,0.775">
+            <Canvas HorizontalAlignment="Right" Height="344" Margin="0,0,10,0" Width="224" RenderTransformOrigin="0.536,0.358">
+                <TextBox x:Name="txtIDproveedor" Height="23" Canvas.Left="94" TextWrapping="Wrap" Canvas.Top="32" Width="120"/>
+                <TextBox x:Name="txtNombreProveedor" Height="23" Canvas.Left="94" TextWrapping="Wrap" Canvas.Top="80" Width="120"/>
+                <DataGrid x:Name="DataGridListProveedor" Height="104" Canvas.Left="21" Canvas.Top="122" Width="193"/>
+                <Button x:Name="btnModificarPro" Content="Modificar" Canvas.Left="21" Canvas.Top="247" Width="75" Click="btnModificarPro_Click"/>
+                <Button x:Name="txtIngresarPro" Content="INGRESAR" Canvas.Left="121" Canvas.Top="247" Width="75" Click="txtIngresarPro_Click"/>
             </Canvas>
         </Controls:Flyout>
-        <ComboBox HorizontalAlignment="Left" Margin="801,783,0,-106" VerticalAlignment="Top" Width="120"/>
+        <Controls:Flyout x:Name="FlyDespeProveedor_Copy" Width="244" Margin="318,351,0,148" Background="#CC119EDA" Foreground="#FFF9F6F6" RenderTransformOrigin="-0.254,0.775">
+            <Canvas>
+                <Controls:Tile x:Name="TitleRegistrarProveedor1" Margin="0" Width="244" Height="45" Title="  REGISTRAR PROVEEDORES" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="-15" Click="TitleRegistrarProveedor_Click" />
+                <Controls:Tile x:Name="TitleListaProveedores1" Margin="0" Width="244" Height="44" Title="  LISTA DE PROVEEDORES" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="48" />
+            </Canvas>
+        </Controls:Flyout>
     </Grid>
 </Controls:MetroWindow>

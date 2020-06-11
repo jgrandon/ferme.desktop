@@ -1,24 +1,14 @@
-﻿using Ferme;
+﻿using Ferme.CarpetaProducto;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Oracle.ManagedDataAccess.Client;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfFragmentos;
 
+using Ferme.CarpetaProductos;
 
 namespace Ferme
 {
@@ -149,7 +139,7 @@ namespace Ferme
         private void TitleUsuarios_Click(object sender, RoutedEventArgs e)
         {
             FlyDespeUsuarios.IsOpen = true;
-            FlyDespeProveedor.IsOpen = false;
+           
         }
 
 
@@ -184,7 +174,7 @@ namespace Ferme
 
         private void TitleProveedor_Click(object sender, RoutedEventArgs e)
         {
-            FlyDespeProveedor.IsOpen = true;
+            FlyDespeProveedor_Copy.IsOpen = true;
             FlyDespeUsuarios.IsOpen = false;
 
         }
@@ -198,6 +188,49 @@ namespace Ferme
 
         }
 
+        private void Tile_Click(object sender, RoutedEventArgs e)
+        {
+            var FromPro = new FormProductos();
+            FromPro.Show();
+        }
 
+        private void TitleRegistrarProveedor_Click(object sender, RoutedEventArgs e)
+        {
+            FlyRegisProveedor.IsOpen = true;
+            FR.Open();
+            OracleCommand ComandoList = new OracleCommand("Lista_Proveedor", FR);
+            ComandoList.CommandType = System.Data.CommandType.StoredProcedure;
+            ComandoList.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+            OracleDataAdapter adaptador = new OracleDataAdapter();
+            adaptador.SelectCommand = ComandoList;
+            DataTable tabla = new DataTable();
+            adaptador.Fill(tabla);
+            DataGridListProveedor.ItemsSource = tabla.DefaultView;
+            FR.Close();
+        }
+
+        private void btnModificarPro_Click(object sender, RoutedEventArgs e)
+        {
+            FR.Open();
+            OracleCommand comando = new OracleCommand("UPDATE PROVEEDOR SET NOMBRE ='"+txtNombreProveedor+ "' WHERE IDPROVEEDOR ='" + txtIDproveedor.Text + "'", FR);
+            OracleDataAdapter adaptador = new OracleDataAdapter();
+            adaptador.UpdateCommand = comando;
+            adaptador.UpdateCommand.ExecuteNonQuery();
+            FR.Close();
+            
+            MessageBox.Show("Proveedor actualizado");
+        }
+
+        private void txtIngresarPro_Click(object sender, RoutedEventArgs e)
+        {
+            FR.Open();
+            OracleCommand comando = new OracleCommand("INSERTARPROVEEDOR", FR);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.Add("IDPRO", OracleDbType.Varchar2).Value =txtIDproveedor.Text ;
+            comando.Parameters.Add("NOMBREPRO", OracleDbType.Varchar2).Value = txtNombreProveedor.Text;
+            comando.ExecuteNonQuery();
+            FR.Close();
+            MessageBox.Show("Objeto agregado");
+        }
     }
 }

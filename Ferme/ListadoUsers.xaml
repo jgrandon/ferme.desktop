@@ -9,18 +9,19 @@
         Title="ListadoUsers" Height="552" Width="900" WindowStartupLocation="CenterScreen">
     <Grid Background="#FF302C2C">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="597*"/>
+            <ColumnDefinition Width="295*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="DataGridListUser" HorizontalAlignment="Left" Height="324" Margin="69,172,0,0" VerticalAlignment="Top" Width="758" FontSize="14" SelectionChanged="DataGridListUser_SelectionChanged"/>
+        <DataGrid x:Name="DataGridListUser" HorizontalAlignment="Left" Height="324" Margin="69,172,0,0" VerticalAlignment="Top" Width="758" FontSize="14" SelectionChanged="DataGridListUser_SelectionChanged" Grid.ColumnSpan="2"/>
         <Button x:Name="BtnModificar" Content="MODIFICAR" HorizontalAlignment="Left" Margin="378,89,0,0" VerticalAlignment="Top" Width="138" RenderTransformOrigin="4.813,1.741" Background="#FF1E25BD" Foreground="White" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnModificar_Click"/>
-        <Button x:Name="BtnEliminar" Content="ELIMINAR" HorizontalAlignment="Left" Margin="655,89,0,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnEliminar_Click"/>
+        <Button x:Name="BtnEliminar" Content="ELIMINAR" HorizontalAlignment="Left" Margin="58.356,89,0,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnEliminar_Click" Grid.Column="1"/>
         <Button x:Name="BtnMostrarList" Content="MOSTRAR LISTA" HorizontalAlignment="Left" Margin="109,89,0,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnMostrarList_Click"/>
         <TextBox HorizontalAlignment="Left" Height="44" Margin="268,10,0,0" TextWrapping="Wrap" Text="             Lista de Usuarios" VerticalAlignment="Top" Width="308" Background="#FF302C2C" BorderBrush="#FF302C2C" Foreground="White" FontFamily="Georgia" FontSize="24"/>
         <Button x:Name="BtnInicio" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Width="75" Height="54" Background="#FF302C2C" BorderBrush="#FF302C2C" Click="BtnInicio_Click">
             <Image HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="65" Source="Imagenes/House.png" Stretch="Fill"/>
         </Button>
 
-        <Controls:Flyout x:Name="FlyModificar" Margin="902,-4,-263,3" Width="253">
+        <Controls:Flyout x:Name="FlyModificar" Margin="305.356,-4,-263,3" Width="253" Grid.Column="1">
 
         </Controls:Flyout>
     </Grid>

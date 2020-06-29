@@ -17,11 +17,15 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Menu = Ferme.Menu;
 
+
 namespace WpfFragmentos
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
+    using BCrypt = BCrypt.Net.BCrypt;
     public partial class MainWindow : MetroWindow
     {
         FermeEntities DB;
@@ -61,7 +65,9 @@ namespace WpfFragmentos
             USERS user = null;
             foreach (USERS u in DB.USERS)
             {
-                if (u.USERNAME.Equals(txtUsuario.Text) && u.PASSWORD.Equals(txtContraseña.Password))
+
+                var passrwordOk = BCrypt.Verify(txtContraseña.Password,u.PASSWORD);
+                if (u.USERNAME.Equals(txtUsuario.Text) && passrwordOk)
                 {
                     user = u;
                 }

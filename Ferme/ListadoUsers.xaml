@@ -6,23 +6,32 @@
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:Ferme"
         mc:Ignorable="d"
-        Title="ListadoUsers" Height="552" Width="900" WindowStartupLocation="CenterScreen">
-    <Grid Background="#FF302C2C">
+        Title="ListadoUsers" Height="552" Width="961.5" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Grid Background="#FF302C2C" Margin="0,0,4,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="597*"/>
             <ColumnDefinition Width="295*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="DataGridListUser" HorizontalAlignment="Left" Height="324" Margin="69,172,0,0" VerticalAlignment="Top" Width="758" FontSize="14" SelectionChanged="DataGridListUser_SelectionChanged" Grid.ColumnSpan="2"/>
-        <Button x:Name="BtnModificar" Content="MODIFICAR" HorizontalAlignment="Left" Margin="378,89,0,0" VerticalAlignment="Top" Width="138" RenderTransformOrigin="4.813,1.741" Background="#FF1E25BD" Foreground="White" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnModificar_Click"/>
-        <Button x:Name="BtnEliminar" Content="ELIMINAR" HorizontalAlignment="Left" Margin="58.356,89,0,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnEliminar_Click" Grid.Column="1"/>
+        <DataGrid x:Name="DataGridListUser" Margin="69,172,141,50" FontSize="14" SelectionChanged="DataGridListUser_SelectionChanged" IsReadOnly="True"/>
+        <Button x:Name="BtnModificar" Content="MODIFICAR" Margin="378,89,436,0" VerticalAlignment="Top" RenderTransformOrigin="4.813,1.741" Background="#FF1E25BD" Foreground="White" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnModificar_Click" d:LayoutOverrides="HorizontalAlignment"/>
+        <Button x:Name="BtnEliminar" Content="ELIMINAR" HorizontalAlignment="Right" Margin="0,89,200,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnEliminar_Click"/>
         <Button x:Name="BtnMostrarList" Content="MOSTRAR LISTA" HorizontalAlignment="Left" Margin="109,89,0,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnMostrarList_Click"/>
-        <TextBox HorizontalAlignment="Left" Height="44" Margin="268,10,0,0" TextWrapping="Wrap" Text="             Lista de Usuarios" VerticalAlignment="Top" Width="308" Background="#FF302C2C" BorderBrush="#FF302C2C" Foreground="White" FontFamily="Georgia" FontSize="24"/>
         <Button x:Name="BtnInicio" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Width="75" Height="54" Background="#FF302C2C" BorderBrush="#FF302C2C" Click="BtnInicio_Click">
-            <Image HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="65" Source="Imagenes/House.png" Stretch="Fill"/>
+            <Image Height="54" Width="76" Source="Imagenes/House.png" Stretch="Fill"/>
         </Button>
 
-        <Controls:Flyout x:Name="FlyModificar" Margin="305.356,-4,-263,3" Width="253" Grid.Column="1">
-
+        <Controls:Flyout x:Name="FlyModificar" Margin="0,129,0,10" Background="Black" Foreground="#FFF9F6F6" TitleVisibility="Hidden" Header="ACTUALIZAR DATOS" Width="338" Cursor="Hand" HorizontalAlignment="Right" d:LayoutOverrides="Width" Position="Right">
+            <Canvas x:Name="canvActuali" Margin="-12,0,0,0" >
+                <TextBox x:Name="txtActualizarNick" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="              Actualice Alias " Height="22" TextWrapping="Wrap" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="87" Canvas.Top="190"/>
+                <Button x:Name="BtnActualizarUsuario" Content="ACTUALIZAR" Width="237" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Canvas.Left="87" Canvas.Top="235" Height="32" Click="BtnActualizarUsuario_Click"/>
+                <TextBox x:Name="txtActualizarUsuario" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark=" Actualice Nombre Usuario" Height="22" TextWrapping="Wrap" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="87" Canvas.Top="74" AutomationProperties.HelpText="Modifique el Nombre " RenderTransformOrigin="0.511,0.135"/>
+                <ComboBox x:Name="ComboBoxActuaTipo" Width="238" Foreground="White" Height="22"  Background="#FF2B2828" FontSize="16" FontFamily="Georgia" Controls:TextBoxHelper.Watermark="      Actualice Tipo Usuario" Canvas.Left="87" Canvas.Top="129" >
+                    <ComboBoxItem x:Name="item1" Content="  Vendedor" HorizontalAlignment="Left" Width="312" Background="#FF2B2828" Foreground="White" BorderBrush="#CC119EDA" Margin="0,0,-2,0" Height="46"/>
+                    <ComboBoxItem x:Name="item2" Content="  Empleado" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                </ComboBox>
+                <Label Content="ACTUALIZAR DATOS" Width="213" Foreground="White" FontFamily="Georgia" FontSize="20" Canvas.Left="87" Canvas.Top="10"/>
+            </Canvas>
         </Controls:Flyout>
+        <Label Content="LISTA DE EMPLEADOS" Margin="332,18,332,0" VerticalAlignment="Top" Foreground="White" FontFamily="Georgia" FontSize="24"/>
     </Grid>
 </Controls:MetroWindow>

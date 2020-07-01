@@ -12,34 +12,26 @@ namespace Ferme
     using System;
     using System.Collections.Generic;
     
-    public partial class CLIENTES
+    public partial class PROVEEDORES
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CLIENTES()
+        public PROVEEDORES()
         {
-            this.BOLETAS = new HashSet<BOLETAS>();
-            this.PRODUCTO_FAVORITOS = new HashSet<PRODUCTO_FAVORITOS>();
+            this.ORDENES_COMPRA = new HashSet<ORDENES_COMPRA>();
+            this.PRODUCTOS = new HashSet<PRODUCTOS>();
         }
     
         public long ID { get; set; }
         public long ID_USUARIO { get; set; }
-        public string RUT { get; set; }
-        public string RAZON_SOCIAL { get; set; }
-        public string GIRO { get; set; }
-        public string DIRECCION { get; set; }
-        public string EMAIL { get; set; }
         public string NOMBRE { get; set; }
-        public string APELLIDO { get; set; }
-        public string TELEFONO { get; set; }
-        public string CIUDAD { get; set; }
-        public string COMUNA { get; set; }
+        public string RUT { get; set; }
         public Nullable<System.DateTime> CREATED_AT { get; set; }
         public Nullable<System.DateTime> UPDATED_AT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BOLETAS> BOLETAS { get; set; }
-        public virtual USERS USERS { get; set; }
+        public virtual ICollection<ORDENES_COMPRA> ORDENES_COMPRA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PRODUCTO_FAVORITOS> PRODUCTO_FAVORITOS { get; set; }
+        public virtual ICollection<PRODUCTOS> PRODUCTOS { get; set; }
+        public virtual USERS USERS { get; set; }
     }
 }

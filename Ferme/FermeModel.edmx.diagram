@@ -4,8 +4,43 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4b46415551c9424691f726cc042c7026" Name="Diagram1">
-        <EntityTypeShape EntityType="FermeModel.USERS" Width="2.125" PointX="3.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="f0bc95c522ad457b81bb636031437fbb" Name="Diagram1" ZoomLevel="25">
+        <EntityTypeShape EntityType="Model.BOLETAS" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.BOLETAS_DETALLE" Width="1.5" PointX="13.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CLIENTES" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FAILED_JOBS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FAMILIAS_PRODUCTO" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MIGRATIONS" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ORDENES_COMPRA" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ORDENES_COMPRA_DETALLE" Width="1.5" PointX="13.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PRODUCTO_FAVORITOS" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PRODUCTO_IMAGENES" Width="1.5" PointX="10.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PRODUCTOS" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PROVEEDORES" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.REGISTROS_STOCK" Width="1.5" PointX="10.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TIPOS_PRODUCTO" Width="1.5" PointX="6" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TRABAJADORES" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USERS" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PASSWORD_RESETS" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.BOLETAS_DETALLE_ID_BOLETA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BOLETAS_ID_CLIENTE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BOLETAS_ID_VENDEDOR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.BOLETAS_DETALLE_ID_PRODUCTO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CLIENTES_ID_USUARIO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PRODUCT_FAVORITO_ID_CLIENT_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PRODUCTO_ID_FAMILIAPRODUCT_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TIP_PRODUC_ID_FAMILIAPRODUC_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ORDE_COM_DETA_ID_ORDENCOM_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ORDENE_COMPR_ID_TRABAJADO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ORDENES_COMPRA_ID_PROVEEDOR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ORDEN_COMP_DETAL_ID_PRODUC_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PRODUCT_FAVORITO_ID_PRODUCT_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PRODUCT_IMAGENE_ID_PRODUCT_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PRODUCTOS_ID_PROVEEDOR_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PRODUCTOS_ID_TIPOPRODUCTO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.REGISTROS_STOCK_ID_PRODUCTO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PROVEEDORES_ID_USUARIO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TRABAJADORES_ID_USUARIO_FK" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

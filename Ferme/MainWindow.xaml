@@ -2,12 +2,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-        Title="Login" Height="379" Width="525" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.IsSharedSizeScope="True" WindowStartupLocation="CenterScreen" Cursor="Hand">
+        Title="Login" Height="379" Width="525" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.IsSharedSizeScope="True" WindowStartupLocation="CenterScreen" Cursor="Hand" ResizeMode="CanMinimize">
     <Grid Controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" Background="#FF0F0E0E" Margin="0,0,0,-21">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <PasswordBox x:Name="txtContraseña" Controls:TextBoxHelper.Watermark="Ingrese Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" Margin="150,228,165,115" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" />
         <TextBox x:Name="txtUsuario" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese Usuario"  HorizontalAlignment="Left" Height="22" Margin="150,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16"/>
-        <Button x:Name="BtnIngresar" Content="INGRESAR" HorizontalAlignment="Left" Margin="214,277,0,0" VerticalAlignment="Top" Width="85" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnIngresar_Click"/>
+        <PasswordBox x:Name="txtContraseña" Controls:TextBoxHelper.Watermark="Ingrese Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" Margin="150,228,165,115" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" />
+        <Button x:Name="BtnIngresar" Content="INGRESAR" HorizontalAlignment="Left" Margin="214,277,0,0" VerticalAlignment="Top" Width="85" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnIngresar_Click" />
         <Label Content="INICIAR SESION" HorizontalAlignment="Left" Margin="174,27,0,0" VerticalAlignment="Top" Width="168" Foreground="#FFF7F2F2" FontFamily="Georgia" FontSize="18"/>
         <TextBlock HorizontalAlignment="Left" Margin="112,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Image Height="109" Margin="183,62,196,0" VerticalAlignment="Top" Stretch="Fill" Source="Imagenes/User-Login.png" OpacityMask="Black"/>

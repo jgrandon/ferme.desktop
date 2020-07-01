@@ -24,11 +24,11 @@ namespace WpfFragmentos
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        FermeEntities DB;
+        Entities DB;
         public MainWindow()
         {
             InitializeComponent();
-            DB = new FermeEntities();
+            DB = new Entities();
         }
         private async void BtnIngresar_Click(object sender, RoutedEventArgs e)
         {
@@ -43,7 +43,7 @@ namespace WpfFragmentos
                 USERS client = GetUserByCredentials();
                 if (client != null)
                 {
-                    await this.ShowMessageAsync("Hola", string.Format("BIENVENIDO"));
+                    await this.ShowMessageAsync("HOLA", string.Format("BIENVENIDO"));
                     Menu menu = new Menu();
                     this.Close();
                     menu.ShowDialog();
@@ -60,6 +60,7 @@ namespace WpfFragmentos
         {
             USERS user = null;
             foreach (USERS u in DB.USERS)
+
             {
                 if (u.USERNAME.Equals(txtUsuario.Text) && u.PASSWORD.Equals(txtContraseña.Password))
                 {
@@ -67,6 +68,7 @@ namespace WpfFragmentos
                 }
             }
             return user;
+
         }
 
         private Boolean isCredentialsValid()

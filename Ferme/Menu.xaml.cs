@@ -15,6 +15,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfFragmentos;
@@ -30,13 +31,13 @@ namespace Ferme
         
     {
         OracleConnection FR = new OracleConnection("DATA SOURCE = localhost:1521 / xe; PERSIST SECURITY INFO=True; PASSWORD = ferme;  USER ID = FERME ;");
-        FermeEntities DB;
+        Entities DB;
 
 
         public Menu()
         {
             InitializeComponent();
-            DB = new FermeEntities();
+            DB = new Entities();
         }
 
 
@@ -57,7 +58,7 @@ namespace Ferme
 
         private async void BtnIngresar_Click(object sender, RoutedEventArgs e)
         {
-            Clientes newUser = new Clientes();
+            CLIENTES newUser = new CLIENTES();
 
             if (!IsUserValid())
             {
@@ -69,6 +70,7 @@ namespace Ferme
             }
             else
             {
+              
 
                 var user = new USERS()
                 {
@@ -82,11 +84,11 @@ namespace Ferme
                 };
                 DB.USERS.Add(user);
 
-                await this.ShowMessageAsync("Exito", user.ID.ToString() );
+                await this.ShowMessageAsync("Exito", "Empleado Registrado Correctamente" );
 
                 DB.SaveChanges();
 
-                //await this.ShowMessageAsync("Exito", "Usuario A gregado");
+                
                 ClearUserForm();
             }
 
@@ -148,8 +150,20 @@ namespace Ferme
 
         private void TitleUsuarios_Click(object sender, RoutedEventArgs e)
         {
-            FlyDespeUsuarios.IsOpen = true;
-            FlyDespeProveedor.IsOpen = false;
+            
+            
+            BtnRegistrarUser.Visibility = Visibility;
+            BtnListaUser.Visibility = Visibility;
+            labelRegistrarEmpleados.Visibility = Visibility;
+            labelListaEmpleados.Visibility = Visibility;
+
+            BtnAgregarProveedor.Visibility = Visibility.Collapsed;
+            BtnListaProveedor.Visibility = Visibility.Collapsed;
+            labelListaProveedores.Visibility = Visibility.Collapsed;
+            labelRegistrarProveedores.Visibility = Visibility.Collapsed;
+
+            FlyProveedor.IsOpen = false;
+
         }
 
 
@@ -184,9 +198,17 @@ namespace Ferme
 
         private void TitleProveedor_Click(object sender, RoutedEventArgs e)
         {
-            FlyDespeProveedor.IsOpen = true;
-            FlyDespeUsuarios.IsOpen = false;
+            BtnAgregarProveedor.Visibility = Visibility;
+            BtnListaProveedor.Visibility = Visibility;
+            labelRegistrarProveedores.Visibility = Visibility;
+            labelListaProveedores.Visibility = Visibility;
+          
+            BtnRegistrarUser.Visibility = Visibility.Collapsed;
+            BtnListaUser.Visibility = Visibility.Collapsed;
+            labelRegistrarEmpleados.Visibility = Visibility.Collapsed;
+            labelListaEmpleados.Visibility = Visibility.Collapsed;
 
+            FlyEmpleadoNuevo.IsOpen = false;
         }
 
         private void TitleListaUsuario_Click(object sender, RoutedEventArgs e)
@@ -198,6 +220,28 @@ namespace Ferme
 
         }
 
+        private void BtnRegistrarUser_Click(object sender, RoutedEventArgs e)
+        {
+            FlyEmpleadoNuevo.IsOpen = true;
+        }
 
+        private void BtnListaUser_Click(object sender, RoutedEventArgs e)
+        {
+            ListadoUsers Lista = new ListadoUsers();
+            this.Close();
+            Lista.ShowDialog();
+        }
+
+        private void BtnAgregarProveedor_Click(object sender, RoutedEventArgs e)
+        {
+            FlyProveedor.IsOpen = true;
+        }
+
+        private void BtnListaProveedor_Click(object sender, RoutedEventArgs e)
+        {
+            ListaProveedor List = new ListaProveedor();
+            this.Close();
+            List.ShowDialog();
+        }
     }
 }

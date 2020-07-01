@@ -20,6 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfFragmentos;
+using System.ComponentModel.Design;
 
 
 namespace Ferme
@@ -30,21 +31,18 @@ namespace Ferme
     public partial class ListadoUsers : MetroWindow
     {
         OracleConnection FR = new OracleConnection("DATA SOURCE = localhost:1521 / xe; PERSIST SECURITY INFO=True; PASSWORD = ferme;  USER ID = FERME ;");
-        FermeEntities DB;
+        Entities DB;
         int selectedUserId = 0;
         public ListadoUsers()
         {
 
             InitializeComponent();
-            DB = new FermeEntities();
+            DB = new Entities();
             BtnEliminar.IsEnabled = false;
+            BtnModificar.IsEnabled = false;
+
         }
 
-
-
-    
-
-       
 
         private void BtnMostrarList_Click(object sender, RoutedEventArgs e)
         {
@@ -72,7 +70,7 @@ namespace Ferme
             {
                 DB.USERS.Remove(deletedUser);
                 DB.SaveChanges();
-                await this.ShowMessageAsync("resultado", "Se elimino " + nombre +" de la lista");
+                await this.ShowMessageAsync("Resultado", "Se elimino  " + nombre + "  de la lista");
 
                 FR.Open();
                 OracleCommand ComandoList = new OracleCommand("Lista_Usuarios", FR);
@@ -89,24 +87,28 @@ namespace Ferme
             }
             else
             {
-               await this.ShowMessageAsync("resultado", "No eliminaste a: " + nombre);
+               await this.ShowMessageAsync("resultado", "NO eliminaste a: " + nombre);
             }
 
 
         }
 
+       
+
+        
         private void DataGridListUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            var row = DataGridListUser.SelectedItem as DataRowView;
 
-          
+
+            var row = DataGridListUser.SelectedItem as DataRowView;
+            
 
             if (row == null)
             {
                 BtnEliminar.IsEnabled = false;
                  BtnModificar.IsEnabled = false;
 
+               
             }
             
           
@@ -115,11 +117,26 @@ namespace Ferme
                 selectedUserId = Int32.Parse(row.Row.ItemArray[0].ToString());
                 BtnEliminar.IsEnabled = true;
                 BtnModificar.IsEnabled = true;
+
+                
+
+                DataRowView datos = DataGridListUser.SelectedItem as DataRowView;
+                if (datos != null)
+                {
+
+                    txtActualizarUsuario.Text = datos["NAME"].ToString();
+                    ComboBoxActuaTipo.Text = datos["TIPO_USUARIO"].ToString();
+                    txtActualizarNick.Text = datos["USERNAME"].ToString();
+                    
+                }
+
+
             }
 
-           
-          
+
+
         }
+
 
         private void BtnInicio_Click(object sender, RoutedEventArgs e)
         {
@@ -130,9 +147,56 @@ namespace Ferme
 
         private  void BtnModificar_Click(object sender, RoutedEventArgs e)
         {
-           
+
+            FlyModificar.IsOpen = true;
+
+        }
+
+
+        private async void BtnActualizarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            USERS UpdateUser = DB.USERS.Find(selectedUserId);
+            var nombre = UpdateUser.NAME;
+
+            var resultado = await this.ShowMessageAsync("Exito", "Desea Actualizar a: " + nombre,
+                       MahApps.Metro.Controls.Dialogs.MessageDialogStyle.AffirmativeAndNegative);
+
+
+            if (resultado == MessageDialogResult.Affirmative)
+            {
+
+                UpdateUser.NAME = txtActualizarUsuario.Text;
+                UpdateUser.USERNAME = txtActualizarNick.Text;
+                UpdateUser.TIPO_USUARIO = ComboBoxActuaTipo.Text;
+
+
+
+                DB.SaveChanges();
+                await this.ShowMessageAsync("Resultado", "Se Actualizo correctamente  " + nombre + "  de la lista");
+
+                System.Threading.Thread.Sleep(200);
+                DataGridListUser.Items.Refresh();
+
+                FR.Open();
+                OracleCommand ComandoList = new OracleCommand("Lista_Usuarios", FR);
+                ComandoList.CommandType = System.Data.CommandType.StoredProcedure;
+                ComandoList.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+                OracleDataAdapter adaptador = new OracleDataAdapter();
+                adaptador.SelectCommand = ComandoList;
+                DataTable tabla = new DataTable();
+                adaptador.Fill(tabla);
+                DataGridListUser.ItemsSource = tabla.DefaultView;
+                FR.Close();
+
+                
+
+            }
 
 
         }
+
+      
     }
 }

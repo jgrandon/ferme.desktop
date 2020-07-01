@@ -4,54 +4,1343 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FermeModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BOLETAS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_VENDEDOR" Type="number" Precision="19" Scale="0" />
+          <Property Name="TOTAL" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="IVA" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="NETO" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="FECHA_ENTREGA" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BOLETAS_DETALLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_BOLETA" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="CANTIDAD" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="VALOR_UNITARIO" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="SUBTOTAL" Type="number" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="RUT" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="RAZON_SOCIAL" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="GIRO" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="DIRECCION" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="APELLIDO" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="TELEFONO" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="CIUDAD" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="COMUNA" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="CREATED_AT" Type="timestamp" Precision="6" />
+          <Property Name="UPDATED_AT" Type="timestamp" Precision="6" />
+        </EntityType>
+        <EntityType Name="FAILED_JOBS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="CONNECTION" Type="clob" Nullable="false" />
+          <Property Name="QUEUE" Type="clob" Nullable="false" />
+          <Property Name="PAYLOAD" Type="clob" Nullable="false" />
+          <Property Name="EXCEPTION" Type="clob" Nullable="false" />
+          <Property Name="FAILED_AT" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FAMILIAS_PRODUCTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MIGRATIONS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="MIGRATION" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="BATCH" Type="number" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORDENES_COMPRA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_PROVEEDOR" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_TRABAJADOR" Type="number" Precision="19" Scale="0" />
+          <Property Name="ESTADO" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="FECHA_RECEPCION" Type="timestamp" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORDENES_COMPRA_DETALLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_ORDENCOMPRA" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="CANTIDAD" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CANTIDAD_RECEPCIONADO" Type="number" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'FERME.PASSWORD_RESETS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="PASSWORD_RESETS">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+            <PropertyRef Name="TOKEN" />
+          </Key>
+          <Property Name="EMAIL" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="TOKEN" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="CREATED_AT" Type="timestamp" Precision="6" />
+        </EntityType>
+        <EntityType Name="PRODUCTO_FAVORITOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="FECHA" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="CREATED_AT" Type="timestamp" Precision="6" />
+          <Property Name="UPDATED_AT" Type="timestamp" Precision="6" />
+        </EntityType>
+        <EntityType Name="PRODUCTO_IMAGENES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ORDER" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="IMAGEN" Type="blob" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="CODIGO" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="ID_TIPOPRODUCTO" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_FAMILIAPRODUCTO" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_PROVEEDOR" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="PRECIO" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="FECHA_VENCIMIENTO" Type="date" />
+          <Property Name="STOCK" Type="number" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROVEEDORES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="RUT" Type="varchar2" MaxLength="255" />
+          <Property Name="CREATED_AT" Type="timestamp" Precision="6" />
+          <Property Name="UPDATED_AT" Type="timestamp" Precision="6" />
+        </EntityType>
+        <EntityType Name="REGISTROS_STOCK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="TIPO" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="TIPO_DOCUMENTO" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="ID_DOCUMENTO" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="CANTIDAD_ENTRADA" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CANTIDAD_SALIDA" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CANTIDAD_SALDO" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="FECHA" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="CREATED_AT" Type="timestamp" Precision="6" />
+          <Property Name="UPDATED_AT" Type="timestamp" Precision="6" />
+        </EntityType>
+        <EntityType Name="TIPOS_PRODUCTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_FAMILIAPRODUCTO" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRABAJADORES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="RUT" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="FECHA_CONTRATACION" Type="timestamp" Precision="6" Nullable="false" />
+          <Property Name="CREATED_AT" Type="timestamp" Precision="6" />
+          <Property Name="UPDATED_AT" Type="timestamp" Precision="6" />
+        </EntityType>
         <EntityType Name="USERS">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NAME" Type="varchar2" MaxLength="50" />
-          <Property Name="USERNAME" Type="varchar2" MaxLength="50" />
-          <Property Name="PASSWORD" Type="varchar2" MaxLength="50" />
-          <Property Name="TIPO_USUARIO" Type="varchar2" MaxLength="50" />
+          <Property Name="ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="NAME" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="EMAIL_VERIFIED_AT" Type="timestamp" Precision="6" />
+          <Property Name="USERNAME" Type="varchar2" MaxLength="255" />
+          <Property Name="TIPO_USUARIO" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar2" MaxLength="255" Nullable="false" />
+          <Property Name="REMEMBER_TOKEN" Type="varchar2" MaxLength="100" />
+          <Property Name="CREATED_AT" Type="timestamp" Precision="6" />
+          <Property Name="UPDATED_AT" Type="timestamp" Precision="6" />
         </EntityType>
-        <EntityContainer Name="FermeModelStoreContainer">
+        <Association Name="BOLETAS_DETALLE_ID_BOLETA_FK">
+          <End Role="BOLETAS" Type="Self.BOLETAS" Multiplicity="1" />
+          <End Role="BOLETAS_DETALLE" Type="Self.BOLETAS_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOLETAS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOLETAS_DETALLE">
+              <PropertyRef Name="ID_BOLETA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOLETAS_DETALLE_ID_PRODUCTO_FK">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="BOLETAS_DETALLE" Type="Self.BOLETAS_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOLETAS_DETALLE">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOLETAS_ID_CLIENTE_FK">
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+          <End Role="BOLETAS" Type="Self.BOLETAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOLETAS">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOLETAS_ID_VENDEDOR_FK">
+          <End Role="TRABAJADORES" Type="Self.TRABAJADORES" Multiplicity="0..1" />
+          <End Role="BOLETAS" Type="Self.BOLETAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRABAJADORES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOLETAS">
+              <PropertyRef Name="ID_VENDEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CLIENTES_ID_USUARIO_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CLIENTES">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDE_COM_DETA_ID_ORDENCOM_FK">
+          <End Role="ORDENES_COMPRA" Type="Self.ORDENES_COMPRA" Multiplicity="1" />
+          <End Role="ORDENES_COMPRA_DETALLE" Type="Self.ORDENES_COMPRA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDENES_COMPRA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDENES_COMPRA_DETALLE">
+              <PropertyRef Name="ID_ORDENCOMPRA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDEN_COMP_DETAL_ID_PRODUC_FK">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="ORDENES_COMPRA_DETALLE" Type="Self.ORDENES_COMPRA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDENES_COMPRA_DETALLE">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDENE_COMPR_ID_TRABAJADO_FK">
+          <End Role="TRABAJADORES" Type="Self.TRABAJADORES" Multiplicity="0..1" />
+          <End Role="ORDENES_COMPRA" Type="Self.ORDENES_COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRABAJADORES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDENES_COMPRA">
+              <PropertyRef Name="ID_TRABAJADOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDENES_COMPRA_ID_PROVEEDOR_FK">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="ORDENES_COMPRA" Type="Self.ORDENES_COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDENES_COMPRA">
+              <PropertyRef Name="ID_PROVEEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_FAVORITO_ID_CLIENT_FK">
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+          <End Role="PRODUCTO_FAVORITOS" Type="Self.PRODUCTO_FAVORITOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTO_FAVORITOS">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_FAVORITO_ID_PRODUCT_FK">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="PRODUCTO_FAVORITOS" Type="Self.PRODUCTO_FAVORITOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTO_FAVORITOS">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_IMAGENE_ID_PRODUCT_FK">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="PRODUCTO_IMAGENES" Type="Self.PRODUCTO_IMAGENES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTO_IMAGENES">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTO_ID_FAMILIAPRODUCT_FK">
+          <End Role="FAMILIAS_PRODUCTO" Type="Self.FAMILIAS_PRODUCTO" Multiplicity="1" />
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAMILIAS_PRODUCTO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="ID_FAMILIAPRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTOS_ID_PROVEEDOR_FK">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="ID_PROVEEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTOS_ID_TIPOPRODUCTO_FK">
+          <End Role="TIPOS_PRODUCTO" Type="Self.TIPOS_PRODUCTO" Multiplicity="1" />
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_PRODUCTO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="ID_TIPOPRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PROVEEDORES_ID_USUARIO_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PROVEEDORES">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REGISTROS_STOCK_ID_PRODUCTO_FK">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="REGISTROS_STOCK" Type="Self.REGISTROS_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REGISTROS_STOCK">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TIP_PRODUC_ID_FAMILIAPRODUC_FK">
+          <End Role="FAMILIAS_PRODUCTO" Type="Self.FAMILIAS_PRODUCTO" Multiplicity="1" />
+          <End Role="TIPOS_PRODUCTO" Type="Self.TIPOS_PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAMILIAS_PRODUCTO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TIPOS_PRODUCTO">
+              <PropertyRef Name="ID_FAMILIAPRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TRABAJADORES_ID_USUARIO_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="TRABAJADORES" Type="Self.TRABAJADORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TRABAJADORES">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ELIMINARPRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FERME">
+          <Parameter Name="IDP" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="INSERTARPRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FERME">
+          <Parameter Name="ID_PRO" Type="varchar2" Mode="In" />
+          <Parameter Name="NOMBRE_PRO" Type="varchar2" Mode="In" />
+          <Parameter Name="DESCRIPCION_PRO" Type="varchar2" Mode="In" />
+          <Parameter Name="PRECIO_PRO" Type="number" Mode="In" />
+          <Parameter Name="IDTIPOS_PRODUCTO" Type="varchar2" Mode="In" />
+          <Parameter Name="IDFAMILIAS_PRODUCTO" Type="varchar2" Mode="In" />
+          <Parameter Name="IDPROVEDORE" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="LISTA_USUARIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FERME" />
+        <Function Name="LISTPRODUCTOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FERME" />
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="BOLETAS" EntityType="Self.BOLETAS" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="BOLETAS_DETALLE" EntityType="Self.BOLETAS_DETALLE" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="FAILED_JOBS" EntityType="Self.FAILED_JOBS" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="FAMILIAS_PRODUCTO" EntityType="Self.FAMILIAS_PRODUCTO" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="MIGRATIONS" EntityType="Self.MIGRATIONS" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="ORDENES_COMPRA" EntityType="Self.ORDENES_COMPRA" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="ORDENES_COMPRA_DETALLE" EntityType="Self.ORDENES_COMPRA_DETALLE" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO_FAVORITOS" EntityType="Self.PRODUCTO_FAVORITOS" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO_IMAGENES" EntityType="Self.PRODUCTO_IMAGENES" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="PRODUCTOS" EntityType="Self.PRODUCTOS" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="PROVEEDORES" EntityType="Self.PROVEEDORES" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="REGISTROS_STOCK" EntityType="Self.REGISTROS_STOCK" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="TIPOS_PRODUCTO" EntityType="Self.TIPOS_PRODUCTO" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="TRABAJADORES" EntityType="Self.TRABAJADORES" Schema="FERME" store:Type="Tables" />
           <EntitySet Name="USERS" EntityType="Self.USERS" Schema="FERME" store:Type="Tables" />
+          <EntitySet Name="PASSWORD_RESETS" EntityType="Self.PASSWORD_RESETS" store:Type="Tables" store:Schema="FERME">
+            <DefiningQuery>SELECT 
+"PASSWORD_RESETS"."EMAIL" AS "EMAIL", 
+"PASSWORD_RESETS"."TOKEN" AS "TOKEN", 
+"PASSWORD_RESETS"."CREATED_AT" AS "CREATED_AT"
+FROM "FERME"."PASSWORD_RESETS" "PASSWORD_RESETS"</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="BOLETAS_DETALLE_ID_BOLETA_FK" Association="Self.BOLETAS_DETALLE_ID_BOLETA_FK">
+            <End Role="BOLETAS" EntitySet="BOLETAS" />
+            <End Role="BOLETAS_DETALLE" EntitySet="BOLETAS_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="BOLETAS_DETALLE_ID_PRODUCTO_FK" Association="Self.BOLETAS_DETALLE_ID_PRODUCTO_FK">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="BOLETAS_DETALLE" EntitySet="BOLETAS_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="BOLETAS_ID_CLIENTE_FK" Association="Self.BOLETAS_ID_CLIENTE_FK">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="BOLETAS" EntitySet="BOLETAS" />
+          </AssociationSet>
+          <AssociationSet Name="BOLETAS_ID_VENDEDOR_FK" Association="Self.BOLETAS_ID_VENDEDOR_FK">
+            <End Role="TRABAJADORES" EntitySet="TRABAJADORES" />
+            <End Role="BOLETAS" EntitySet="BOLETAS" />
+          </AssociationSet>
+          <AssociationSet Name="CLIENTES_ID_USUARIO_FK" Association="Self.CLIENTES_ID_USUARIO_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="ORDE_COM_DETA_ID_ORDENCOM_FK" Association="Self.ORDE_COM_DETA_ID_ORDENCOM_FK">
+            <End Role="ORDENES_COMPRA" EntitySet="ORDENES_COMPRA" />
+            <End Role="ORDENES_COMPRA_DETALLE" EntitySet="ORDENES_COMPRA_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="ORDEN_COMP_DETAL_ID_PRODUC_FK" Association="Self.ORDEN_COMP_DETAL_ID_PRODUC_FK">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="ORDENES_COMPRA_DETALLE" EntitySet="ORDENES_COMPRA_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="ORDENE_COMPR_ID_TRABAJADO_FK" Association="Self.ORDENE_COMPR_ID_TRABAJADO_FK">
+            <End Role="TRABAJADORES" EntitySet="TRABAJADORES" />
+            <End Role="ORDENES_COMPRA" EntitySet="ORDENES_COMPRA" />
+          </AssociationSet>
+          <AssociationSet Name="ORDENES_COMPRA_ID_PROVEEDOR_FK" Association="Self.ORDENES_COMPRA_ID_PROVEEDOR_FK">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="ORDENES_COMPRA" EntitySet="ORDENES_COMPRA" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_FAVORITO_ID_CLIENT_FK" Association="Self.PRODUCT_FAVORITO_ID_CLIENT_FK">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="PRODUCTO_FAVORITOS" EntitySet="PRODUCTO_FAVORITOS" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_FAVORITO_ID_PRODUCT_FK" Association="Self.PRODUCT_FAVORITO_ID_PRODUCT_FK">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="PRODUCTO_FAVORITOS" EntitySet="PRODUCTO_FAVORITOS" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_IMAGENE_ID_PRODUCT_FK" Association="Self.PRODUCT_IMAGENE_ID_PRODUCT_FK">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="PRODUCTO_IMAGENES" EntitySet="PRODUCTO_IMAGENES" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTO_ID_FAMILIAPRODUCT_FK" Association="Self.PRODUCTO_ID_FAMILIAPRODUCT_FK">
+            <End Role="FAMILIAS_PRODUCTO" EntitySet="FAMILIAS_PRODUCTO" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTOS_ID_PROVEEDOR_FK" Association="Self.PRODUCTOS_ID_PROVEEDOR_FK">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTOS_ID_TIPOPRODUCTO_FK" Association="Self.PRODUCTOS_ID_TIPOPRODUCTO_FK">
+            <End Role="TIPOS_PRODUCTO" EntitySet="TIPOS_PRODUCTO" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="PROVEEDORES_ID_USUARIO_FK" Association="Self.PROVEEDORES_ID_USUARIO_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="REGISTROS_STOCK_ID_PRODUCTO_FK" Association="Self.REGISTROS_STOCK_ID_PRODUCTO_FK">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="REGISTROS_STOCK" EntitySet="REGISTROS_STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="TIP_PRODUC_ID_FAMILIAPRODUC_FK" Association="Self.TIP_PRODUC_ID_FAMILIAPRODUC_FK">
+            <End Role="FAMILIAS_PRODUCTO" EntitySet="FAMILIAS_PRODUCTO" />
+            <End Role="TIPOS_PRODUCTO" EntitySet="TIPOS_PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="TRABAJADORES_ID_USUARIO_FK" Association="Self.TRABAJADORES_ID_USUARIO_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="TRABAJADORES" EntitySet="TRABAJADORES" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="FermeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BOLETAS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="Int64" Nullable="false" />
+          <Property Name="ID_VENDEDOR" Type="Int64" />
+          <Property Name="TOTAL" Type="Int32" Nullable="false" />
+          <Property Name="IVA" Type="Int32" Nullable="false" />
+          <Property Name="NETO" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="FECHA_ENTREGA" Type="DateTime" Precision="6" Nullable="false" />
+          <NavigationProperty Name="BOLETAS_DETALLE" Relationship="Self.BOLETAS_DETALLE_ID_BOLETA_FK" FromRole="BOLETAS" ToRole="BOLETAS_DETALLE" />
+          <NavigationProperty Name="CLIENTES" Relationship="Self.BOLETAS_ID_CLIENTE_FK" FromRole="BOLETAS" ToRole="CLIENTES" />
+          <NavigationProperty Name="TRABAJADORES" Relationship="Self.BOLETAS_ID_VENDEDOR_FK" FromRole="BOLETAS" ToRole="TRABAJADORES" />
+        </EntityType>
+        <EntityType Name="BOLETAS_DETALLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID_BOLETA" Type="Int64" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="Int64" Nullable="false" />
+          <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
+          <Property Name="VALOR_UNITARIO" Type="Int32" Nullable="false" />
+          <Property Name="SUBTOTAL" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BOLETAS" Relationship="Self.BOLETAS_DETALLE_ID_BOLETA_FK" FromRole="BOLETAS_DETALLE" ToRole="BOLETAS" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="Self.BOLETAS_DETALLE_ID_PRODUCTO_FK" FromRole="BOLETAS_DETALLE" ToRole="PRODUCTOS" />
+        </EntityType>
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="Int64" Nullable="false" />
+          <Property Name="RUT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RAZON_SOCIAL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GIRO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APELLIDO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CIUDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COMUNA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_AT" Type="DateTime" Precision="6" />
+          <Property Name="UPDATED_AT" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="BOLETAS" Relationship="Self.BOLETAS_ID_CLIENTE_FK" FromRole="CLIENTES" ToRole="BOLETAS" />
+          <NavigationProperty Name="USERS" Relationship="Self.CLIENTES_ID_USUARIO_FK" FromRole="CLIENTES" ToRole="USERS" />
+          <NavigationProperty Name="PRODUCTO_FAVORITOS" Relationship="Self.PRODUCT_FAVORITO_ID_CLIENT_FK" FromRole="CLIENTES" ToRole="PRODUCTO_FAVORITOS" />
+        </EntityType>
+        <EntityType Name="FAILED_JOBS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="CONNECTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QUEUE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PAYLOAD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EXCEPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FAILED_AT" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FAMILIAS_PRODUCTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="Self.PRODUCTO_ID_FAMILIAPRODUCT_FK" FromRole="FAMILIAS_PRODUCTO" ToRole="PRODUCTOS" />
+          <NavigationProperty Name="TIPOS_PRODUCTO" Relationship="Self.TIP_PRODUC_ID_FAMILIAPRODUC_FK" FromRole="FAMILIAS_PRODUCTO" ToRole="TIPOS_PRODUCTO" />
+        </EntityType>
+        <EntityType Name="MIGRATIONS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="MIGRATION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BATCH" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORDENES_COMPRA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID_PROVEEDOR" Type="Int64" Nullable="false" />
+          <Property Name="ID_TRABAJADOR" Type="Int64" />
+          <Property Name="ESTADO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="FECHA_RECEPCION" Type="DateTime" Precision="6" Nullable="false" />
+          <NavigationProperty Name="ORDENES_COMPRA_DETALLE" Relationship="Self.ORDE_COM_DETA_ID_ORDENCOM_FK" FromRole="ORDENES_COMPRA" ToRole="ORDENES_COMPRA_DETALLE" />
+          <NavigationProperty Name="TRABAJADORES" Relationship="Self.ORDENE_COMPR_ID_TRABAJADO_FK" FromRole="ORDENES_COMPRA" ToRole="TRABAJADORES" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="Self.ORDENES_COMPRA_ID_PROVEEDOR_FK" FromRole="ORDENES_COMPRA" ToRole="PROVEEDORES" />
+        </EntityType>
+        <EntityType Name="ORDENES_COMPRA_DETALLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID_ORDENCOMPRA" Type="Int64" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="Int64" Nullable="false" />
+          <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
+          <Property Name="CANTIDAD_RECEPCIONADO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ORDENES_COMPRA" Relationship="Self.ORDE_COM_DETA_ID_ORDENCOM_FK" FromRole="ORDENES_COMPRA_DETALLE" ToRole="ORDENES_COMPRA" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="Self.ORDEN_COMP_DETAL_ID_PRODUC_FK" FromRole="ORDENES_COMPRA_DETALLE" ToRole="PRODUCTOS" />
+        </EntityType>
+        <EntityType Name="PRODUCTO_FAVORITOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="Int64" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="Int64" Nullable="false" />
+          <Property Name="FECHA" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="CREATED_AT" Type="DateTime" Precision="6" />
+          <Property Name="UPDATED_AT" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="CLIENTES" Relationship="Self.PRODUCT_FAVORITO_ID_CLIENT_FK" FromRole="PRODUCTO_FAVORITOS" ToRole="CLIENTES" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="Self.PRODUCT_FAVORITO_ID_PRODUCT_FK" FromRole="PRODUCTO_FAVORITOS" ToRole="PRODUCTOS" />
+        </EntityType>
+        <EntityType Name="PRODUCTO_IMAGENES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="Int64" Nullable="false" />
+          <Property Name="ORDER" Type="Int32" Nullable="false" />
+          <Property Name="IMAGEN" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="Self.PRODUCT_IMAGENE_ID_PRODUCT_FK" FromRole="PRODUCTO_IMAGENES" ToRole="PRODUCTOS" />
+        </EntityType>
+        <EntityType Name="PRODUCTOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="CODIGO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_TIPOPRODUCTO" Type="Int64" Nullable="false" />
+          <Property Name="ID_FAMILIAPRODUCTO" Type="Int64" Nullable="false" />
+          <Property Name="ID_PROVEEDOR" Type="Int64" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRECIO" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_VENCIMIENTO" Type="DateTime" />
+          <Property Name="STOCK" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BOLETAS_DETALLE" Relationship="Self.BOLETAS_DETALLE_ID_PRODUCTO_FK" FromRole="PRODUCTOS" ToRole="BOLETAS_DETALLE" />
+          <NavigationProperty Name="FAMILIAS_PRODUCTO" Relationship="Self.PRODUCTO_ID_FAMILIAPRODUCT_FK" FromRole="PRODUCTOS" ToRole="FAMILIAS_PRODUCTO" />
+          <NavigationProperty Name="ORDENES_COMPRA_DETALLE" Relationship="Self.ORDEN_COMP_DETAL_ID_PRODUC_FK" FromRole="PRODUCTOS" ToRole="ORDENES_COMPRA_DETALLE" />
+          <NavigationProperty Name="PRODUCTO_FAVORITOS" Relationship="Self.PRODUCT_FAVORITO_ID_PRODUCT_FK" FromRole="PRODUCTOS" ToRole="PRODUCTO_FAVORITOS" />
+          <NavigationProperty Name="PRODUCTO_IMAGENES" Relationship="Self.PRODUCT_IMAGENE_ID_PRODUCT_FK" FromRole="PRODUCTOS" ToRole="PRODUCTO_IMAGENES" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="Self.PRODUCTOS_ID_PROVEEDOR_FK" FromRole="PRODUCTOS" ToRole="PROVEEDORES" />
+          <NavigationProperty Name="TIPOS_PRODUCTO" Relationship="Self.PRODUCTOS_ID_TIPOPRODUCTO_FK" FromRole="PRODUCTOS" ToRole="TIPOS_PRODUCTO" />
+          <NavigationProperty Name="REGISTROS_STOCK" Relationship="Self.REGISTROS_STOCK_ID_PRODUCTO_FK" FromRole="PRODUCTOS" ToRole="REGISTROS_STOCK" />
+        </EntityType>
+        <EntityType Name="PROVEEDORES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="Int64" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RUT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_AT" Type="DateTime" Precision="6" />
+          <Property Name="UPDATED_AT" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="ORDENES_COMPRA" Relationship="Self.ORDENES_COMPRA_ID_PROVEEDOR_FK" FromRole="PROVEEDORES" ToRole="ORDENES_COMPRA" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="Self.PRODUCTOS_ID_PROVEEDOR_FK" FromRole="PROVEEDORES" ToRole="PRODUCTOS" />
+          <NavigationProperty Name="USERS" Relationship="Self.PROVEEDORES_ID_USUARIO_FK" FromRole="PROVEEDORES" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="REGISTROS_STOCK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID_PRODUCTO" Type="Int64" Nullable="false" />
+          <Property Name="TIPO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_DOCUMENTO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_DOCUMENTO" Type="Int64" Nullable="false" />
+          <Property Name="CANTIDAD_ENTRADA" Type="Int32" Nullable="false" />
+          <Property Name="CANTIDAD_SALIDA" Type="Int32" Nullable="false" />
+          <Property Name="CANTIDAD_SALDO" Type="Int32" Nullable="false" />
+          <Property Name="FECHA" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="CREATED_AT" Type="DateTime" Precision="6" />
+          <Property Name="UPDATED_AT" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="Self.REGISTROS_STOCK_ID_PRODUCTO_FK" FromRole="REGISTROS_STOCK" ToRole="PRODUCTOS" />
+        </EntityType>
+        <EntityType Name="TIPOS_PRODUCTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID_FAMILIAPRODUCTO" Type="Int64" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FAMILIAS_PRODUCTO" Relationship="Self.TIP_PRODUC_ID_FAMILIAPRODUC_FK" FromRole="TIPOS_PRODUCTO" ToRole="FAMILIAS_PRODUCTO" />
+          <NavigationProperty Name="PRODUCTOS" Relationship="Self.PRODUCTOS_ID_TIPOPRODUCTO_FK" FromRole="TIPOS_PRODUCTO" ToRole="PRODUCTOS" />
+        </EntityType>
+        <EntityType Name="TRABAJADORES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="Int64" Nullable="false" />
+          <Property Name="RUT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_CONTRATACION" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="CREATED_AT" Type="DateTime" Precision="6" />
+          <Property Name="UPDATED_AT" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="BOLETAS" Relationship="Self.BOLETAS_ID_VENDEDOR_FK" FromRole="TRABAJADORES" ToRole="BOLETAS" />
+          <NavigationProperty Name="ORDENES_COMPRA" Relationship="Self.ORDENE_COMPR_ID_TRABAJADO_FK" FromRole="TRABAJADORES" ToRole="ORDENES_COMPRA" />
+          <NavigationProperty Name="USERS" Relationship="Self.TRABAJADORES_ID_USUARIO_FK" FromRole="TRABAJADORES" ToRole="USERS" />
+        </EntityType>
         <EntityType Name="USERS">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TIPO_USUARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_VERIFIED_AT" Type="DateTime" Precision="6" />
+          <Property Name="USERNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_USUARIO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REMEMBER_TOKEN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_AT" Type="DateTime" Precision="6" />
+          <Property Name="UPDATED_AT" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="CLIENTES" Relationship="Self.CLIENTES_ID_USUARIO_FK" FromRole="USERS" ToRole="CLIENTES" />
+          <NavigationProperty Name="PROVEEDORES" Relationship="Self.PROVEEDORES_ID_USUARIO_FK" FromRole="USERS" ToRole="PROVEEDORES" />
+          <NavigationProperty Name="TRABAJADORES" Relationship="Self.TRABAJADORES_ID_USUARIO_FK" FromRole="USERS" ToRole="TRABAJADORES" />
         </EntityType>
-        <EntityContainer Name="FermeEntities" annotation:LazyLoadingEnabled="true">
+        <EntityType Name="PASSWORD_RESETS">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+            <PropertyRef Name="TOKEN" />
+          </Key>
+          <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TOKEN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_AT" Type="DateTime" Precision="6" />
+        </EntityType>
+        <Association Name="BOLETAS_DETALLE_ID_BOLETA_FK">
+          <End Role="BOLETAS" Type="Self.BOLETAS" Multiplicity="1" />
+          <End Role="BOLETAS_DETALLE" Type="Self.BOLETAS_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOLETAS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOLETAS_DETALLE">
+              <PropertyRef Name="ID_BOLETA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOLETAS_ID_CLIENTE_FK">
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+          <End Role="BOLETAS" Type="Self.BOLETAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOLETAS">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOLETAS_ID_VENDEDOR_FK">
+          <End Role="TRABAJADORES" Type="Self.TRABAJADORES" Multiplicity="0..1" />
+          <End Role="BOLETAS" Type="Self.BOLETAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRABAJADORES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOLETAS">
+              <PropertyRef Name="ID_VENDEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOLETAS_DETALLE_ID_PRODUCTO_FK">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="BOLETAS_DETALLE" Type="Self.BOLETAS_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BOLETAS_DETALLE">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CLIENTES_ID_USUARIO_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CLIENTES">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_FAVORITO_ID_CLIENT_FK">
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+          <End Role="PRODUCTO_FAVORITOS" Type="Self.PRODUCTO_FAVORITOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTO_FAVORITOS">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTO_ID_FAMILIAPRODUCT_FK">
+          <End Role="FAMILIAS_PRODUCTO" Type="Self.FAMILIAS_PRODUCTO" Multiplicity="1" />
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAMILIAS_PRODUCTO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="ID_FAMILIAPRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TIP_PRODUC_ID_FAMILIAPRODUC_FK">
+          <End Role="FAMILIAS_PRODUCTO" Type="Self.FAMILIAS_PRODUCTO" Multiplicity="1" />
+          <End Role="TIPOS_PRODUCTO" Type="Self.TIPOS_PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAMILIAS_PRODUCTO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TIPOS_PRODUCTO">
+              <PropertyRef Name="ID_FAMILIAPRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDE_COM_DETA_ID_ORDENCOM_FK">
+          <End Role="ORDENES_COMPRA" Type="Self.ORDENES_COMPRA" Multiplicity="1" />
+          <End Role="ORDENES_COMPRA_DETALLE" Type="Self.ORDENES_COMPRA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDENES_COMPRA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDENES_COMPRA_DETALLE">
+              <PropertyRef Name="ID_ORDENCOMPRA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDENE_COMPR_ID_TRABAJADO_FK">
+          <End Role="TRABAJADORES" Type="Self.TRABAJADORES" Multiplicity="0..1" />
+          <End Role="ORDENES_COMPRA" Type="Self.ORDENES_COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRABAJADORES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDENES_COMPRA">
+              <PropertyRef Name="ID_TRABAJADOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDENES_COMPRA_ID_PROVEEDOR_FK">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="ORDENES_COMPRA" Type="Self.ORDENES_COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDENES_COMPRA">
+              <PropertyRef Name="ID_PROVEEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDEN_COMP_DETAL_ID_PRODUC_FK">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="ORDENES_COMPRA_DETALLE" Type="Self.ORDENES_COMPRA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ORDENES_COMPRA_DETALLE">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_FAVORITO_ID_PRODUCT_FK">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="PRODUCTO_FAVORITOS" Type="Self.PRODUCTO_FAVORITOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTO_FAVORITOS">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_IMAGENE_ID_PRODUCT_FK">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="PRODUCTO_IMAGENES" Type="Self.PRODUCTO_IMAGENES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTO_IMAGENES">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTOS_ID_PROVEEDOR_FK">
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="1" />
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDORES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="ID_PROVEEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCTOS_ID_TIPOPRODUCTO_FK">
+          <End Role="TIPOS_PRODUCTO" Type="Self.TIPOS_PRODUCTO" Multiplicity="1" />
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOS_PRODUCTO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PRODUCTOS">
+              <PropertyRef Name="ID_TIPOPRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REGISTROS_STOCK_ID_PRODUCTO_FK">
+          <End Role="PRODUCTOS" Type="Self.PRODUCTOS" Multiplicity="1" />
+          <End Role="REGISTROS_STOCK" Type="Self.REGISTROS_STOCK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REGISTROS_STOCK">
+              <PropertyRef Name="ID_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PROVEEDORES_ID_USUARIO_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="PROVEEDORES" Type="Self.PROVEEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PROVEEDORES">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TRABAJADORES_ID_USUARIO_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="TRABAJADORES" Type="Self.TRABAJADORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TRABAJADORES">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BOLETAS" EntityType="Self.BOLETAS" />
+          <EntitySet Name="BOLETAS_DETALLE" EntityType="Self.BOLETAS_DETALLE" />
+          <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" />
+          <EntitySet Name="FAILED_JOBS" EntityType="Self.FAILED_JOBS" />
+          <EntitySet Name="FAMILIAS_PRODUCTO" EntityType="Self.FAMILIAS_PRODUCTO" />
+          <EntitySet Name="MIGRATIONS" EntityType="Self.MIGRATIONS" />
+          <EntitySet Name="ORDENES_COMPRA" EntityType="Self.ORDENES_COMPRA" />
+          <EntitySet Name="ORDENES_COMPRA_DETALLE" EntityType="Self.ORDENES_COMPRA_DETALLE" />
+          <EntitySet Name="PRODUCTO_FAVORITOS" EntityType="Self.PRODUCTO_FAVORITOS" />
+          <EntitySet Name="PRODUCTO_IMAGENES" EntityType="Self.PRODUCTO_IMAGENES" />
+          <EntitySet Name="PRODUCTOS" EntityType="Self.PRODUCTOS" />
+          <EntitySet Name="PROVEEDORES" EntityType="Self.PROVEEDORES" />
+          <EntitySet Name="REGISTROS_STOCK" EntityType="Self.REGISTROS_STOCK" />
+          <EntitySet Name="TIPOS_PRODUCTO" EntityType="Self.TIPOS_PRODUCTO" />
+          <EntitySet Name="TRABAJADORES" EntityType="Self.TRABAJADORES" />
           <EntitySet Name="USERS" EntityType="Self.USERS" />
+          <EntitySet Name="PASSWORD_RESETS" EntityType="Self.PASSWORD_RESETS" />
+          <AssociationSet Name="BOLETAS_DETALLE_ID_BOLETA_FK" Association="Self.BOLETAS_DETALLE_ID_BOLETA_FK">
+            <End Role="BOLETAS" EntitySet="BOLETAS" />
+            <End Role="BOLETAS_DETALLE" EntitySet="BOLETAS_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="BOLETAS_ID_CLIENTE_FK" Association="Self.BOLETAS_ID_CLIENTE_FK">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="BOLETAS" EntitySet="BOLETAS" />
+          </AssociationSet>
+          <AssociationSet Name="BOLETAS_ID_VENDEDOR_FK" Association="Self.BOLETAS_ID_VENDEDOR_FK">
+            <End Role="TRABAJADORES" EntitySet="TRABAJADORES" />
+            <End Role="BOLETAS" EntitySet="BOLETAS" />
+          </AssociationSet>
+          <AssociationSet Name="BOLETAS_DETALLE_ID_PRODUCTO_FK" Association="Self.BOLETAS_DETALLE_ID_PRODUCTO_FK">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="BOLETAS_DETALLE" EntitySet="BOLETAS_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="CLIENTES_ID_USUARIO_FK" Association="Self.CLIENTES_ID_USUARIO_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_FAVORITO_ID_CLIENT_FK" Association="Self.PRODUCT_FAVORITO_ID_CLIENT_FK">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="PRODUCTO_FAVORITOS" EntitySet="PRODUCTO_FAVORITOS" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTO_ID_FAMILIAPRODUCT_FK" Association="Self.PRODUCTO_ID_FAMILIAPRODUCT_FK">
+            <End Role="FAMILIAS_PRODUCTO" EntitySet="FAMILIAS_PRODUCTO" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="TIP_PRODUC_ID_FAMILIAPRODUC_FK" Association="Self.TIP_PRODUC_ID_FAMILIAPRODUC_FK">
+            <End Role="FAMILIAS_PRODUCTO" EntitySet="FAMILIAS_PRODUCTO" />
+            <End Role="TIPOS_PRODUCTO" EntitySet="TIPOS_PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="ORDE_COM_DETA_ID_ORDENCOM_FK" Association="Self.ORDE_COM_DETA_ID_ORDENCOM_FK">
+            <End Role="ORDENES_COMPRA" EntitySet="ORDENES_COMPRA" />
+            <End Role="ORDENES_COMPRA_DETALLE" EntitySet="ORDENES_COMPRA_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="ORDENE_COMPR_ID_TRABAJADO_FK" Association="Self.ORDENE_COMPR_ID_TRABAJADO_FK">
+            <End Role="TRABAJADORES" EntitySet="TRABAJADORES" />
+            <End Role="ORDENES_COMPRA" EntitySet="ORDENES_COMPRA" />
+          </AssociationSet>
+          <AssociationSet Name="ORDENES_COMPRA_ID_PROVEEDOR_FK" Association="Self.ORDENES_COMPRA_ID_PROVEEDOR_FK">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="ORDENES_COMPRA" EntitySet="ORDENES_COMPRA" />
+          </AssociationSet>
+          <AssociationSet Name="ORDEN_COMP_DETAL_ID_PRODUC_FK" Association="Self.ORDEN_COMP_DETAL_ID_PRODUC_FK">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="ORDENES_COMPRA_DETALLE" EntitySet="ORDENES_COMPRA_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_FAVORITO_ID_PRODUCT_FK" Association="Self.PRODUCT_FAVORITO_ID_PRODUCT_FK">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="PRODUCTO_FAVORITOS" EntitySet="PRODUCTO_FAVORITOS" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_IMAGENE_ID_PRODUCT_FK" Association="Self.PRODUCT_IMAGENE_ID_PRODUCT_FK">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="PRODUCTO_IMAGENES" EntitySet="PRODUCTO_IMAGENES" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTOS_ID_PROVEEDOR_FK" Association="Self.PRODUCTOS_ID_PROVEEDOR_FK">
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTOS_ID_TIPOPRODUCTO_FK" Association="Self.PRODUCTOS_ID_TIPOPRODUCTO_FK">
+            <End Role="TIPOS_PRODUCTO" EntitySet="TIPOS_PRODUCTO" />
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+          </AssociationSet>
+          <AssociationSet Name="REGISTROS_STOCK_ID_PRODUCTO_FK" Association="Self.REGISTROS_STOCK_ID_PRODUCTO_FK">
+            <End Role="PRODUCTOS" EntitySet="PRODUCTOS" />
+            <End Role="REGISTROS_STOCK" EntitySet="REGISTROS_STOCK" />
+          </AssociationSet>
+          <AssociationSet Name="PROVEEDORES_ID_USUARIO_FK" Association="Self.PROVEEDORES_ID_USUARIO_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PROVEEDORES" EntitySet="PROVEEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="TRABAJADORES_ID_USUARIO_FK" Association="Self.TRABAJADORES_ID_USUARIO_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="TRABAJADORES" EntitySet="TRABAJADORES" />
+          </AssociationSet>
+          <FunctionImport Name="ELIMINARPRO">
+            <Parameter Name="IDP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="INSERTARPRO">
+            <Parameter Name="ID_PRO" Mode="In" Type="String" />
+            <Parameter Name="NOMBRE_PRO" Mode="In" Type="String" />
+            <Parameter Name="DESCRIPCION_PRO" Mode="In" Type="String" />
+            <Parameter Name="PRECIO_PRO" Mode="In" Type="Decimal" />
+            <Parameter Name="IDTIPOS_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="IDFAMILIAS_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="IDPROVEDORE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LISTA_USUARIOS" />
+          <FunctionImport Name="LISTPRODUCTOS" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FermeModelStoreContainer" CdmEntityContainer="FermeEntities">
-          <EntitySetMapping Name="USERS">
-            <EntityTypeMapping TypeName="FermeModel.USERS">
-              <MappingFragment StoreEntitySet="USERS">
-                <ScalarProperty Name="TIPO_USUARIO" ColumnName="TIPO_USUARIO" />
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="BOLETAS">
+            <EntityTypeMapping TypeName="Model.BOLETAS">
+              <MappingFragment StoreEntitySet="BOLETAS">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
-                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="ID_VENDEDOR" ColumnName="ID_VENDEDOR" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="NETO" ColumnName="NETO" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="FECHA_ENTREGA" ColumnName="FECHA_ENTREGA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BOLETAS_DETALLE">
+            <EntityTypeMapping TypeName="Model.BOLETAS_DETALLE">
+              <MappingFragment StoreEntitySet="BOLETAS_DETALLE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_BOLETA" ColumnName="ID_BOLETA" />
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="VALOR_UNITARIO" ColumnName="VALOR_UNITARIO" />
+                <ScalarProperty Name="SUBTOTAL" ColumnName="SUBTOTAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTES">
+            <EntityTypeMapping TypeName="Model.CLIENTES">
+              <MappingFragment StoreEntitySet="CLIENTES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="RUT" ColumnName="RUT" />
+                <ScalarProperty Name="RAZON_SOCIAL" ColumnName="RAZON_SOCIAL" />
+                <ScalarProperty Name="GIRO" ColumnName="GIRO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="CIUDAD" ColumnName="CIUDAD" />
+                <ScalarProperty Name="COMUNA" ColumnName="COMUNA" />
+                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+                <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FAILED_JOBS">
+            <EntityTypeMapping TypeName="Model.FAILED_JOBS">
+              <MappingFragment StoreEntitySet="FAILED_JOBS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CONNECTION" ColumnName="CONNECTION" />
+                <ScalarProperty Name="QUEUE" ColumnName="QUEUE" />
+                <ScalarProperty Name="PAYLOAD" ColumnName="PAYLOAD" />
+                <ScalarProperty Name="EXCEPTION" ColumnName="EXCEPTION" />
+                <ScalarProperty Name="FAILED_AT" ColumnName="FAILED_AT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FAMILIAS_PRODUCTO">
+            <EntityTypeMapping TypeName="Model.FAMILIAS_PRODUCTO">
+              <MappingFragment StoreEntitySet="FAMILIAS_PRODUCTO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MIGRATIONS">
+            <EntityTypeMapping TypeName="Model.MIGRATIONS">
+              <MappingFragment StoreEntitySet="MIGRATIONS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MIGRATION" ColumnName="MIGRATION" />
+                <ScalarProperty Name="BATCH" ColumnName="BATCH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDENES_COMPRA">
+            <EntityTypeMapping TypeName="Model.ORDENES_COMPRA">
+              <MappingFragment StoreEntitySet="ORDENES_COMPRA">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_PROVEEDOR" ColumnName="ID_PROVEEDOR" />
+                <ScalarProperty Name="ID_TRABAJADOR" ColumnName="ID_TRABAJADOR" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="FECHA_RECEPCION" ColumnName="FECHA_RECEPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDENES_COMPRA_DETALLE">
+            <EntityTypeMapping TypeName="Model.ORDENES_COMPRA_DETALLE">
+              <MappingFragment StoreEntitySet="ORDENES_COMPRA_DETALLE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_ORDENCOMPRA" ColumnName="ID_ORDENCOMPRA" />
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="CANTIDAD_RECEPCIONADO" ColumnName="CANTIDAD_RECEPCIONADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTO_FAVORITOS">
+            <EntityTypeMapping TypeName="Model.PRODUCTO_FAVORITOS">
+              <MappingFragment StoreEntitySet="PRODUCTO_FAVORITOS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+                <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTO_IMAGENES">
+            <EntityTypeMapping TypeName="Model.PRODUCTO_IMAGENES">
+              <MappingFragment StoreEntitySet="PRODUCTO_IMAGENES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+                <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+                <ScalarProperty Name="IMAGEN" ColumnName="IMAGEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOS">
+            <EntityTypeMapping TypeName="Model.PRODUCTOS">
+              <MappingFragment StoreEntitySet="PRODUCTOS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+                <ScalarProperty Name="ID_TIPOPRODUCTO" ColumnName="ID_TIPOPRODUCTO" />
+                <ScalarProperty Name="ID_FAMILIAPRODUCTO" ColumnName="ID_FAMILIAPRODUCTO" />
+                <ScalarProperty Name="ID_PROVEEDOR" ColumnName="ID_PROVEEDOR" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="FECHA_VENCIMIENTO" ColumnName="FECHA_VENCIMIENTO" />
+                <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVEEDORES">
+            <EntityTypeMapping TypeName="Model.PROVEEDORES">
+              <MappingFragment StoreEntitySet="PROVEEDORES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="RUT" ColumnName="RUT" />
+                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+                <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REGISTROS_STOCK">
+            <EntityTypeMapping TypeName="Model.REGISTROS_STOCK">
+              <MappingFragment StoreEntitySet="REGISTROS_STOCK">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+                <ScalarProperty Name="TIPO_DOCUMENTO" ColumnName="TIPO_DOCUMENTO" />
+                <ScalarProperty Name="ID_DOCUMENTO" ColumnName="ID_DOCUMENTO" />
+                <ScalarProperty Name="CANTIDAD_ENTRADA" ColumnName="CANTIDAD_ENTRADA" />
+                <ScalarProperty Name="CANTIDAD_SALIDA" ColumnName="CANTIDAD_SALIDA" />
+                <ScalarProperty Name="CANTIDAD_SALDO" ColumnName="CANTIDAD_SALDO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+                <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOS_PRODUCTO">
+            <EntityTypeMapping TypeName="Model.TIPOS_PRODUCTO">
+              <MappingFragment StoreEntitySet="TIPOS_PRODUCTO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_FAMILIAPRODUCTO" ColumnName="ID_FAMILIAPRODUCTO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRABAJADORES">
+            <EntityTypeMapping TypeName="Model.TRABAJADORES">
+              <MappingFragment StoreEntitySet="TRABAJADORES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="RUT" ColumnName="RUT" />
+                <ScalarProperty Name="FECHA_CONTRATACION" ColumnName="FECHA_CONTRATACION" />
+                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+                <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="Model.USERS">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="EMAIL_VERIFIED_AT" ColumnName="EMAIL_VERIFIED_AT" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="TIPO_USUARIO" ColumnName="TIPO_USUARIO" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="REMEMBER_TOKEN" ColumnName="REMEMBER_TOKEN" />
+                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+                <ScalarProperty Name="UPDATED_AT" ColumnName="UPDATED_AT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PASSWORD_RESETS">
+            <EntityTypeMapping TypeName="Model.PASSWORD_RESETS">
+              <MappingFragment StoreEntitySet="PASSWORD_RESETS">
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TOKEN" ColumnName="TOKEN" />
+                <ScalarProperty Name="CREATED_AT" ColumnName="CREATED_AT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ELIMINARPRO" FunctionName="Model.Store.ELIMINARPRO" />
+          <FunctionImportMapping FunctionImportName="INSERTARPRO" FunctionName="Model.Store.INSERTARPRO" />
+          <FunctionImportMapping FunctionImportName="LISTA_USUARIOS" FunctionName="Model.Store.LISTA_USUARIOS" />
+          <FunctionImportMapping FunctionImportName="LISTPRODUCTOS" FunctionName="Model.Store.LISTPRODUCTOS" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

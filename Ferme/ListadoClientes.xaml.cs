@@ -23,7 +23,7 @@ namespace Ferme
         {
             InitializeComponent();
         }
-        List<Clientes> misClientes = new List<Clientes>();
+        List<CLIENTES> misClientes = new List<CLIENTES>();
 
         private void MostrarClientes()
         {

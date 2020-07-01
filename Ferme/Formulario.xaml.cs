@@ -30,9 +30,9 @@ namespace Ferme
             InitializeComponent();
         }
 
-        public List<Clientes> misClientes;
+        public List<CLIENTES> misClientes;
 
-        public void SetClientes(List<Clientes> clientes)
+        public void SetClientes(List<CLIENTES> clientes)
         {
             misClientes = clientes;
         }
@@ -40,14 +40,14 @@ namespace Ferme
        
         private async void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            Clientes clientito = new Clientes();
+            CLIENTES clientito = new CLIENTES();
 
-            clientito.Rut = txtRut.Text;
-            clientito.Apellidos = txtApellidos.Text;
-            clientito.Nombre = txtNombre.Text;
-            clientito.Email = txtEmail.Text;
-            clientito.Direccion = txtDireccion.Text;
-            clientito.Telefono = txtTelefono.Text;
+            clientito.RUT = txtRut.Text;
+            clientito.APELLIDO = txtApellidos.Text;
+            clientito.NOMBRE = txtNombre.Text;
+            clientito.EMAIL = txtEmail.Text;
+            clientito.DIRECCION = txtDireccion.Text;
+            clientito.TELEFONO = txtTelefono.Text;
      
 
 
@@ -72,9 +72,9 @@ namespace Ferme
                 await this.ShowMessageAsync("Aviso", string.Format("Cliente Agregado Con Exito"));
                 misClientes.Add(clientito);
 
-                foreach (Clientes c in misClientes)
+                foreach (CLIENTES c in misClientes)
                 {
-                    await this.ShowMessageAsync("Aviso", string.Format(c.Usuario));
+                    await this.ShowMessageAsync("Aviso", string.Format(c.NOMBRE));
                 }
                 //Console.Write(misClientes.ToString());
                

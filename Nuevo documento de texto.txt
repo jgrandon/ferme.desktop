@@ -1,0 +1,10 @@
+ FR.Open();
+            OracleCommand ComandoList = new OracleCommand("Lista_Proveedor", FR);
+            ComandoList.CommandType = System.Data.CommandType.StoredProcedure;
+            ComandoList.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+            OracleDataAdapter adaptador = new OracleDataAdapter();
+            adaptador.SelectCommand = ComandoList;
+            DataTable tabla = new DataTable();
+            adaptador.Fill(tabla);
+            DataGridListProve.ItemsSource = tabla.DefaultView;
+            FR.Close();

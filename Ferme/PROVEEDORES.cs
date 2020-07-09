@@ -25,6 +25,10 @@ namespace Ferme
         public long ID_USUARIO { get; set; }
         public string NOMBRE { get; set; }
         public string RUT { get; set; }
+        public string DIRECCION { get; set; }
+        public string EMAIL { get; set; }
+        public string RAZON_SOCIAL { get; set; }
+        public string GIRO { get; set; }
         public Nullable<System.DateTime> CREATED_AT { get; set; }
         public Nullable<System.DateTime> UPDATED_AT { get; set; }
     

@@ -1,9 +1,14 @@
-﻿using Ferme.CarpetaProducto;
+﻿using Ferme;
+using Ferme.CarpetaProducto;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Oracle.ManagedDataAccess.Client;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,13 +21,15 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfFragmentos;
 
-using Ferme.CarpetaProductos;
 
 namespace Ferme
 {
     /// <summary>
     /// Lógica de interacción para Menu.xaml
     /// </summary>
+    /// 
+    using BCrypt = BCrypt.Net.BCrypt;
+
     public partial class Menu : MetroWindow
 
         
@@ -67,21 +74,33 @@ namespace Ferme
             }
             else
             {
-              
+                var newId = getNewUserId();
+                var rut = "11111111-1";
+               // var fecha = "14/12/2020";
 
                 var user = new USERS()
                 {
-                   
-
-                ID = getNewUserId(),
+                    ID = newId,
                     TIPO_USUARIO = ComboBoxTipo.Text,
+                    EMAIL = txtEmailUsers.Text,
                     NAME = txtNombreUsuario.Text,
                     USERNAME = txtNuevoUsuario.Text,
-                    PASSWORD = txtNuevaContraseña.Password
+                    PASSWORD = BCrypt.HashPassword(txtNuevaContraseña.Password)
                 };
                 DB.USERS.Add(user);
 
-                await this.ShowMessageAsync("Exito", "Empleado Registrado Correctamente" );
+                var worker = new TRABAJADORES()
+                {
+                    //FECHA_CONTRATACION = 1523656326,
+                    ID_USUARIO = newId,
+                    RUT = rut
+                };
+                DB.TRABAJADORES.Add(worker);
+
+
+
+
+                await this.ShowMessageAsync("Exito", "Empleado Registrado Correctamente"  );
 
                 DB.SaveChanges();
 
@@ -107,6 +126,7 @@ namespace Ferme
         private void ClearUserForm()
         {
             ComboBoxTipo.Text = string.Empty;
+            txtEmailUsers.Text = string.Empty;
             txtNombreUsuario.Text = string.Empty;
             txtNuevoUsuario.Text = string.Empty;
             txtNuevaContraseña.Password = string.Empty;
@@ -147,8 +167,6 @@ namespace Ferme
 
         private void TitleUsuarios_Click(object sender, RoutedEventArgs e)
         {
-            FlyDespeUsuarios.IsOpen = true;
-           
             
             
             BtnRegistrarUser.Visibility = Visibility;
@@ -197,8 +215,6 @@ namespace Ferme
 
         private void TitleProveedor_Click(object sender, RoutedEventArgs e)
         {
-            FlyDespeProveedor_Copy.IsOpen = true;
-            FlyDespeUsuarios.IsOpen = false;
             BtnAgregarProveedor.Visibility = Visibility;
             BtnListaProveedor.Visibility = Visibility;
             labelRegistrarProveedores.Visibility = Visibility;
@@ -221,51 +237,6 @@ namespace Ferme
 
         }
 
-        private void Tile_Click(object sender, RoutedEventArgs e)
-        {
-            var FromPro = new FormProductos();
-            FromPro.Show();
-        }
-
-        private void TitleRegistrarProveedor_Click(object sender, RoutedEventArgs e)
-        {
-            FlyRegisProveedor.IsOpen = true;
-            FR.Open();
-            OracleCommand ComandoList = new OracleCommand("Lista_Proveedor", FR);
-            ComandoList.CommandType = System.Data.CommandType.StoredProcedure;
-            ComandoList.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-            OracleDataAdapter adaptador = new OracleDataAdapter();
-            adaptador.SelectCommand = ComandoList;
-            DataTable tabla = new DataTable();
-            adaptador.Fill(tabla);
-            DataGridListProveedor.ItemsSource = tabla.DefaultView;
-            FR.Close();
-        }
-
-        private void btnModificarPro_Click(object sender, RoutedEventArgs e)
-        {
-            FR.Open();
-            OracleCommand comando = new OracleCommand("UPDATE PROVEEDOR SET NOMBRE ='"+txtNombreProveedor+ "' WHERE IDPROVEEDOR ='" + txtIDproveedor.Text + "'", FR);
-            OracleDataAdapter adaptador = new OracleDataAdapter();
-            adaptador.UpdateCommand = comando;
-            adaptador.UpdateCommand.ExecuteNonQuery();
-            FR.Close();
-            
-            MessageBox.Show("Proveedor actualizado");
-        }
-
-        private void txtIngresarPro_Click(object sender, RoutedEventArgs e)
-        {
-            FR.Open();
-            OracleCommand comando = new OracleCommand("INSERTARPROVEEDOR", FR);
-            comando.CommandType = System.Data.CommandType.StoredProcedure;
-            comando.Parameters.Add("IDPRO", OracleDbType.Varchar2).Value =txtIDproveedor.Text ;
-            comando.Parameters.Add("NOMBREPRO", OracleDbType.Varchar2).Value = txtNombreProveedor.Text;
-            comando.ExecuteNonQuery();
-            FR.Close();
-            MessageBox.Show("Objeto agregado");
-        }
-        
         private void BtnRegistrarUser_Click(object sender, RoutedEventArgs e)
         {
             FlyEmpleadoNuevo.IsOpen = true;
@@ -281,13 +252,82 @@ namespace Ferme
         private void BtnAgregarProveedor_Click(object sender, RoutedEventArgs e)
         {
             FlyProveedor.IsOpen = true;
+            
         }
 
+        //Boton Lista de proveedores
         private void BtnListaProveedor_Click(object sender, RoutedEventArgs e)
         {
             ListaProveedor List = new ListaProveedor();
             this.Close();
             List.ShowDialog();
+        }
+
+        private async void BtnRegistrarProveedor_Click(object sender, RoutedEventArgs e)
+        {
+            PROVEEDORES newPro = new PROVEEDORES();
+
+            if (!IsUserValid())
+                if (string.IsNullOrEmpty(txtNombreProveedor.Text) || String.IsNullOrEmpty(txtDireccionProvee.Text) 
+                    || string.IsNullOrEmpty(txtEmailProveedor.Text) || string.IsNullOrEmpty(txtRutProvee.Text) 
+                    || string.IsNullOrEmpty(txtRazonSocial.Text) || string.IsNullOrEmpty(ComboBoxGiro.Text))
+                {
+
+
+                    var resultado = await this.ShowMessageAsync("AVISO", "Debe llenar los campos ");
+                      
+
+                    return;
+
+                }
+                else 
+               {
+
+                    var user = new USERS()
+                    {
+                        ID = getNewUserId(),
+                        TIPO_USUARIO = ComboBoxTipo.Text,
+                        EMAIL = txtEmailProveedor.Text,
+                        NAME = txtNombreProveedor.Text,
+                        USERNAME = txtNuevoUsuario.Text,
+                        PASSWORD = BCrypt.HashPassword(txtNuevaContraseña.Password)
+                    };
+                    DB.USERS.Add(user);
+                    await this.ShowMessageAsync("Exito", "Empleado Registrado Correctamente " );
+                    var proveedores = new PROVEEDORES()
+                {
+                       ID_USUARIO = user.ID,
+                       NOMBRE = txtNombreProveedor.Text, 
+                       RUT = txtRutProvee.Text,
+                       DIRECCION = txtDireccionProvee.Text,
+                       EMAIL = txtEmailProveedor.Text,
+                       RAZON_SOCIAL = txtRazonSocial.Text,
+                       GIRO = ComboBoxGiro.Text
+                };
+                 DB.PROVEEDORES.Add(proveedores);
+
+                 DB.SaveChanges();
+
+                    await this.ShowMessageAsync("Exito", "Empleado Registrado Correctamente");
+
+                 ClearUserForm();
+                }
+        }
+
+        //Title Productos
+        private void Tile_Click(object sender, RoutedEventArgs e)
+        {
+            Producto Producto = new Producto();
+            this.Close();
+            Producto.ShowDialog();
+        }
+
+        //Title Boletas
+        private void Tile_Click_1(object sender, RoutedEventArgs e)
+        {
+            Boletas Boleta = new Boletas();
+            this.Close();
+            Boleta.ShowDialog();
         }
     }
 }

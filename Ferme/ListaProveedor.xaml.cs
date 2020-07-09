@@ -44,11 +44,11 @@ namespace Ferme
         private void BtnMostrarListPro_Click(object sender, RoutedEventArgs e)
         {
             FR.Open();
-            string Query = "select * from Proveedor";
+            string Query = "select NOMBRE,RUT,DIRECCION,EMAIL,RAZON_SOCIAL,GIRO from Proveedores";
             OracleCommand createCommand = new OracleCommand(Query,FR);
             createCommand.ExecuteNonQuery();
             OracleDataAdapter dataAdapter = new OracleDataAdapter(createCommand);
-            DataTable dt = new DataTable("PROVEEDOR");
+            DataTable dt = new DataTable("PROVEEDORES");
             dataAdapter.Fill(dt);
             DataGridListProve.ItemsSource = dt.DefaultView;
             dataAdapter.Update(dt);
@@ -58,12 +58,13 @@ namespace Ferme
 
         private async void BtnEliminarPro_Click(object sender, RoutedEventArgs e)
         {
+            
 
             PROVEEDORES deletedProveedor = DB.PROVEEDORES.Find(selectedProveedorId);
-            var nombre = deletedProveedor.NOMBRE;
 
-            var resultado = await this.ShowMessageAsync("Exito", "Desea eliminar a: " + nombre,
-                       MahApps.Metro.Controls.Dialogs.MessageDialogStyle.AffirmativeAndNegative);
+
+            var resultado = await this.ShowMessageAsync("AVISO", "¿Desea eliminar a este proveedor? ",
+                       MahApps.Metro.Controls.Dialogs.MessageDialogStyle.AffirmativeAndNegative);  
 
         }
 
@@ -94,15 +95,33 @@ namespace Ferme
 
             else
             {
-                selectedProveedorId = Int32.Parse(row.Row.ItemArray[0].ToString());
+                
                 BtnEliminarPro.IsEnabled = true;
                 BtnModificarPro.IsEnabled = true;
 
+
+
+                DataRowView datos = DataGridListProve.SelectedItem as DataRowView;
+                if (datos != null)
+                {
+
+                    txtActualizarNomProvee.Text = datos["NOMBRE"].ToString();
+                    txtActualizarDireccionProvee.Text = datos["DIRECCION"].ToString();
+                    txtActualizarEmailProvee.Text = datos["EMAIL"].ToString();
+                    txtActualizarRutProvee.Text = datos["RUT"].ToString();
+                    txtActualizarGiroProvee.Text = datos["GIRO"].ToString();
+                    txtActualizarRazonSocialProvee.Text = datos["RAZON_SOCIAL"].ToString();
+
+
+                }
+
+
             }
-
-
-
         }
+
+
+
+        
     }
 
 

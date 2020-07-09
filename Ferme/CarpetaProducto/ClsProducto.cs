@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.OracleClient;
+
 using System.Data;
 using Ferme.ConexionFerme;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Ferme.CarpetaProductos
 {
@@ -19,7 +20,7 @@ namespace Ferme.CarpetaProductos
 
             DataTable Tabla = new DataTable();
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "SELECT * FROM FAMILIA_PRODUCTO";
+            comando.CommandText = "SELECT * FROM FAMILIAS_PRODUCTO";
             LeerFilas = comando.ExecuteReader();
             Tabla.Load(LeerFilas);
             LeerFilas.Close();
@@ -33,7 +34,7 @@ namespace Ferme.CarpetaProductos
         {
             DataTable Tabla = new DataTable();
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "SELECT * FROM PROVEEDOR";
+            comando.CommandText = "SELECT * FROM PROVEEDORES";
             LeerFilas = comando.ExecuteReader();
             Tabla.Load(LeerFilas);
             LeerFilas.Close();
@@ -45,7 +46,7 @@ namespace Ferme.CarpetaProductos
         {
             DataTable Tabla = new DataTable();
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "SELECT * FROM TIPO_PRODUCTO";
+            comando.CommandText = "SELECT * FROM TIPOS_PRODUCTO";
             LeerFilas = comando.ExecuteReader();
             Tabla.Load(LeerFilas);
             LeerFilas.Close();
@@ -53,11 +54,12 @@ namespace Ferme.CarpetaProductos
             return Tabla;
 
         }
+       
         public DataTable Listar_Imagen()
         {
             DataTable Tabla = new DataTable();
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "SELECT * IMAGEN_PRODUCTOS";
+            comando.CommandText = "SELECT * PRODUCTOS_IMAGENES";
             LeerFilas = comando.ExecuteReader();
             Tabla.Load(LeerFilas);
             LeerFilas.Close();

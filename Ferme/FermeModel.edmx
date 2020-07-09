@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BOLETAS">
           <Key>
             <PropertyRef Name="ID" />
@@ -151,6 +151,10 @@ advertencia 6002: La tabla o vista 'FERME.PASSWORD_RESETS' no tiene definida nin
           <Property Name="RUT" Type="varchar2" MaxLength="255" />
           <Property Name="CREATED_AT" Type="timestamp" Precision="6" />
           <Property Name="UPDATED_AT" Type="timestamp" Precision="6" />
+          <Property Name="DIRECCION" Type="varchar2" MaxLength="100" />
+          <Property Name="EMAIL" Type="varchar2" MaxLength="100" />
+          <Property Name="RAZON_SOCIAL" Type="varchar2" MaxLength="100" />
+          <Property Name="GIRO" Type="varchar2" MaxLength="100" />
         </EntityType>
         <EntityType Name="REGISTROS_STOCK">
           <Key>
@@ -435,12 +439,15 @@ advertencia 6002: La tabla o vista 'FERME.PASSWORD_RESETS' no tiene definida nin
         </Function>
         <Function Name="INSERTARPRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FERME">
           <Parameter Name="ID_PRO" Type="varchar2" Mode="In" />
+          <Parameter Name="CODIGO_PRO" Type="varchar2" Mode="In" />
           <Parameter Name="NOMBRE_PRO" Type="varchar2" Mode="In" />
           <Parameter Name="DESCRIPCION_PRO" Type="varchar2" Mode="In" />
           <Parameter Name="PRECIO_PRO" Type="number" Mode="In" />
           <Parameter Name="IDTIPOS_PRODUCTO" Type="varchar2" Mode="In" />
           <Parameter Name="IDFAMILIAS_PRODUCTO" Type="varchar2" Mode="In" />
           <Parameter Name="IDPROVEDORE" Type="varchar2" Mode="In" />
+          <Parameter Name="FECHA_VENCIMIENTOPRO" Type="date" Mode="In" />
+          <Parameter Name="STOCK_PRO" Type="number" Mode="In" />
         </Function>
         <Function Name="LISTA_USUARIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FERME" />
         <Function Name="LISTPRODUCTOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FERME" />
@@ -545,8 +552,7 @@ FROM "FERME"."PASSWORD_RESETS" "PASSWORD_RESETS"</DefiningQuery>
             <End Role="TRABAJADORES" EntitySet="TRABAJADORES" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -714,6 +720,10 @@ FROM "FERME"."PASSWORD_RESETS" "PASSWORD_RESETS"</DefiningQuery>
           <NavigationProperty Name="ORDENES_COMPRA" Relationship="Self.ORDENES_COMPRA_ID_PROVEEDOR_FK" FromRole="PROVEEDORES" ToRole="ORDENES_COMPRA" />
           <NavigationProperty Name="PRODUCTOS" Relationship="Self.PRODUCTOS_ID_PROVEEDOR_FK" FromRole="PROVEEDORES" ToRole="PRODUCTOS" />
           <NavigationProperty Name="USERS" Relationship="Self.PROVEEDORES_ID_USUARIO_FK" FromRole="PROVEEDORES" ToRole="USERS" />
+          <Property Name="DIRECCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RAZON_SOCIAL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GIRO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="REGISTROS_STOCK">
           <Key>
@@ -1106,16 +1116,19 @@ FROM "FERME"."PASSWORD_RESETS" "PASSWORD_RESETS"</DefiningQuery>
             <End Role="TRABAJADORES" EntitySet="TRABAJADORES" />
           </AssociationSet>
           <FunctionImport Name="ELIMINARPRO">
-            <Parameter Name="IDP" Mode="In" Type="String" />
+          <Parameter Name="IDP" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="INSERTARPRO">
             <Parameter Name="ID_PRO" Mode="In" Type="String" />
+            <Parameter Name="CODIGO_PRO" Mode="In" Type="String" />
             <Parameter Name="NOMBRE_PRO" Mode="In" Type="String" />
             <Parameter Name="DESCRIPCION_PRO" Mode="In" Type="String" />
             <Parameter Name="PRECIO_PRO" Mode="In" Type="Decimal" />
             <Parameter Name="IDTIPOS_PRODUCTO" Mode="In" Type="String" />
             <Parameter Name="IDFAMILIAS_PRODUCTO" Mode="In" Type="String" />
             <Parameter Name="IDPROVEDORE" Mode="In" Type="String" />
+            <Parameter Name="FECHA_VENCIMIENTOPRO" Mode="In" Type="DateTime" />
+            <Parameter Name="STOCK_PRO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="LISTA_USUARIOS" />
           <FunctionImport Name="LISTPRODUCTOS" />
@@ -1265,6 +1278,10 @@ FROM "FERME"."PASSWORD_RESETS" "PASSWORD_RESETS"</DefiningQuery>
           <EntitySetMapping Name="PROVEEDORES">
             <EntityTypeMapping TypeName="Model.PROVEEDORES">
               <MappingFragment StoreEntitySet="PROVEEDORES">
+                <ScalarProperty Name="GIRO" ColumnName="GIRO" />
+                <ScalarProperty Name="RAZON_SOCIAL" ColumnName="RAZON_SOCIAL" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />

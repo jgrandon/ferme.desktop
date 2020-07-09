@@ -1,14 +1,16 @@
 ﻿using Ferme.CarpetaProductos;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.OracleClient;
+using Oracle.DataAccess;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace Ferme.CarpetaProducto
 {
@@ -23,7 +25,7 @@ namespace Ferme.CarpetaProducto
 
         private void FormProductos_Load(object sender, EventArgs e)
         {
-            ListarProveedor();
+            ListarProveedores();
             ListarTipo_Producto();
             ListarFamilia();
             ListarProductos();
@@ -34,15 +36,17 @@ namespace Ferme.CarpetaProducto
             FR.Open();
             OracleCommand comando = new OracleCommand("INSERTARPRO", FR);
             comando.CommandType = System.Data.CommandType.StoredProcedure;
-            comando.Parameters.Add("ID_PRO", OracleType.VarChar).Value = cmbProveedor.SelectedValue.ToString() + cmbTiposP.SelectedValue.ToString() + cmbTipoProducto.SelectedValue.ToString();
-            comando.Parameters.Add("NOMBRE_PRO", OracleType.VarChar).Value = txtNombreP.Text;
-            comando.Parameters.Add("DESCRIPCION_PRO", OracleType.VarChar).Value = txtDescripcionP.Text;
-            comando.Parameters.Add("PRECIO_PRO", OracleType.Int32).Value = txtPrecio.Text;
-            comando.Parameters.Add("IDTIPOS_PRODUCTO", OracleType.VarChar).Value = cmbTipoProducto.SelectedValue;
-            comando.Parameters.Add("IDFAMILIAS_PRODUCTO", OracleType.VarChar).Value = cmbTiposP.SelectedValue;
-            comando.Parameters.Add("ID_IMAGEN_PRODUCTO", OracleType.VarChar).Value = cmbTiposP.SelectedValue;
-            comando.Parameters.Add("IDPROVEDORE", OracleType.VarChar).Value = cmbProveedor.SelectedValue;
-
+            comando.Parameters.Add("ID_PRO", OracleDbType.Int32).Value = cmbProveedor.Text + cmbTiposP.SelectedValue.ToString() + cmbTipoProducto.SelectedValue.ToString() + cmbTiposP.SelectedValue.ToString() + cmbTipoProducto.SelectedValue.ToString() ;
+           // comando.Parameters.Add("CODIGO_PRO", OracleDbType.Varchar2).Value = txtCodigo.Text;
+            comando.Parameters.Add("NOMBRE_PRO", OracleDbType.Varchar2).Value = txtNombreP.Text;
+            comando.Parameters.Add("DESCRIPCION_PRO", OracleDbType.Varchar2).Value = txtDescripcionP.Text;
+            comando.Parameters.Add("PRECIO_PRO", OracleDbType.Int32).Value = txtPrecio.Text;
+            comando.Parameters.Add("IDTIPOS_PRODUCTO", OracleDbType.Int32).Value = cmbTipoProducto.SelectedValue;
+            comando.Parameters.Add("IDFAMILIAS_PRODUCTO", OracleDbType.Int32).Value = cmbTiposP.SelectedValue;
+           // comando.Parameters.Add("ID_IMAGEN_PRODUCTO", OracleDbType.Varchar2).Value = cmbTiposP.SelectedValue;
+           // comando.Parameters.Add("IDPROVEDORE", OracleDbType.Int32).Value = cmbProveedor.SelectedValue;
+            comando.Parameters.Add("FECHA_VENCIMIENTOPRO", OracleDbType.Date).Value = txtFechaVencimiento.Text;
+            comando.Parameters.Add("STOCK_PRO", OracleDbType.Int32).Value = txtStockPro.Text;
 
             comando.ExecuteNonQuery();
             FR.Close();
@@ -53,19 +57,20 @@ namespace Ferme.CarpetaProducto
         private void txtEliminarP_Click(object sender, EventArgs e)
         {
             FR.Open();
-            OracleCommand comando = new OracleCommand("eliminarPRO", FR);
+            OracleCommand comando = new OracleCommand("ELIMINARPRO", FR);
             comando.CommandType = System.Data.CommandType.StoredProcedure;
-            comando.Parameters.Add("idp", OracleType.VarChar).Value = txtID.Text;
+            comando.Parameters.Add("idp", OracleDbType.Varchar2).Value = cmbProveedor.Text;
             comando.ExecuteNonQuery();
             FR.Close();
             ListarProductos();
+
             MessageBox.Show("Objeto Eliminado");
         }
 
         private void btnActualizarP_Click(object sender, EventArgs e)
         {
             FR.Open();
-            OracleCommand comando = new OracleCommand("UPDATE PRODUCTO SET NOMBRE = '" + txtNombreP.Text + "',DESCRIPCION ='" + txtDescripcionP.Text + "',PRECIO ='" + txtPrecio.Text + "',IDTIPO_PRODUCTO ='" + cmbTiposP.SelectedValue + "',IDFAMILIA_PRODUCTO ='" + cmbTipoProducto.SelectedValue + "',IDPROVEEDOR ='" + cmbProveedor.SelectedValue + "',ID_IMAGEN ='" + cmbTipoProducto.SelectedValue + "' WHERE ID ='" + txtID.Text + "'", FR);
+            OracleCommand comando = new OracleCommand("UPDATE PRODUCTO SET NOMBRE = '" + txtNombreP.Text + "',DESCRIPCION ='" + txtDescripcionP.Text + "',PRECIO ='" + txtPrecio.Text + "',IDTIPO_PRODUCTO ='" + cmbTiposP.SelectedValue + "',IDFAMILIA_PRODUCTO ='" + cmbTipoProducto.SelectedValue + "',IDPROVEEDOR ='" + cmbProveedor.SelectedValue + "',ID_IMAGEN ='" + cmbTipoProducto.SelectedValue + "' WHERE ID ='" + cmbProveedor.Text + "'", FR);
             OracleDataAdapter adaptador = new OracleDataAdapter();
             adaptador.UpdateCommand = comando;
             adaptador.UpdateCommand.ExecuteNonQuery();
@@ -79,7 +84,7 @@ namespace Ferme.CarpetaProducto
                 ClsProductos objProd = new ClsProductos();
                 cmbTiposP.DataSource = objProd.ListarTipo_Producto();
                 cmbTiposP.DisplayMember = "NOMBRE";
-                cmbTiposP.ValueMember = "IDTIPO_PRODUCTO";
+                cmbTiposP.ValueMember = "ID";
 
             }
 
@@ -91,17 +96,17 @@ namespace Ferme.CarpetaProducto
                 ClsProductos objProd = new ClsProductos();
                 cmbTipoProducto.DataSource = objProd.ListarFamilia();
                 cmbTipoProducto.DisplayMember = "NOMBRE";
-                cmbTipoProducto.ValueMember = "IDFAMILIA_PRODUCTO";
+                cmbTipoProducto.ValueMember = "ID";
 
             }
         }
-        private void ListarProveedor()
+        private void ListarProveedores()
         {
             {
                 ClsProductos objProd = new ClsProductos();
                 cmbProveedor.DataSource = objProd.ListarProveedor();
                 cmbProveedor.DisplayMember = "NOMBRE";
-                cmbProveedor.ValueMember = "IDPROVEEDOR";
+                cmbProveedor.ValueMember = "ID";
 
             }
         }
@@ -119,9 +124,9 @@ namespace Ferme.CarpetaProducto
         private void ListarProductos()
         {
             FR.Open();
-            OracleCommand ComandoListP = new OracleCommand("ListProductos", FR);
+            OracleCommand ComandoListP = new OracleCommand("LISTPRODUCTOS", FR);
             ComandoListP.CommandType = System.Data.CommandType.StoredProcedure;
-            ComandoListP.Parameters.Add("registros", OracleType.Cursor).Direction = ParameterDirection.Output;
+            ComandoListP.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
             OracleDataAdapter adaptador = new OracleDataAdapter();
             adaptador.SelectCommand = ComandoListP;
             DataTable tabla = new DataTable();
@@ -134,6 +139,9 @@ namespace Ferme.CarpetaProducto
 
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

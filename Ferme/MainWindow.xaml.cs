@@ -17,14 +17,12 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Menu = Ferme.Menu;
 
-
 namespace WpfFragmentos
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
-
     using BCrypt = BCrypt.Net.BCrypt;
     public partial class MainWindow : MetroWindow
     {
@@ -59,7 +57,6 @@ namespace WpfFragmentos
             }
         }
 
-
         private USERS GetUserByCredentials()
         {
             USERS user = null;
@@ -67,7 +64,7 @@ namespace WpfFragmentos
 
             {
 
-                var passrwordOk = BCrypt.Verify(txtContraseña.Password,u.PASSWORD);
+                var passrwordOk = BCrypt.Verify(txtContraseña.Password, u.PASSWORD);
                 if (u.USERNAME.Equals(txtUsuario.Text) && passrwordOk)
                 {
                     user = u;

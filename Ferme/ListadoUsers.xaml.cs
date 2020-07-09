@@ -119,7 +119,7 @@ namespace Ferme
                 BtnModificar.IsEnabled = true;
 
                 
-
+                //PASAR DATOS A LOS TEXTBOX 
                 DataRowView datos = DataGridListUser.SelectedItem as DataRowView;
                 if (datos != null)
                 {
@@ -127,6 +127,7 @@ namespace Ferme
                     txtActualizarUsuario.Text = datos["NAME"].ToString();
                     ComboBoxActuaTipo.Text = datos["TIPO_USUARIO"].ToString();
                     txtActualizarNick.Text = datos["USERNAME"].ToString();
+                    
                     
                 }
 

@@ -5,52 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:Ferme"
+                      
         
         mc:Ignorable="d"
         Title="Menu" Height="701" Width="1228.5" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
-    <Grid Background="#FF0F0E0E" HorizontalAlignment="Left" Width="1218" Height="703" VerticalAlignment="Bottom" Margin="0,-33,0,0">
 
+    
 
+        <Grid Background="#FF0F0E0E" HorizontalAlignment="Left" Width="1218" Height="703" VerticalAlignment="Bottom" Margin="0,-33,0,0">
 
-        <Grid.ColumnDefinitions>
+      
+            <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1070*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-        <Controls:Flyout x:Name="FlyEmpleadoNuevo" Margin="0,10,5,10" Foreground="#FFF9F6F6" HeaderStringFormat="" Header="AGREGAR EMPLEADO &#xD;&#xA;" Position="Right" VerticalAlignment="Top" HorizontalAlignment="Right" Cursor="Hand" Width="646" Visibility="Collapsed">
-            <Controls:Flyout.Background>
-                <SolidColorBrush Color="Black" Opacity="0.9"/>
-            </Controls:Flyout.Background>
-            <Canvas Margin="0,0,10,0" HorizontalAlignment="Right" Width="598" >
-                <Image Height="174" Canvas.Left="173" Canvas.Top="-40" Width="237" Stretch="Fill" Source="Imagenes/User-Login.png"/>
-                <TextBox x:Name="txtNombreUsuario" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Nombre Y Apellido"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="42" Canvas.Top="157"/>
-                <TextBox x:Name="txtEmailUsers" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese E-mail"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="42" Canvas.Top="250"/>
-                <ComboBox x:Name="ComboBoxTipo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="238" Foreground="White" Height="22"  Background="#FF2B2828" FontSize="16" FontFamily="Georgia" Controls:TextBoxHelper.Watermark="Tipo de Usuario" Canvas.Left="42" Canvas.Top="344" >
-                    <ComboBoxItem x:Name="item1" Content="  Vendedor" HorizontalAlignment="Left" Width="312" Background="#FF2B2828" Foreground="White" BorderBrush="#CC119EDA" Margin="0,0,-2,0" Height="46"/>
-                    <ComboBoxItem x:Name="item2" Content="  Empleado" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
-                </ComboBox>
-                <TextBox x:Name="txtNuevoUsuario" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese Alias"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="316" Canvas.Top="157"/>
-                <PasswordBox x:Name="txtNuevaContraseña" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="316" Canvas.Top="250" Width="238" Height="29" />
-                <PasswordBox x:Name="txtRepetirContraseña" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Repita Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="316" Canvas.Top="341" Width="238" Height="29" />
-                <Button x:Name="BtnRegistrar" Content="REGISTRAR" HorizontalAlignment="Left" VerticalAlignment="Top" Width="276" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnIngresar_Click" Canvas.Left="160" Canvas.Top="449" Height="32"/>
-            </Canvas>
-        </Controls:Flyout>
+        <Button x:Name="BtnRegistrarUser" HorizontalAlignment="Left" Margin="582,125,0,0" VerticalAlignment="Top" Width="214" Height="171" Click="BtnRegistrarUser_Click" Visibility="Collapsed">
+            <Image HorizontalAlignment="Left" Height="161" VerticalAlignment="Top" Width="204" Source="Registro de empleados.png" Stretch="Fill"/>
+
+        </Button>
         <Canvas x:Name="CanvasMenu" HorizontalAlignment="Left" Height="578" VerticalAlignment="Top" Width="313" RenderTransformOrigin="0.135,1.24" Background="#CC119EDA" Margin="0,125,0,0">
             <Controls:Tile x:Name="TitleUsuario" Margin="0" Width="313" Height="45" Title="  EMPLEADOS" Click="TitleUsuarios_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="10" >
                 <Canvas HorizontalAlignment="Left" Height="58" VerticalAlignment="Top" Width="303">
                     <Image Height="58" Width="98" Stretch="Fill" Source="Imagenes/User-New.png" VerticalAlignment="Center" HorizontalAlignment="Right" RenderTransformOrigin="-0.209,-1.198" Canvas.Left="222" Canvas.Top="-10"/>
                 </Canvas>
             </Controls:Tile>
-            <Controls:Tile Margin="0" Width="313" Height="45" Title=" REGISTRO PRODUCTO" Canvas.Top="73" Click="Tile_Click">
+            <Controls:Tile Margin="0" Width="313" Height="45" Title=" PRODUCTO" Canvas.Top="73" Click="Tile_Click">
                 <Canvas HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="303">
                     <Image HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="100" Stretch="Fill" Source="registro-producto.png" Canvas.Left="222" RenderTransformOrigin="0.715,0.246" Canvas.Top="-10"/>
                 </Canvas>
             </Controls:Tile>
-            <Controls:Tile Margin="0" Width="313" Height="44" Title=" REGISTRO BOLETAS"  Canvas.Top="138">
+            <Controls:Tile Margin="0" Width="313" Height="44" Title=" BOLETAS"  Canvas.Top="138" Click="Tile_Click_1">
                 <Canvas HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="303">
                     <Image HorizontalAlignment="Left" Height="65" VerticalAlignment="Top" Width="95" Stretch="Fill" Source="Imagenes/registro-boletas.png" Canvas.Left="226" Canvas.Top="-14"/>
                 </Canvas>
             </Controls:Tile>
-            <Controls:Tile Margin="0" Width="313" Height="44" Title=" REGISTRO FACTURAS" Canvas.Top="202">
+            <Controls:Tile Margin="0" Width="313" Height="44" Title=" FACTURAS" Canvas.Top="202">
                 <Canvas HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Width="303">
                     <Image HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="100" Stretch="Fill" Source="Imagenes/Facturas.png" Canvas.Left="220" Canvas.Top="-10"/>
                 </Canvas>
@@ -63,31 +52,6 @@
             <Button x:Name="BtnCancelar" Content="CERRAR SESION" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnCancelar_Click" Canvas.Left="79" Canvas.Top="543"/>
         </Canvas>
         <Image HorizontalAlignment="Left" Height="84" Margin="0,36,0,0" VerticalAlignment="Top" Width="313" Source="Imagenes/logoo.jpg" Stretch="Fill"/>
-        <Controls:Flyout x:Name="FlyDespeUsuarios" Width="244" Margin="318,125,0,375" Background="#CC119EDA" Foreground="#FFF9F6F6">
-            <Canvas>
-                <Controls:Tile x:Name="TitleRegistrarUsuario" Margin="0" Width="244" Height="45" Title="  REGISTRAR USUARIOS" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="-15" Click="TitleRegistrarUsuario_Click" />
-                <Controls:Tile x:Name="TitleListaUsuario" Margin="0" Width="244" Height="44" Title="  LISTA DE USUARIOS" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="48" Content="º" Click="TitleListaUsuario_Click" />
-            </Canvas>
-        </Controls:Flyout>
-        <Controls:Flyout x:Name="FlyRegisProveedor" Width="244" Margin="567,125,0,148" Background="#CC119EDA" Foreground="#FFF9F6F6" RenderTransformOrigin="-0.254,0.775">
-            <Canvas HorizontalAlignment="Right" Height="344" Margin="0,0,10,0" Width="224" RenderTransformOrigin="0.536,0.358">
-                <TextBox x:Name="txtIDproveedor" Height="23" Canvas.Left="94" TextWrapping="Wrap" Canvas.Top="32" Width="120"/>
-                <!-- <TextBox x:Name="txtNombreProveedor" Height="23" Canvas.Left="94" TextWrapping="Wrap" Canvas.Top="80" Width="120"/> -->
-                <DataGrid x:Name="DataGridListProveedor" Height="104" Canvas.Left="21" Canvas.Top="122" Width="193"/>
-                <Button x:Name="btnModificarPro" Content="Modificar" Canvas.Left="21" Canvas.Top="247" Width="75" Click="btnModificarPro_Click"/>
-                <Button x:Name="txtIngresarPro" Content="INGRESAR" Canvas.Left="121" Canvas.Top="247" Width="75" Click="txtIngresarPro_Click"/>
-            </Canvas>
-        </Controls:Flyout>
-        <Controls:Flyout x:Name="FlyDespeProveedor_Copy" Width="244" Margin="318,351,0,148" Background="#CC119EDA" Foreground="#FFF9F6F6" RenderTransformOrigin="-0.254,0.775">
-            <Canvas>
-                <Controls:Tile x:Name="TitleRegistrarProveedor1" Margin="0" Width="244" Height="45" Title="  REGISTRAR PROVEEDORES" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="-15" Click="TitleRegistrarProveedor_Click" />
-                <Controls:Tile x:Name="TitleListaProveedores1" Margin="0" Width="244" Height="44" Title="  LISTA DE PROVEEDORES" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.135,1.24" Canvas.Top="48" />
-            </Canvas>
-        </Controls:Flyout>
-        <Button x:Name="BtnRegistrarUser" HorizontalAlignment="Left" Margin="582,125,0,0" VerticalAlignment="Top" Width="214" Height="171" Click="BtnRegistrarUser_Click" Visibility="Collapsed">
-            <Image HorizontalAlignment="Left" Height="161" VerticalAlignment="Top" Width="204" Source="Registro de empleados.png" Stretch="Fill"/>
-
-        </Button>
         <Button x:Name="BtnListaUser" HorizontalAlignment="Left" Margin="582,370,0,0" VerticalAlignment="Top" Width="214" Height="170" FontWeight="Bold" Click="BtnListaUser_Click" Visibility="Collapsed">
             <Image HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="214" Stretch="Fill" Source="Imagenes/Lista de usuarios.png"/>
         </Button>
@@ -100,30 +64,55 @@
             <Image HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="214" Stretch="Fill" Source="Registro Proveedores.png"/>
         </Button>
         <Label x:Name="labelRegistrarProveedores" Content="  REGISTRAR PROVEEDOR" HorizontalAlignment="Left" Margin="564,306,0,0" VerticalAlignment="Top" Width="237" Height="37" Foreground="White" FontSize="18" FontFamily="Georgia" Visibility="Collapsed"/>
-        <Controls:Flyout x:Name="FlyProveedor" Margin="0,10,5,10" Foreground="#FFF9F6F6" HeaderStringFormat="" Header="AGREGAR PROVEEDOR&#xA;" Position="Right" VerticalAlignment="Top" HorizontalAlignment="Right" Cursor="Hand" Width="737" Visibility="Collapsed" FontSize="18" FontFamily="Georgia" Controls:ControlsHelper.HeaderFontSize="25" AnimateOpacity="True" Background="Black">
-            <Canvas Margin="0,0,10,0" HorizontalAlignment="Right" Width="717" >
+        <Label x:Name="labelListaProveedores" Content="       LISTA PROVEEDORES" HorizontalAlignment="Left" Margin="559,561,0,0" VerticalAlignment="Top" Width="237" Height="37" Foreground="White" FontSize="18" FontFamily="Georgia" Visibility="Collapsed"/>
+        <Controls:Flyout x:Name="FlyProveedor" Margin="0,10,5,10" Foreground="#FFF9F6F6" HeaderStringFormat="" Header="AGREGAR PROVEEDOR&#xA;" Position="Right" VerticalAlignment="Top" HorizontalAlignment="Right" Cursor="Hand" Width="660" Visibility="Collapsed" FontSize="18" FontFamily="Georgia" Controls:ControlsHelper.HeaderFontSize="25" AnimateOpacity="True" Background="Black">
+            <Canvas Margin="-70,0,10,0" HorizontalAlignment="Right" Width="647" >
                 <Image Height="174" Canvas.Left="238" Canvas.Top="-9" Width="236" Stretch="Fill" Source="Imagenes/User-Login.png"/>
                 <TextBox x:Name="txtNombreProveedor" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="            Ingrese Nombre"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="77" Canvas.Top="170"/>
                 <PasswordBox x:Name="txtContraseñaProveedor" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="          Ingrese Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="429" Canvas.Top="305" Width="237" Height="29" />
                 <PasswordBox x:Name="txtRepetirContraseñaProveedor" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="          Repita Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="429" Canvas.Top="364" Width="237" Height="28" RenderTransformOrigin="0.508,2.25" />
-                <Button x:Name="BtnRegistrarProveedor" Content="REGISTRAR" HorizontalAlignment="Left" VerticalAlignment="Top" Width="342" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnIngresar_Click" Canvas.Left="189" Canvas.Top="491" Height="32"/>
+                <Button x:Name="BtnRegistrarProveedor" Content="REGISTRAR" HorizontalAlignment="Left" VerticalAlignment="Top" Width="342" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnRegistrarProveedor_Click" Canvas.Left="189" Canvas.Top="491" Height="32"/>
                 <TextBox x:Name="txtEmailProveedor" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="            Ingrese Email"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="77" Canvas.Top="239"/>
-                <ComboBox x:Name="ComboBoxRazonSocial" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Foreground="White" Height="22"  Background="#FF2B2828" FontSize="16" FontFamily="Georgia" Controls:TextBoxHelper.Watermark="            Razon Social" Canvas.Left="78" Canvas.Top="364" >
-                    <ComboBoxItem x:Name="item01" Content="  Vendedor" HorizontalAlignment="Left" Width="312" Background="#FF2B2828" Foreground="White" BorderBrush="#CC119EDA" Margin="0,0,-2,0" Height="46"/>
-                    <ComboBoxItem x:Name="item02" Content="  Homer Medina" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
-                    <ComboBoxItem x:Name="item3" Content="  Grupo Gonzalez S.A" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
-                    <ComboBoxItem x:Name="item4" Content="  Libia" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
-                    <ComboBoxItem x:Name="item5" Content="  Importaciones pfv" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
-                    <ComboBoxItem x:Name="item6" Content="   Luis Alberto I. R. L" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
-                    <ComboBoxItem x:Name="item7" Content="  Antonio Chacón S.A." HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
-                    <ComboBoxItem x:Name="item8" Content="  Arturo C.A." HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
-                    <ComboBoxItem x:Name="item9" Content="  Jose Antonio Roa" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                <ComboBox x:Name="ComboBoxGiro" HorizontalAlignment="Left" VerticalAlignment="Top" Width="236" Foreground="White" Height="22"  Background="#FF2B2828" FontSize="16" FontFamily="Georgia" Controls:TextBoxHelper.Watermark="            Giro de empresa" Canvas.Left="78" Canvas.Top="364" >
+                    <ComboBoxItem x:Name="item01" Content="Industrial" HorizontalAlignment="Left" Width="312" Background="#FF2B2828" Foreground="White" BorderBrush="#CC119EDA" Margin="0,0,-2,0" Height="46"/>
+                    <ComboBoxItem x:Name="item02" Content="Comercial" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item3" Content="Servicios" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item4" Content="Agricola" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item5" Content="Turismo" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item6" Content=" Educacion" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item7" Content="Salud" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item8" Content="Cultura y Entretenimiento" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item9" Content="Mineria" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
                 </ComboBox>
-                <TextBox x:Name="txtGiroProvee" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="            Ingrese Giro"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="429" Canvas.Top="170"/>
+                <TextBox x:Name="txtRazonSocial" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="            Ingrese Razon Social"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="429" Canvas.Top="170"/>
                 <TextBox x:Name="txtDireccionProvee" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="            Ingrese Direccion"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="77" Canvas.Top="305"/>
                 <TextBox x:Name="txtRutProvee" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="            Ingrese Rut"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="429" Canvas.Top="239"/>
             </Canvas>
         </Controls:Flyout>
-        <Label x:Name="labelListaProveedores" Content="       LISTA PROVEEDORES" HorizontalAlignment="Left" Margin="559,561,0,0" VerticalAlignment="Top" Width="237" Height="37" Foreground="White" FontSize="18" FontFamily="Georgia" Visibility="Collapsed"/>
+        <Controls:Flyout x:Name="FlyEmpleadoNuevo" Margin="0,10,5,10" Foreground="#FFF9F6F6" HeaderStringFormat="" Header="AGREGAR EMPLEADO &#xA;" Position="Right" VerticalAlignment="Top" HorizontalAlignment="Right" Cursor="Hand" Width="660" Visibility="Collapsed">
+            <Controls:Flyout.Background>
+                <SolidColorBrush Color="Black"/>
+            </Controls:Flyout.Background>
+            <Canvas Margin="0,0,10,0" HorizontalAlignment="Right" Width="598" >
+                <Image Height="174" Canvas.Left="173" Canvas.Top="-40" Width="237" Stretch="Fill" Source="Imagenes/User-Login.png"/>
+                <TextBox x:Name="txtNombreUsuario" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Nombre Y Apellido"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="42" Canvas.Top="157"/>
+                <TextBox x:Name="txtEmailUsers" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese E-mail"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="42" Canvas.Top="250"/>
+                <ComboBox x:Name="ComboBoxTipo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="238" Foreground="White" Height="22"  Background="#FF2B2828" FontSize="16" FontFamily="Georgia" Controls:TextBoxHelper.Watermark="Tipo de Usuario" Canvas.Left="42" Canvas.Top="344" >
+                    <ComboBoxItem x:Name="item1" Content="Cliente" HorizontalAlignment="Left" Width="312" Background="#FF2B2828" Foreground="White" BorderBrush="#CC119EDA" Margin="0,0,-2,0" Height="46"/>
+                    <ComboBoxItem x:Name="item2" Content="Administrador" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item03" Content="Vendedor" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item04" Content="Bodeguero" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item05" Content="Proveedor" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+
+                </ComboBox>
+                <TextBox x:Name="txtNuevoUsuario" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese Alias"  HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="316" Canvas.Top="157"/>
+                <PasswordBox x:Name="txtNuevaContraseña" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Ingrese Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="316" Canvas.Top="250" Width="238" Height="29" />
+                <PasswordBox x:Name="txtRepetirContraseña" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Repita Contraseña"  Style="{StaticResource MetroButtonRevealedPasswordBox}" Background="#FF2B2828" BorderBrush="{x:Null}" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="316" Canvas.Top="341" Width="238" Height="29" />
+                <Button x:Name="BtnRegistrar" Content="REGISTRAR" HorizontalAlignment="Left" VerticalAlignment="Top" Width="276" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Click="BtnIngresar_Click" Canvas.Left="160" Canvas.Top="449" Height="32"/>
+            </Canvas>
+        </Controls:Flyout>
+       
     </Grid>
+    
+    
 </Controls:MetroWindow>

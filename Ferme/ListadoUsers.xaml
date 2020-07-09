@@ -9,8 +9,7 @@
         Title="ListadoUsers" Height="552" Width="961.5" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid Background="#FF302C2C" Margin="0,0,4,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="597*"/>
-            <ColumnDefinition Width="295*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="DataGridListUser" Margin="69,172,141,50" FontSize="14" SelectionChanged="DataGridListUser_SelectionChanged" IsReadOnly="True"/>
         <Button x:Name="BtnModificar" Content="MODIFICAR" Margin="378,89,436,0" VerticalAlignment="Top" RenderTransformOrigin="4.813,1.741" Background="#FF1E25BD" Foreground="White" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnModificar_Click" d:LayoutOverrides="HorizontalAlignment"/>
@@ -26,8 +25,11 @@
                 <Button x:Name="BtnActualizarUsuario" Content="ACTUALIZAR" Width="237" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Canvas.Left="87" Canvas.Top="235" Height="32" Click="BtnActualizarUsuario_Click"/>
                 <TextBox x:Name="txtActualizarUsuario" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark=" Actualice Nombre Usuario" Height="22" TextWrapping="Wrap" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="87" Canvas.Top="74" AutomationProperties.HelpText="Modifique el Nombre " RenderTransformOrigin="0.511,0.135"/>
                 <ComboBox x:Name="ComboBoxActuaTipo" Width="238" Foreground="White" Height="22"  Background="#FF2B2828" FontSize="16" FontFamily="Georgia" Controls:TextBoxHelper.Watermark="      Actualice Tipo Usuario" Canvas.Left="87" Canvas.Top="129" >
-                    <ComboBoxItem x:Name="item1" Content="  Vendedor" HorizontalAlignment="Left" Width="312" Background="#FF2B2828" Foreground="White" BorderBrush="#CC119EDA" Margin="0,0,-2,0" Height="46"/>
-                    <ComboBoxItem x:Name="item2" Content="  Empleado" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item1" Content="Cliente" HorizontalAlignment="Left" Width="312" Background="#FF2B2828" Foreground="White" BorderBrush="#CC119EDA" Margin="0,0,-2,0" Height="46"/>
+                    <ComboBoxItem x:Name="item2" Content="Administrador" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item03" Content="Vendedor" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item04" Content="Bodeguero" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
+                    <ComboBoxItem x:Name="item05" Content="Proveedor" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
                 </ComboBox>
                 <Label Content="ACTUALIZAR DATOS" Width="213" Foreground="White" FontFamily="Georgia" FontSize="20" Canvas.Left="87" Canvas.Top="10"/>
             </Canvas>

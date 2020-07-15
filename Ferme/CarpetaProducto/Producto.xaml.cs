@@ -45,11 +45,10 @@ namespace Ferme.CarpetaProducto
                 txtActualizarNomProdu.Text = datos["NOMBRE"].ToString();
                 txtActualizarDescripcion.Text = datos["DESCRIPCION"].ToString();
                 txtActualizarPrecio.Text = datos["PRECIO"].ToString();
-
                 ComboBoxFamiliaPro.Text = datos["FAMILIA PRODUCTO"].ToString();
                 txtActualizarTipoProduc.Text = datos["TIPO PRODUCTO"].ToString();
-                txtActualizarProveedor.Text = datos["PROVEEDOR"].ToString();
-                DateActualizarFechaVen.Text= datos["FECHA_VENCIMIENTO"].ToString();
+                txtActualizarProveedor.Text = datos["Provedoor"].ToString();
+                DateActualizarFechaVen.Text = datos["Fecha vencimiento"].ToString();
             }
 
             DataGridProducto.Items.Refresh();
@@ -112,19 +111,18 @@ namespace Ferme.CarpetaProducto
         private async void BtnGuardarProducto_Click(object sender, RoutedEventArgs e)
         {
             FR.Open();
-            OracleCommand cmd = new OracleCommand("INSERTARPRO",FR);
+            OracleCommand cmd = new OracleCommand("INSERTARPRO", FR);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.Add("P_CODIGO", OracleDbType.Varchar2).Value = txtActualizarNomProdu.Text.Trim();
             cmd.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2).Value = txtActualizarNomProdu.Text.Trim();
             cmd.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2).Value = txtActualizarDescripcion.Text.Trim();
             cmd.Parameters.Add("P_PRECIO", OracleDbType.Int32).Value = txtActualizarPrecio.Text.Trim();
-            cmd.Parameters.Add("P_ID_FAMILIAPRODUCTO", OracleDbType.Int32).Value = ComboBoxFamiliaPro.Text;
-            cmd.Parameters.Add("P_ID_TIPOPRODUCTO", OracleDbType.Int32).Value = txtActualizarTipoProduc.Text;
+            cmd.Parameters.Add("P_ID_FAMILIAPRODUCTO", OracleDbType.Int32).Value = ComboBoxFamiliaPro.SelectedValue.ToString();
+            cmd.Parameters.Add("P_ID_TIPOPRODUCTO", OracleDbType.Int32).Value = txtActualizarTipoProduc;
             cmd.Parameters.Add("P_ID_PROVEEDOR", OracleDbType.Int32).Value = txtActualizarProveedor.Text.Trim();
-            cmd.Parameters.Add("P_FECHAVENCIMIENTO", OracleDbType.Date).Value = DateActualizarFechaVen.Text.Trim();
-
-            OracleDataReader dr = cmd.ExecuteReader();
-            dr.Read();
+            cmd.Parameters.Add("p_fechavencimiento", OracleDbType.Date).Value = DateActualizarFechaVen.Text;
+            cmd.ExecuteNonQuery();
+         
             FR.Close();
             await this.ShowMessageAsync("Exito", "Empleado Registrado Correctamente");
             

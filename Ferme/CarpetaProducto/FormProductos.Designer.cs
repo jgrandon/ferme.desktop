@@ -123,7 +123,7 @@
             this.txtNombreP.Name = "txtNombreP";
             this.txtNombreP.Size = new System.Drawing.Size(121, 16);
             this.txtNombreP.TabIndex = 62;
-            this.txtNombreP.Text = "Nombre";
+            this.txtNombreP.Text = " ";
             // 
             // txtDescripcionP
             // 

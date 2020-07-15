@@ -44,7 +44,7 @@ namespace Ferme
         private void BtnMostrarListPro_Click(object sender, RoutedEventArgs e)
         {
             FR.Open();
-            string Query = "select NOMBRE,RUT,DIRECCION,EMAIL,RAZON_SOCIAL,GIRO from Proveedores";
+            string Query = "select * from Proveedores";
             OracleCommand createCommand = new OracleCommand(Query,FR);
             createCommand.ExecuteNonQuery();
             OracleDataAdapter dataAdapter = new OracleDataAdapter(createCommand);

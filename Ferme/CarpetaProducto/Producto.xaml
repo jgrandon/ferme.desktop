@@ -42,7 +42,7 @@
                     <ComboBoxItem x:Name="item04" Content="Equipo de proteccion" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
                 </ComboBox>
                 <TextBox x:Name="txtActualizarDescripcion" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Actualice Descripcion del producto" Height="98" TextWrapping="Wrap" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="375" Canvas.Top="113"/>
-                <DatePicker x:Name="DateActualizarFechaVen" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="377" Canvas.Top="61" RenderTransformOrigin="0.634,0.577" Width="237" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16" Height="26"/>
+                <DatePicker x:Name="DateActualizarFechaVen" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="377" Canvas.Top="61" RenderTransformOrigin="0.634,0.577" Width="237" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16" Height="26" DisplayDateStart="2020-07-15" SelectedDateFormat="Short"/>
                 <Button x:Name="BtnActualizarProducto" Content="ACTUALIZAR" VerticalAlignment="Top" RenderTransformOrigin="4.813,1.741" Background="#FF1E25BD" Foreground="White" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnModificarProducto_Click" Canvas.Left="377" Canvas.Top="231" Width="237" Height="32"/>
             </Canvas>
         </Controls:Flyout>

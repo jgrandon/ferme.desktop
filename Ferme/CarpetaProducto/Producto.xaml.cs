@@ -32,7 +32,8 @@ namespace Ferme.CarpetaProducto
         {
             InitializeComponent();
             DB = new Entities();
-            
+
+
         }
 
         private void DataGridProducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -110,6 +111,9 @@ namespace Ferme.CarpetaProducto
 
         private async void BtnGuardarProducto_Click(object sender, RoutedEventArgs e)
         {
+         
+            
+
             FR.Open();
             OracleCommand cmd = new OracleCommand("INSERTARPRO", FR);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -117,10 +121,10 @@ namespace Ferme.CarpetaProducto
             cmd.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2).Value = txtActualizarNomProdu.Text.Trim();
             cmd.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2).Value = txtActualizarDescripcion.Text.Trim();
             cmd.Parameters.Add("P_PRECIO", OracleDbType.Int32).Value = txtActualizarPrecio.Text.Trim();
-            cmd.Parameters.Add("P_ID_FAMILIAPRODUCTO", OracleDbType.Int32).Value = ComboBoxFamiliaPro.SelectedValue.ToString();
+            cmd.Parameters.Add("P_ID_FAMILIAPRODUCTO", OracleDbType.Int32).Value = ComboBoxFamiliaPro.Text;
             cmd.Parameters.Add("P_ID_TIPOPRODUCTO", OracleDbType.Int32).Value = txtActualizarTipoProduc;
             cmd.Parameters.Add("P_ID_PROVEEDOR", OracleDbType.Int32).Value = txtActualizarProveedor.Text.Trim();
-            cmd.Parameters.Add("p_fechavencimiento", OracleDbType.Date).Value = DateActualizarFechaVen.Text;
+            cmd.Parameters.Add("p_fechavencimiento", OracleDbType.Date).Value = Convert.ToDateTime(DateActualizarFechaVen.Text).ToString("yyyy/MM/dd");
             cmd.ExecuteNonQuery();
          
             FR.Close();

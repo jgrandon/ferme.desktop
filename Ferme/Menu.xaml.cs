@@ -286,7 +286,7 @@ namespace Ferme
                     var user = new USERS()
                     {
                         ID = getNewUserId(),
-                        TIPO_USUARIO = ComboBoxActuaTipo.Text,
+                        TIPO_USUARIO = ComboBoxTipo.Text,
                         EMAIL = txtEmailProveedor.Text,
                         NAME = txtNombreProveedor.Text,
                         USERNAME = txtNuevoUsuario.Text,

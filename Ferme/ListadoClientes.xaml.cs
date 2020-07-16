@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace Ferme
 {
     /// <summary>
-    /// Lógica de interacción para ListadoClientes.xaml
+    /// Lógica de interacción para ListadoClientes.xamlaa
     /// </summary>
     public partial class ListadoClientes : Window
     {

@@ -64,6 +64,8 @@ namespace Ferme
         {
             CLIENTES newUser = new CLIENTES();
 
+            //TO DO : agregar validacion de rut, al menos validar que el largo sea >= a 9 y max = 10
+
             if (!IsUserValid())
             {
                 await this.ShowMessageAsync("Error", "Debe llenar todos los datos del Usuario");
@@ -92,6 +94,7 @@ namespace Ferme
                 var worker = new TRABAJADORES()
                 {
                     //FECHA_CONTRATACION = 1523656326,
+                    ID = getNewSupplierId(),
                     ID_USUARIO = newId,
                     RUT = rut
                 };
@@ -122,6 +125,28 @@ namespace Ferme
             }
             return max + 1;
         }
+
+        private int getNewSupplierId()
+        {
+            var max = 0;
+            foreach (PROVEEDORES supplier in DB.PROVEEDORES)
+            {
+                if (supplier.ID > max) max = Decimal.ToInt32(supplier.ID);
+            }
+            return max + 1;
+        }
+
+        private int getNewWorkerId()
+        {
+            var max = 0;
+            foreach (TRABAJADORES worker in DB.TRABAJADORES)
+            {
+                if (worker.ID > max) max = Decimal.ToInt32(worker.ID);
+            }
+            return max + 1;
+        }
+
+
 
         private void ClearUserForm()
         {
@@ -286,23 +311,24 @@ namespace Ferme
                     var user = new USERS()
                     {
                         ID = getNewUserId(),
-                        TIPO_USUARIO = ComboBoxTipo.Text,
+                        TIPO_USUARIO = "Proveedor",
                         EMAIL = txtEmailProveedor.Text,
                         NAME = txtNombreProveedor.Text,
-                        USERNAME = txtNuevoUsuario.Text,
+                        USERNAME = txtNombreProveedor.Text,
                         PASSWORD = BCrypt.HashPassword(txtNuevaContraseña.Password)
                     };
                     DB.USERS.Add(user);
                     await this.ShowMessageAsync("Exito", "Empleado Registrado Correctamente " );
                     var proveedores = new PROVEEDORES()
                 {
-                       ID_USUARIO = user.ID,
-                       NOMBRE = txtNombreProveedor.Text, 
-                       RUT = txtRutProvee.Text,
-                       DIRECCION = txtDireccionProvee.Text,
-                       EMAIL = txtEmailProveedor.Text,
-                       RAZON_SOCIAL = txtRazonSocial.Text,
-                       GIRO = ComboBoxGiro.Text
+                        ID = getNewSupplierId(),
+                        ID_USUARIO = user.ID,
+                        NOMBRE = txtNombreProveedor.Text, 
+                        RUT = txtRutProvee.Text,
+                        DIRECCION = txtDireccionProvee.Text,
+                        EMAIL = txtEmailProveedor.Text,
+                        RAZON_SOCIAL = txtRazonSocial.Text,
+                        GIRO = ComboBoxGiro.Text
                 };
                  DB.PROVEEDORES.Add(proveedores);
 

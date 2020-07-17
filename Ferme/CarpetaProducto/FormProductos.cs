@@ -33,6 +33,8 @@ namespace Ferme.CarpetaProducto
 
         private void bntAgregarP_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Esto hay en campo de fecha" + txtFechaVencimiento.Text);
+            return;
             FR.Open();
             OracleCommand comando = new OracleCommand("INSERTARPRO", FR);
             comando.CommandType = System.Data.CommandType.StoredProcedure;

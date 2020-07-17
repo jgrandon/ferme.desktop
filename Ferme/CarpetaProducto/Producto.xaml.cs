@@ -110,17 +110,36 @@ namespace Ferme.CarpetaProducto
 
         private async void BtnGuardarProducto_Click(object sender, RoutedEventArgs e)
         {
+            DateTime dateObject = DateTime.Parse(DateActualizarFechaVen.Text); //esta funcion transforma una fecha en formato string a objeto DateTime
+
+            // Intenta usar estos mensajes para ver el valor que esta tomando una variable determinada
+            // await this.ShowMessageAsync("Exito", "Este es el proveedor: " + ComboBoxFamiliaPro.SelectedValue.ToString());
+
+            int defaultNumber = 1; //para probar insercion
+
+            /*
+                * Se deben obtener los id de proveedor, familia_producto y tipo_producto a partir 
+                * de la informacion entregada en los formularios, ya sea estableciendo esos campos 
+                * como comboboxes y obteniendo sus id o recibiendolo como string y haciendo las 
+                * consultas necesarias para verificar que existen y obtener sus ids.
+            */
+
             FR.Open();
             OracleCommand cmd = new OracleCommand("INSERTARPRO", FR);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.Add("P_CODIGO", OracleDbType.Varchar2).Value = txtActualizarNomProdu.Text.Trim();
-            cmd.Parameters.Add("P_NOMBRE", OracleDbType.Varchar2).Value = txtActualizarNomProdu.Text.Trim();
-            cmd.Parameters.Add("P_DESCRIPCION", OracleDbType.Varchar2).Value = txtActualizarDescripcion.Text.Trim();
-            cmd.Parameters.Add("P_PRECIO", OracleDbType.Int32).Value = txtActualizarPrecio.Text.Trim();
-            cmd.Parameters.Add("P_ID_FAMILIAPRODUCTO", OracleDbType.Int32).Value = ComboBoxFamiliaPro.SelectedValue.ToString();
-            cmd.Parameters.Add("P_ID_TIPOPRODUCTO", OracleDbType.Int32).Value = txtActualizarTipoProduc;
-            cmd.Parameters.Add("P_ID_PROVEEDOR", OracleDbType.Int32).Value = txtActualizarProveedor.Text.Trim();
-            cmd.Parameters.Add("p_fechavencimiento", OracleDbType.Date).Value = DateActualizarFechaVen.Text;
+
+            /* 
+             * No es necesario agregar el codigo como parametro ya que el procedure no lo recibe
+             * como parametro y es el procedure el que se encarga de calcular el codigo
+            */
+            //cmd.Parameters.Add("P_CODIGO", OracleDbType.Varchar2).Value = txtActualizarNomProdu.Text.Trim();
+            cmd.Parameters.Add("p_nombre", OracleDbType.Varchar2).Value = txtActualizarNomProdu.Text.Trim();
+            cmd.Parameters.Add("p_descripcion", OracleDbType.Varchar2).Value = txtActualizarDescripcion.Text.Trim();
+            cmd.Parameters.Add("p_precio", OracleDbType.Int32).Value = 1;              // int.TryParse(txtActualizarPrecio.Text.Trim(), out defaultNumber);
+            cmd.Parameters.Add("p_id_tipoproducto", OracleDbType.Int32).Value = 1;     // int.TryParse(txtActualizarTipoProduc.Text, out defaultNumber);
+            cmd.Parameters.Add("p_id_familiaproducto", OracleDbType.Int32).Value = 1;  // int.TryParse(ComboBoxFamiliaPro.SelectedValue.ToString(), out defaultNumber);
+            cmd.Parameters.Add("p_id_proveedor", OracleDbType.Int32).Value = 1;        // int.TryParse(txtActualizarProveedor.Text.Trim(), out defaultNumber);
+            cmd.Parameters.Add("P_FECHAVENCIMIENTO", OracleDbType.Date).Value = dateObject;
             cmd.ExecuteNonQuery();
          
             FR.Close();

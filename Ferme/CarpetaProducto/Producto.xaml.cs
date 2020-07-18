@@ -41,7 +41,7 @@ namespace Ferme.CarpetaProducto
             DataRowView datos = DataGridProducto.SelectedItem as DataRowView;
             if (datos != null)
             {
-
+                txtIDpro.Text = datos["ID"].ToString();
                 txtActualizarNomProdu.Text = datos["NOMBRE"].ToString();
                 txtActualizarDescripcion.Text = datos["DESCRIPCION"].ToString();
                 txtActualizarPrecio.Text = datos["PRECIO"].ToString();
@@ -84,6 +84,19 @@ namespace Ferme.CarpetaProducto
 
         private void BtnEliminarProducto_Click(object sender, RoutedEventArgs e)
         {
+            {
+                OracleCommand ComandoList = new OracleCommand("ELIMINARPRO", FR);
+                ComandoList.CommandType = System.Data.CommandType.StoredProcedure;
+                ComandoList.Parameters.Add("id_p", OracleDbType.NVarchar2).Value = txtIDpro.Text;
+                OracleDataAdapter adaptador = new OracleDataAdapter();
+                adaptador.SelectCommand = ComandoList;
+                DataTable tabla = new DataTable();
+                adaptador.Fill(tabla);
+                DataGridProducto.ItemsSource = tabla.DefaultView;
+
+
+                MessageBox.Show("Producto Eliminado");
+            }
 
         }
 

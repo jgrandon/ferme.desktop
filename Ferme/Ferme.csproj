@@ -118,6 +118,7 @@
     <Compile Include="CarpetaProducto\Producto.xaml.cs">
       <DependentUpon>Producto.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ClasesProducto\Tipo_Producto.cs" />
     <Compile Include="ConexionFerme\ConexionBD.cs" />
     <Compile Include="FAILED_JOBS.cs">
       <DependentUpon>Model1.tt</DependentUpon>

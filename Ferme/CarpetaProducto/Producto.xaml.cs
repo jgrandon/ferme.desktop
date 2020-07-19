@@ -133,12 +133,21 @@ namespace Ferme.CarpetaProducto
              * como parametro y es el procedure el que se encarga de calcular el codigo
             */
             //cmd.Parameters.Add("P_CODIGO", OracleDbType.Varchar2).Value = txtActualizarNomProdu.Text.Trim();
+
+
+            PROVEEDORES proveedor = getProveedorByName(ComboBoxFamiliaPro.SelectedValue.ToString());
+            if (proveedor==null)
+            {
+                await this.ShowMessageAsync("Exito", "Error al buscar proveedor");
+                return;
+            }
+
             cmd.Parameters.Add("p_nombre", OracleDbType.Varchar2).Value = txtActualizarNomProdu.Text.Trim();
             cmd.Parameters.Add("p_descripcion", OracleDbType.Varchar2).Value = txtActualizarDescripcion.Text.Trim();
             cmd.Parameters.Add("p_precio", OracleDbType.Int32).Value = 1;              // int.TryParse(txtActualizarPrecio.Text.Trim(), out defaultNumber);
             cmd.Parameters.Add("p_id_tipoproducto", OracleDbType.Int32).Value = 1;     // int.TryParse(txtActualizarTipoProduc.Text, out defaultNumber);
             cmd.Parameters.Add("p_id_familiaproducto", OracleDbType.Int32).Value = 1;  // int.TryParse(ComboBoxFamiliaPro.SelectedValue.ToString(), out defaultNumber);
-            cmd.Parameters.Add("p_id_proveedor", OracleDbType.Int32).Value = 1;        // int.TryParse(txtActualizarProveedor.Text.Trim(), out defaultNumber);
+            cmd.Parameters.Add("p_id_proveedor", OracleDbType.Int32).Value = proveedor.ID;        // int.TryParse(txtActualizarProveedor.Text.Trim(), out defaultNumber);
             cmd.Parameters.Add("P_FECHAVENCIMIENTO", OracleDbType.Date).Value = dateObject;
             cmd.ExecuteNonQuery();
          
@@ -146,6 +155,20 @@ namespace Ferme.CarpetaProducto
             await this.ShowMessageAsync("Exito", "Empleado Registrado Correctamente");
             
             
+        }
+
+        private PROVEEDORES getProveedorByName(string nombre)
+        {
+            PROVEEDORES proveedorEncontrado = null;
+            string nombreLimpio = nombre.Trim();
+            foreach ( PROVEEDORES p in DB.PROVEEDORES)
+            {
+                if (String.Equals(p.NOMBRE, nombreLimpio,StringComparison.OrdinalIgnoreCase))
+                {
+                    proveedorEncontrado = p;
+                }
+            }
+            return proveedorEncontrado;
         }
     }
 }

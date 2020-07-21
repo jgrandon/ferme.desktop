@@ -40,6 +40,7 @@ namespace Ferme.CarpetaProducto
         int selectedUserId = 0;
         private System.Windows.Forms.OpenFileDialog fileDialog;
         private List<FileStream> imagenesPorCargar = new List<FileStream>();
+        int filaSeleccionada;
 
         public Producto()
         {
@@ -48,8 +49,10 @@ namespace Ferme.CarpetaProducto
             cargarComboFamilias();
             cargarProveedor();
             cargarTipoP();
-            BtnMostrarListaPrtoduc_Click(null, null);
+            refrescarTabla();
             cargarComboProductos_Imagen();
+            BtnOpenActualizarProducto.IsEnabled = false;
+            BtnEliminarProducto.IsEnabled = false;
         }
 
 
@@ -64,24 +67,37 @@ namespace Ferme.CarpetaProducto
             ComboBoxProducto_Imagen.ItemsSource = list;
         }
 
-
-        private void DataGridProducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void BtnOpenActualizarProducto_Click(object sender, RoutedEventArgs e)
         {
-            //PASAR DATOS A LOS TEXTBOX 
-            DataRowView datos = DataGridProducto.SelectedItem as DataRowView;
+            this.limpiarFormularioProducto();
+            var datos = DataGridProducto.SelectedItem as DataRowView;
             if (datos != null)
             {
-                txtStockProductos.Text = datos["STOCK"].ToString();
-                txtActualizarNomProdu.Text = datos["NOMBRE"].ToString();
-                txtActualizarDescripcion.Text = datos["DESCRIPCION"].ToString();
-                txtActualizarPrecio.Text = datos["PRECIO"].ToString();
+                txtStockProductos.Text = datos["Stock Producto"].ToString();
+                txtActualizarNomProdu.Text = datos["Nombre"].ToString();
+                txtActualizarDescripcion.Text = datos["Descripcion"].ToString();
+                txtActualizarPrecio.Text = datos["Precio"].ToString();
                 ComboBoxFamiliaPro.Text = datos["FAMILIA PRODUCTO"].ToString();
                 ComboBoxTipoP.Text = datos["TIPO PRODUCTO"].ToString();
                 ComboBoxProveedor.Text = datos["Provedoor"].ToString();
                 DateActualizarFechaVen.Text = datos["Fecha vencimiento"].ToString();
             }
-
             DataGridProducto.Items.Refresh();
+            FlyImagenes.IsOpen = false;
+            FlyModificarProducto.IsOpen = true;
+            BtnActualizarProducto.IsEnabled = true;
+        }
+
+
+        private void DataGridProducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var datos = DataGridProducto.SelectedItem as DataRowView;
+            if (datos != null)
+            {
+                this.filaSeleccionada = Int32.Parse(datos.Row.ItemArray[1].ToString()); //almacena el id del producto al que se le hizo click en tabla
+                BtnOpenActualizarProducto.IsEnabled = true;
+                BtnEliminarProducto.IsEnabled = true;
+            }
         }
 
 
@@ -89,6 +105,8 @@ namespace Ferme.CarpetaProducto
         {
             FlyImagenes.IsOpen = false;
             FlyModificarProducto.IsOpen = true;
+            this.limpiarFormularioProducto();
+            BtnGuardarProducto.IsEnabled = true;
         }
 
 
@@ -115,17 +133,45 @@ namespace Ferme.CarpetaProducto
                 await this.ShowMessageAsync("Exito", "Error al Buscar Tipo Producto");
                 return;
             }
+
+            if (!this.isNumber(txtStockProductos.Text))
+            {
+                await this.ShowMessageAsync("Error", "El campo STOCK debe ser un numero");
+                return;
+            }
+
+            if (!this.isNumber(txtActualizarPrecio.Text))
+            {
+                await this.ShowMessageAsync("Error", "El campo PRECIO debe ser un numero");
+                return;
+            }
+
+            if (!this.isDate(DateActualizarFechaVen.Text))
+            {
+                await this.ShowMessageAsync("Error", "El campo FECHA VENCIMIENTO debe ser una fecha con formato dd/mm/yyyy");
+                return;
+            }
+            if (txtActualizarNomProdu.Text.Trim().Equals(""))
+            {
+                await this.ShowMessageAsync("Error", "El campo NOMBRE no puede estar vacio");
+                return;
+            }
+
+
+
             DateTime dateObject = DateTime.Parse(DateActualizarFechaVen.Text);
 
-            PRODUCTOS UpdateUser = DB.PRODUCTOS.Find(selectedUserId);
+            PRODUCTOS productoPorActualizar = DB.PRODUCTOS.Find(this.filaSeleccionada);
 
-            var resultado = await this.ShowMessageAsync("Exito", "Desea Actualizar a: ",
+               
+
+            var resultado = await this.ShowMessageAsync("Confirmacion Modificar", "Esta seguro que desea actualizar el producto: " + productoPorActualizar.NOMBRE,
                        MahApps.Metro.Controls.Dialogs.MessageDialogStyle.AffirmativeAndNegative);
 
             if (resultado == MessageDialogResult.Affirmative)
             {
                 FR.Open();
-                OracleCommand comando = new OracleCommand("UPDATE PRODUCTOS SET  ID_TIPOPRODUCTO ='" + TipoP.ID + "',ID_FAMILIAPRODUCTO = '"+FamiliaP.ID + "',ID_PROVEEDOR = '"+ProveedorP.ID + "',NOMBRE = '" + txtActualizarNomProdu.Text + "',DESCRIPCION ='" + txtActualizarDescripcion.Text + "',PRECIO = '"+ txtActualizarPrecio.Text +"',FECHA_VENCIMIENTO ='"+ DateActualizarFechaVen.Text  +"',STOCK ='"+txtStockProductos.Text  + "'WHERE ID ='"+txtIDProducto.Text + "'", FR);
+                OracleCommand comando = new OracleCommand("UPDATE PRODUCTOS SET  ID_TIPOPRODUCTO ='" + TipoP.ID + "',ID_FAMILIAPRODUCTO = '"+FamiliaP.ID + "',ID_PROVEEDOR = '"+ProveedorP.ID + "',NOMBRE = '" + txtActualizarNomProdu.Text + "',DESCRIPCION ='" + txtActualizarDescripcion.Text + "',PRECIO = '"+ txtActualizarPrecio.Text +"',FECHA_VENCIMIENTO ='"+ DateActualizarFechaVen.Text  +"',STOCK ='"+txtStockProductos.Text  + "'WHERE ID ='"+this.filaSeleccionada + "'", FR);
                 OracleDataAdapter adaptador = new OracleDataAdapter();
                 adaptador.UpdateCommand = comando;
                 adaptador.UpdateCommand.ExecuteNonQuery();
@@ -144,19 +190,36 @@ namespace Ferme.CarpetaProducto
                 await this.ShowMessageAsync("Resultado", "Se Actualizo correctamente  ");
                 System.Threading.Thread.Sleep(200);
                 DataGridProducto.Items.Refresh();
+
+                this.refrescarTabla();
+                this.limpiarFormularioProducto();
+                this.FlyModificarProducto.IsOpen = false;
             }
         }
 
 
-        private void BtnEliminarProducto_Click(object sender, RoutedEventArgs e)
+        private async void BtnEliminarProducto_Click(object sender, RoutedEventArgs e)
         {
+            PRODUCTOS productoPorActualizar = DB.PRODUCTOS.Find(this.filaSeleccionada);
+            var resultado = await this.ShowMessageAsync("Confirmacion Eliminar", "Esta seguro que desea eliminar el producto: " + productoPorActualizar.NOMBRE,
+                                                            MahApps.Metro.Controls.Dialogs.MessageDialogStyle.AffirmativeAndNegative);
+
+            if (resultado == MessageDialogResult.Affirmative)
+            {
                 FR.Open();
                 OracleCommand comando = new OracleCommand("ELIMINARPRO", FR);
                 comando.CommandType = System.Data.CommandType.StoredProcedure;
-                comando.Parameters.Add("id_p", OracleDbType.Varchar2).Value = txtIDProducto.Text;
+                comando.Parameters.Add("id_p", OracleDbType.Varchar2).Value = this.filaSeleccionada;
                 comando.ExecuteNonQuery();
                 FR.Close();
-                System.Windows.MessageBox.Show("Producto Eliminado");
+                await this.ShowMessageAsync("Resultado", "Se elimino el producto: " + productoPorActualizar.NOMBRE);
+                this.refrescarTabla();
+            }
+        }
+
+        private void refrescarTabla()
+        {
+            this.BtnMostrarListaPrtoduc_Click(null, null);
         }
 
 
@@ -339,7 +402,7 @@ namespace Ferme.CarpetaProducto
                 await this.ShowMessageAsync("Exito", "Producto Registrado Correctamente");
 
                 this.FlyModificarProducto.IsOpen = false;
-                this.BtnMostrarListaPrtoduc_Click(sender, e);
+                this.refrescarTabla();
                 this.limpiarFormularioProducto();
             } catch (Exception)
             {
@@ -358,6 +421,8 @@ namespace Ferme.CarpetaProducto
             ComboBoxFamiliaPro.Text = "";
             ComboBoxProveedor.Text = "";
             DateActualizarFechaVen.Text = "";
+            BtnActualizarProducto.IsEnabled = false;
+            BtnGuardarProducto.IsEnabled = false;
         }
 
         private FAMILIAS_PRODUCTO getFamiliaByName(string nombre)
@@ -467,5 +532,6 @@ namespace Ferme.CarpetaProducto
                 return false;
             }
         }
+
     }
 }

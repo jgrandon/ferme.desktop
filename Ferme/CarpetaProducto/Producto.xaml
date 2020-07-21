@@ -14,14 +14,14 @@
 
         <DataGrid x:Name="DataGridProducto" Margin="19,247,26,20" FontSize="14" IsReadOnly="True"  
       ScrollViewer.VerticalScrollBarVisibility="Auto"
-       ScrollViewer.HorizontalScrollBarVisibility="Auto" GridLinesVisibility="Vertical"    ScrollViewer.CanContentScroll="True" />
-        <Button x:Name="BtnEliminarProducto" Content="ELIMINAR" HorizontalAlignment="Right" Margin="0,128,61,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnEliminarProducto_Click"/>
-        <Button x:Name="BtnMostrarListProducto" Content="AGREGAR PRODUCTO" HorizontalAlignment="Left" Margin="751,179,0,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnMostrarListProducto_Click" RenderTransformOrigin="0.739,3.56" Height="25"/>
+       ScrollViewer.HorizontalScrollBarVisibility="Auto" GridLinesVisibility="Vertical"    ScrollViewer.CanContentScroll="True" SelectionChanged="DataGridProducto_SelectionChanged" />
+        <Button x:Name="BtnEliminarProducto" Content="ELIMINAR" HorizontalAlignment="Right" Margin="0,121,26,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnEliminarProducto_Click"/>
+        <Button x:Name="BtnMostrarListProducto" Content="AGREGAR PRODUCTO" HorizontalAlignment="Left" Margin="620,81,0,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnMostrarListProducto_Click" RenderTransformOrigin="0.739,3.56" Height="25"/>
         <Button x:Name="BtnInicio" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Width="75" Height="54" Background="#FF302C2C" BorderBrush="#FF302C2C" Click="BtnInicio_Click" Grid.ColumnSpan="1">
             <Image Height="44" Width="65" Source="House.png" Stretch="Fill"/>
         </Button>
 
-        <Controls:Flyout x:Name="FlyModificarProducto" Margin="0,179,0,10" Background="Black" Foreground="#FFF9F6F6" TitleVisibility="Hidden" Header="ACTUALIZAR DATOS" Width="647" Cursor="Hand" HorizontalAlignment="Right" Position="Right">
+        <Controls:Flyout x:Name="FlyModificarProducto" Margin="0,189,0,0" Background="Black" Foreground="#FFF9F6F6" TitleVisibility="Hidden" Header="ACTUALIZAR DATOS" Width="647" Cursor="Hand" HorizontalAlignment="Right" Position="Right">
             <Canvas x:Name="canvActuali" Margin="-12,0,0,0" >
                 <Label Content="ACTUALIZAR DATOS" Width="213" Foreground="White" FontFamily="Georgia" FontSize="20" Canvas.Left="250" Canvas.Top="-47"/>
                 <TextBox x:Name="txtStockProductos" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Actualice Stock Producto" Height="22" TextWrapping="Wrap" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="89" Canvas.Top="214" AutomationProperties.HelpText="Modifique el Nombre " RenderTransformOrigin="0.517,-0.22"/>
@@ -47,13 +47,12 @@
                 <Button x:Name="BtnActualizarProducto" Content="ACTUALIZAR" VerticalAlignment="Top" RenderTransformOrigin="4.813,1.741" Background="#FF1E25BD" Foreground="White" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnModificarProducto_Click" Canvas.Left="375" Canvas.Top="262" Width="237" Height="32"/>
                 <ComboBox x:Name="ComboBoxProveedor" HorizontalAlignment="Left" Controls:TextBoxHelper.Watermark="Actualice Proveedor Producto" VerticalAlignment="Top" Width="238" Canvas.Left="376" Canvas.Top="39" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16"/>
                 <ComboBox  x:Name="ComboBoxTipoP" HorizontalAlignment="Left" Controls:TextBoxHelper.Watermark="Actualice Tipo Producto" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="90" Canvas.Top="120" Width="237"/>
-                <TextBox x:Name="txtIDProducto" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Actualice ID " Height="22" TextWrapping="Wrap" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="374" AutomationProperties.HelpText="Modifique el Nombre " RenderTransformOrigin="0.517,-0.22" Canvas.Top="8"/>
             </Canvas>
         </Controls:Flyout>
         <Label Content="LISTA DE PRODUCTOS" Margin="347,18,318,0" VerticalAlignment="Top" Foreground="White" FontFamily="Georgia" FontSize="24"/>
         <Button x:Name="BtnMostrarListaPrtoduc" Content="MOSTRAR LISTA" HorizontalAlignment="Right" Margin="0,137,376,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnMostrarListaPrtoduc_Click"/>
-        <Button x:Name="BtnAgregarImagen" Content="Agregar Imagen" HorizontalAlignment="Right" Margin="0,137,600,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnMostrarFlyImagenes_Click"/>
-        <Controls:Flyout x:Name="FlyImagenes" Margin="0,227,0,10" Background="Black" Foreground="#FFF9F6F6" TitleVisibility="Hidden" Header="ACTUALIZAR DATOS" Width="647" Cursor="Hand" HorizontalAlignment="Right" Position="Right" RenderTransformOrigin="0.287,0.579">
+        <Button x:Name="BtnAgregarImagen" Content="Agregar Imagen" HorizontalAlignment="Right" Margin="0,81,26,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnMostrarFlyImagenes_Click"/>
+        <Controls:Flyout x:Name="FlyImagenes" Margin="0,237,0,0" Background="Black" Foreground="#FFF9F6F6" TitleVisibility="Hidden" Header="ACTUALIZAR DATOS" Width="647" Cursor="Hand" HorizontalAlignment="Right" Position="Right" RenderTransformOrigin="0.287,0.579">
             <Canvas x:Name="canvActuali1" Margin="-12,0,0,0" >
                 <Label Content="Agregar Imagenes" Width="213" Foreground="White" FontFamily="Georgia" FontSize="20" Canvas.Left="235" Canvas.Top="-50"/>
                 <Button x:Name="BtnGuardarImagenesProducto" Content="GUARDAR" Width="128" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Canvas.Left="512" Canvas.Top="231" Height="33" Click="BtnGuardarImagenesProducto_Click" RenderTransformOrigin="-0.112,2.092">
@@ -93,5 +92,6 @@
                 </Button>
             </Canvas>
         </Controls:Flyout>
+        <Button x:Name="BtnOpenActualizarProducto" Content="ACTUALIZAR" HorizontalAlignment="Left" Margin="620,121,0,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnOpenActualizarProducto_Click" RenderTransformOrigin="0.739,3.56" Height="25"/>
     </Grid>
 </Controls:MetroWindow>

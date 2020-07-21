@@ -35,11 +35,12 @@
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.txtNombreP = new System.Windows.Forms.TextBox();
             this.txtDescripcionP = new System.Windows.Forms.TextBox();
-            this.cmbTipoProducto = new System.Windows.Forms.ComboBox();
+            this.cmbFamiliaProducto = new System.Windows.Forms.ComboBox();
             this.cmbProveedor = new System.Windows.Forms.ComboBox();
-            this.cmbTiposP = new System.Windows.Forms.ComboBox();
+            this.cmbTiposProducto = new System.Windows.Forms.ComboBox();
             this.txtStockPro = new System.Windows.Forms.TextBox();
-            this.txtFechaVencimiento = new System.Windows.Forms.DateTimePicker();
+            this.dateFechaVencimiento = new System.Windows.Forms.DateTimePicker();
+            this.txtIDproducto = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@
             this.txtEliminarP.BackColor = System.Drawing.Color.Blue;
             this.txtEliminarP.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.txtEliminarP.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtEliminarP.Location = new System.Drawing.Point(1144, 392);
+            this.txtEliminarP.Location = new System.Drawing.Point(1069, 392);
             this.txtEliminarP.Name = "txtEliminarP";
             this.txtEliminarP.Size = new System.Drawing.Size(142, 23);
             this.txtEliminarP.TabIndex = 71;
@@ -61,7 +62,7 @@
             this.btnActualizarP.BackColor = System.Drawing.Color.Blue;
             this.btnActualizarP.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnActualizarP.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnActualizarP.Location = new System.Drawing.Point(1144, 336);
+            this.btnActualizarP.Location = new System.Drawing.Point(1069, 353);
             this.btnActualizarP.Name = "btnActualizarP";
             this.btnActualizarP.Size = new System.Drawing.Size(142, 23);
             this.btnActualizarP.TabIndex = 68;
@@ -74,7 +75,7 @@
             this.bntAgregarP.BackColor = System.Drawing.Color.Blue;
             this.bntAgregarP.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.bntAgregarP.ForeColor = System.Drawing.SystemColors.Window;
-            this.bntAgregarP.Location = new System.Drawing.Point(1144, 285);
+            this.bntAgregarP.Location = new System.Drawing.Point(1069, 307);
             this.bntAgregarP.Name = "bntAgregarP";
             this.bntAgregarP.Size = new System.Drawing.Size(142, 23);
             this.bntAgregarP.TabIndex = 67;
@@ -106,7 +107,7 @@
             this.txtPrecio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
             this.txtPrecio.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtPrecio.Location = new System.Drawing.Point(1088, 158);
+            this.txtPrecio.Location = new System.Drawing.Point(1086, 207);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(123, 16);
             this.txtPrecio.TabIndex = 64;
@@ -119,9 +120,9 @@
             this.txtNombreP.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtNombreP.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
             this.txtNombreP.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtNombreP.Location = new System.Drawing.Point(1088, 45);
+            this.txtNombreP.Location = new System.Drawing.Point(1216, 80);
             this.txtNombreP.Name = "txtNombreP";
-            this.txtNombreP.Size = new System.Drawing.Size(121, 16);
+            this.txtNombreP.Size = new System.Drawing.Size(130, 16);
             this.txtNombreP.TabIndex = 62;
             this.txtNombreP.Text = " ";
             // 
@@ -132,24 +133,25 @@
             this.txtDescripcionP.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtDescripcionP.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
             this.txtDescripcionP.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtDescripcionP.Location = new System.Drawing.Point(1088, 94);
+            this.txtDescripcionP.Location = new System.Drawing.Point(1086, 159);
             this.txtDescripcionP.Name = "txtDescripcionP";
             this.txtDescripcionP.Size = new System.Drawing.Size(121, 16);
             this.txtDescripcionP.TabIndex = 60;
             this.txtDescripcionP.Text = "Descripcion";
             // 
-            // cmbTipoProducto
+            // cmbFamiliaProducto
             // 
-            this.cmbTipoProducto.BackColor = System.Drawing.Color.DimGray;
-            this.cmbTipoProducto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbTipoProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbTipoProducto.ForeColor = System.Drawing.SystemColors.Window;
-            this.cmbTipoProducto.FormattingEnabled = true;
-            this.cmbTipoProducto.Location = new System.Drawing.Point(1227, 40);
-            this.cmbTipoProducto.Name = "cmbTipoProducto";
-            this.cmbTipoProducto.Size = new System.Drawing.Size(121, 21);
-            this.cmbTipoProducto.TabIndex = 56;
-            this.cmbTipoProducto.Text = "Familia Producto";
+            this.cmbFamiliaProducto.BackColor = System.Drawing.Color.DimGray;
+            this.cmbFamiliaProducto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbFamiliaProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbFamiliaProducto.ForeColor = System.Drawing.SystemColors.Window;
+            this.cmbFamiliaProducto.FormattingEnabled = true;
+            this.cmbFamiliaProducto.Location = new System.Drawing.Point(1225, 117);
+            this.cmbFamiliaProducto.Name = "cmbFamiliaProducto";
+            this.cmbFamiliaProducto.Size = new System.Drawing.Size(121, 21);
+            this.cmbFamiliaProducto.TabIndex = 56;
+            this.cmbFamiliaProducto.Text = "Familia Producto";
+            this.cmbFamiliaProducto.SelectedIndexChanged += new System.EventHandler(this.cmbTipoProducto_SelectedIndexChanged);
             // 
             // cmbProveedor
             // 
@@ -159,25 +161,25 @@
             this.cmbProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
             this.cmbProveedor.ForeColor = System.Drawing.SystemColors.Window;
             this.cmbProveedor.FormattingEnabled = true;
-            this.cmbProveedor.Location = new System.Drawing.Point(1227, 150);
+            this.cmbProveedor.Location = new System.Drawing.Point(1225, 199);
             this.cmbProveedor.Name = "cmbProveedor";
             this.cmbProveedor.Size = new System.Drawing.Size(121, 24);
             this.cmbProveedor.TabIndex = 55;
             this.cmbProveedor.Text = "Proveedor";
             // 
-            // cmbTiposP
+            // cmbTiposProducto
             // 
-            this.cmbTiposP.BackColor = System.Drawing.Color.DimGray;
-            this.cmbTiposP.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbTiposP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbTiposP.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
-            this.cmbTiposP.ForeColor = System.Drawing.SystemColors.Window;
-            this.cmbTiposP.FormattingEnabled = true;
-            this.cmbTiposP.Location = new System.Drawing.Point(1227, 86);
-            this.cmbTiposP.Name = "cmbTiposP";
-            this.cmbTiposP.Size = new System.Drawing.Size(121, 24);
-            this.cmbTiposP.TabIndex = 54;
-            this.cmbTiposP.Text = "Tipo Producto";
+            this.cmbTiposProducto.BackColor = System.Drawing.Color.DimGray;
+            this.cmbTiposProducto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbTiposProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbTiposProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
+            this.cmbTiposProducto.ForeColor = System.Drawing.SystemColors.Window;
+            this.cmbTiposProducto.FormattingEnabled = true;
+            this.cmbTiposProducto.Location = new System.Drawing.Point(1225, 159);
+            this.cmbTiposProducto.Name = "cmbTiposProducto";
+            this.cmbTiposProducto.Size = new System.Drawing.Size(121, 24);
+            this.cmbTiposProducto.TabIndex = 54;
+            this.cmbTiposProducto.Text = "Tipo Producto";
             // 
             // txtStockPro
             // 
@@ -185,30 +187,45 @@
             this.txtStockPro.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtStockPro.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
             this.txtStockPro.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtStockPro.Location = new System.Drawing.Point(1088, 221);
+            this.txtStockPro.Location = new System.Drawing.Point(1088, 250);
             this.txtStockPro.Name = "txtStockPro";
             this.txtStockPro.Size = new System.Drawing.Size(121, 17);
             this.txtStockPro.TabIndex = 76;
             this.txtStockPro.Text = "Stock";
+            this.txtStockPro.TextChanged += new System.EventHandler(this.txtStockPro_TextChanged);
             // 
-            // txtFechaVencimiento
+            // dateFechaVencimiento
             // 
-            this.txtFechaVencimiento.CalendarForeColor = System.Drawing.SystemColors.Window;
-            this.txtFechaVencimiento.CalendarTitleForeColor = System.Drawing.SystemColors.MenuText;
-            this.txtFechaVencimiento.CalendarTrailingForeColor = System.Drawing.Color.DimGray;
-            this.txtFechaVencimiento.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtFechaVencimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
-            this.txtFechaVencimiento.Location = new System.Drawing.Point(1227, 216);
-            this.txtFechaVencimiento.Name = "txtFechaVencimiento";
-            this.txtFechaVencimiento.Size = new System.Drawing.Size(123, 22);
-            this.txtFechaVencimiento.TabIndex = 78;
+            this.dateFechaVencimiento.CalendarForeColor = System.Drawing.SystemColors.Window;
+            this.dateFechaVencimiento.CalendarTitleForeColor = System.Drawing.SystemColors.MenuText;
+            this.dateFechaVencimiento.CalendarTrailingForeColor = System.Drawing.Color.DimGray;
+            this.dateFechaVencimiento.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dateFechaVencimiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
+            this.dateFechaVencimiento.Location = new System.Drawing.Point(1225, 245);
+            this.dateFechaVencimiento.Name = "dateFechaVencimiento";
+            this.dateFechaVencimiento.Size = new System.Drawing.Size(123, 22);
+            this.dateFechaVencimiento.TabIndex = 78;
+            // 
+            // txtIDproducto
+            // 
+            this.txtIDproducto.BackColor = System.Drawing.Color.DimGray;
+            this.txtIDproducto.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtIDproducto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtIDproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
+            this.txtIDproducto.ForeColor = System.Drawing.SystemColors.Window;
+            this.txtIDproducto.Location = new System.Drawing.Point(1216, 44);
+            this.txtIDproducto.Name = "txtIDproducto";
+            this.txtIDproducto.Size = new System.Drawing.Size(130, 16);
+            this.txtIDproducto.TabIndex = 79;
+            this.txtIDproducto.Text = " ";
             // 
             // FormProductos
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1360, 450);
-            this.Controls.Add(this.txtFechaVencimiento);
+            this.Controls.Add(this.txtIDproducto);
+            this.Controls.Add(this.dateFechaVencimiento);
             this.Controls.Add(this.txtStockPro);
             this.Controls.Add(this.txtEliminarP);
             this.Controls.Add(this.btnActualizarP);
@@ -217,9 +234,9 @@
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.txtNombreP);
             this.Controls.Add(this.txtDescripcionP);
-            this.Controls.Add(this.cmbTipoProducto);
+            this.Controls.Add(this.cmbFamiliaProducto);
             this.Controls.Add(this.cmbProveedor);
-            this.Controls.Add(this.cmbTiposP);
+            this.Controls.Add(this.cmbTiposProducto);
             this.Name = "FormProductos";
             this.Text = "Productos";
             this.Load += new System.EventHandler(this.FormProductos_Load);
@@ -238,10 +255,11 @@
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.TextBox txtNombreP;
         private System.Windows.Forms.TextBox txtDescripcionP;
-        private System.Windows.Forms.ComboBox cmbTipoProducto;
+        private System.Windows.Forms.ComboBox cmbFamiliaProducto;
         private System.Windows.Forms.ComboBox cmbProveedor;
-        private System.Windows.Forms.ComboBox cmbTiposP;
+        private System.Windows.Forms.ComboBox cmbTiposProducto;
         private System.Windows.Forms.TextBox txtStockPro;
-        private System.Windows.Forms.DateTimePicker txtFechaVencimiento;
+        private System.Windows.Forms.DateTimePicker dateFechaVencimiento;
+        private System.Windows.Forms.TextBox txtIDproducto;
     }
 }

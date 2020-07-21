@@ -346,6 +346,10 @@ namespace Ferme
             Producto Producto = new Producto();
             this.Close();
             Producto.ShowDialog();
+            //FormProductos frm = new FormProductos();
+            ///frm.Show();
+             
+
         }
 
         //Title Boletas

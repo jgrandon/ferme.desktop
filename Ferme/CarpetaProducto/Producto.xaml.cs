@@ -37,7 +37,7 @@ namespace Ferme.CarpetaProducto
             cargarComboFamilias();
             cargarProveedor();
             cargarTipoP();
-
+          
         }
 
         private void DataGridProducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,7 +46,7 @@ namespace Ferme.CarpetaProducto
             DataRowView datos = DataGridProducto.SelectedItem as DataRowView;
             if (datos != null)
             {
-
+                txtStockProductos.Text = datos["STOCK"].ToString();
                 txtActualizarNomProdu.Text = datos["NOMBRE"].ToString();
                 txtActualizarDescripcion.Text = datos["DESCRIPCION"].ToString();
                 txtActualizarPrecio.Text = datos["PRECIO"].ToString();
@@ -65,7 +65,39 @@ namespace Ferme.CarpetaProducto
         }
 
         private async void BtnModificarProducto_Click(object sender, RoutedEventArgs e)
+
         {
+            FAMILIAS_PRODUCTO FamiliaP = getFamiliaByName(ComboBoxFamiliaPro.Text);
+            if (FamiliaP == null)
+            {
+                await this.ShowMessageAsync("Exito", "Error al Buscar Familia");
+                return;
+            }
+
+
+
+            PROVEEDORES ProveedorP = getProveedorByName(ComboBoxProveedor.Text);
+            if (ProveedorP == null)
+            {
+                await this.ShowMessageAsync("Exito", "Error al Buscar Proveedor");
+                return;
+            }
+
+
+
+
+            TIPOS_PRODUCTO TipoP = getTipoByName(ComboBoxTipoP.Text);
+            if (TipoP == null)
+            {
+                await this.ShowMessageAsync("Exito", "Error al Buscar Tipo Producto");
+                return;
+            }
+            DateTime dateObject = DateTime.Parse(DateActualizarFechaVen.Text);
+
+
+
+
+
             PRODUCTOS UpdateUser = DB.PRODUCTOS.Find(selectedUserId);
 
             var resultado = await this.ShowMessageAsync("Exito", "Desea Actualizar a: ",
@@ -73,14 +105,34 @@ namespace Ferme.CarpetaProducto
 
             if (resultado == MessageDialogResult.Affirmative)
             {
+               
 
-                //UpdateUser.NOMBRE = txtActualizarNomProdu.Text;
+                FR.Open();
+                OracleCommand comando = new OracleCommand("UPDATE PRODUCTOS SET  ID_TIPOPRODUCTO ='" + TipoP.ID + "',ID_FAMILIAPRODUCTO = '"+FamiliaP.ID + "',ID_PROVEEDOR = '"+ProveedorP.ID + "',NOMBRE = '" + txtActualizarNomProdu.Text + "',DESCRIPCION ='" + txtActualizarDescripcion.Text + "',PRECIO = '"+ txtActualizarPrecio.Text +"',FECHA_VENCIMIENTO ='"+ DateActualizarFechaVen.Text  +"',STOCK ='"+txtStockProductos.Text  + "'WHERE ID ='"+txtIDProducto.Text + "'", FR);
+                OracleDataAdapter adaptador = new OracleDataAdapter();
+                adaptador.UpdateCommand = comando;
+                adaptador.UpdateCommand.ExecuteNonQuery();
+                FR.Close();
+                
+
+
+
+
+
+
+
+
+                /*  UpdateUser.STOCK = Int32.Parse(txtStockProductos.Text);
+               UpdateUser.NOMBRE = txtActualizarNomProdu.Text;
                 //UpdateUser.DESCRIPCION = txtActualizarDescripcion.Text;
-                //UpdateUser.PRECIO = Int32.Parse(txtActualizarPrecio.Text);
+                ///UpdateUser.PRECIO = Int32.Parse(txtActualizarPrecio.Text);
                 //UpdateUser.ID_FAMILIAPRODUCTO = Int32.Parse(ComboBoxFamiliaPro.Text);
-                //UpdateUser.ID_TIPOPRODUCTO = Int32.Parse(txtActualizarTipoProduc.Text);
-                //UpdateUser.ID_PROVEEDOR = Int32.Parse(txtActualizarProveedor.Text);
-                //DB.SaveChanges();
+                UpdateUser.ID_TIPOPRODUCTO = Int32.Parse(ComboBoxTipoP.Text);
+                UpdateUser.ID_PROVEEDOR = Int32.Parse(ComboBoxProveedor.Text);
+                */
+
+
+                DB.SaveChanges();
                 await this.ShowMessageAsync("Resultado", "Se Actualizo correctamente  ");
                 System.Threading.Thread.Sleep(200);
                 DataGridProducto.Items.Refresh();
@@ -293,5 +345,8 @@ namespace Ferme.CarpetaProducto
         {
 
         }
+
+
+        
     }
 }

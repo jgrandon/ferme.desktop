@@ -11,7 +11,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-       
+
         <DataGrid x:Name="DataGridProducto" Margin="19,247,26,20" FontSize="14" IsReadOnly="True"  
       ScrollViewer.VerticalScrollBarVisibility="Auto"
        ScrollViewer.HorizontalScrollBarVisibility="Auto" GridLinesVisibility="Vertical"    ScrollViewer.CanContentScroll="True" />
@@ -21,13 +21,13 @@
             <Image Height="44" Width="65" Source="House.png" Stretch="Fill"/>
         </Button>
 
-        <Controls:Flyout x:Name="FlyModificarProducto" Margin="0,204,0,10" Background="Black" Foreground="#FFF9F6F6" TitleVisibility="Hidden" Header="ACTUALIZAR DATOS" Width="647" Cursor="Hand" HorizontalAlignment="Right" Position="Right">
+        <Controls:Flyout x:Name="FlyModificarProducto" Margin="0,179,0,10" Background="Black" Foreground="#FFF9F6F6" TitleVisibility="Hidden" Header="ACTUALIZAR DATOS" Width="647" Cursor="Hand" HorizontalAlignment="Right" Position="Right">
             <Canvas x:Name="canvActuali" Margin="-12,0,0,0" >
                 <Label Content="ACTUALIZAR DATOS" Width="213" Foreground="White" FontFamily="Georgia" FontSize="20" Canvas.Left="250" Canvas.Top="-47"/>
-                <TextBox x:Name="txtStockProductos" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Actualice Stock Producto" Height="22" TextWrapping="Wrap" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="89" Canvas.Top="199" AutomationProperties.HelpText="Modifique el Nombre " RenderTransformOrigin="0.517,-0.22"/>
-                <TextBox x:Name="txtActualizarNomProdu" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Actualice Nombre Producto" Height="22" TextWrapping="Wrap" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="90" AutomationProperties.HelpText="Modifique el Nombre " RenderTransformOrigin="0.517,-0.22"/>
-                <TextBox x:Name="txtActualizarPrecio" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Actualice Precio" Height="22" TextWrapping="Wrap" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="90" Canvas.Top="47"/>
-                <Button x:Name="BtnGuardarProducto" Content="GUARDAR" Width="238" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Canvas.Left="85" Canvas.Top="245" Height="33" Click="BtnGuardarProducto_Click" RenderTransformOrigin="0.5,0.5">
+                <TextBox x:Name="txtStockProductos" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Actualice Stock Producto" Height="22" TextWrapping="Wrap" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="89" Canvas.Top="214" AutomationProperties.HelpText="Modifique el Nombre " RenderTransformOrigin="0.517,-0.22"/>
+                <TextBox x:Name="txtActualizarNomProdu" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Actualice Nombre Producto" Height="22" TextWrapping="Wrap" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="90" AutomationProperties.HelpText="Modifique el Nombre " RenderTransformOrigin="0.517,-0.22" Canvas.Top="20"/>
+                <TextBox x:Name="txtActualizarPrecio" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Actualice Precio" Height="22" TextWrapping="Wrap" Width="237" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="90" Canvas.Top="73"/>
+                <Button x:Name="BtnGuardarProducto" Content="GUARDAR" Width="238" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Canvas.Left="83" Canvas.Top="262" Height="33" Click="BtnGuardarProducto_Click" RenderTransformOrigin="0.5,0.5">
                     <Button.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -37,18 +37,19 @@
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
-                <ComboBox x:Name="ComboBoxFamiliaPro" HorizontalAlignment="Left" Controls:TextBoxHelper.Watermark="Actualice Familia Producto" VerticalAlignment="Top" Width="238" Canvas.Left="89" Canvas.Top="151" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16">
+                <ComboBox x:Name="ComboBoxFamiliaPro" HorizontalAlignment="Left" Controls:TextBoxHelper.Watermark="Actualice Familia Producto" VerticalAlignment="Top" Width="238" Canvas.Left="89" Canvas.Top="169" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16">
 
                 </ComboBox>
 
-                <TextBox x:Name="txtActualizarDescripcion" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Actualice Descripcion del producto" Height="98" TextWrapping="Wrap" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="374" Canvas.Top="120"/>
-                <DatePicker x:Name="DateActualizarFechaVen" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="376" Canvas.Top="66" RenderTransformOrigin="0.634,0.577" Width="237" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16" Height="26"/>
-                <Button x:Name="BtnActualizarProducto" Content="ACTUALIZAR" VerticalAlignment="Top" RenderTransformOrigin="4.813,1.741" Background="#FF1E25BD" Foreground="White" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnModificarProducto_Click" Canvas.Left="375" Canvas.Top="239" Width="237" Height="32"/>
-                <ComboBox x:Name="ComboBoxProveedor" HorizontalAlignment="Left" Controls:TextBoxHelper.Watermark="Actualice Proveedor Producto" VerticalAlignment="Top" Width="238" Canvas.Left="376" Canvas.Top="10" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16"/>
-                <ComboBox  x:Name="ComboBoxTipoP" HorizontalAlignment="Left" Controls:TextBoxHelper.Watermark="Actualice Tipo Producto" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="90" Canvas.Top="101" Width="237"/>
+                <TextBox x:Name="txtActualizarDescripcion" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Actualice Descripcion del producto" Height="98" TextWrapping="Wrap" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="374" Canvas.Top="142"/>
+                <DatePicker x:Name="DateActualizarFechaVen" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="376" Canvas.Top="89" RenderTransformOrigin="0.634,0.577" Width="237" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16" Height="26"/>
+                <Button x:Name="BtnActualizarProducto" Content="ACTUALIZAR" VerticalAlignment="Top" RenderTransformOrigin="4.813,1.741" Background="#FF1E25BD" Foreground="White" BorderBrush="#FF1E25BD" FontFamily="Georgia" Click="BtnModificarProducto_Click" Canvas.Left="375" Canvas.Top="262" Width="237" Height="32"/>
+                <ComboBox x:Name="ComboBoxProveedor" HorizontalAlignment="Left" Controls:TextBoxHelper.Watermark="Actualice Proveedor Producto" VerticalAlignment="Top" Width="238" Canvas.Left="376" Canvas.Top="39" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16"/>
+                <ComboBox  x:Name="ComboBoxTipoP" HorizontalAlignment="Left" Controls:TextBoxHelper.Watermark="Actualice Tipo Producto" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16" Canvas.Left="90" Canvas.Top="120" Width="237"/>
+                <TextBox x:Name="txtIDProducto" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Actualice ID " Height="22" TextWrapping="Wrap" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="374" AutomationProperties.HelpText="Modifique el Nombre " RenderTransformOrigin="0.517,-0.22" Canvas.Top="8"/>
             </Canvas>
         </Controls:Flyout>
         <Label Content="LISTA DE PRODUCTOS" Margin="347,18,318,0" VerticalAlignment="Top" Foreground="White" FontFamily="Georgia" FontSize="24"/>
-       <Button x:Name="BtnMostrarListaPrtoduc" Content="MOSTRAR LISTA" HorizontalAlignment="Right" Margin="0,137,376,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnMostrarListaPrtoduc_Click"/>
+        <Button x:Name="BtnMostrarListaPrtoduc" Content="MOSTRAR LISTA" HorizontalAlignment="Right" Margin="0,137,376,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnMostrarListaPrtoduc_Click"/>
     </Grid>
 </Controls:MetroWindow>

@@ -141,6 +141,19 @@ namespace Ferme.CarpetaProducto
 
         private void BtnEliminarProducto_Click(object sender, RoutedEventArgs e)
         {
+            
+                FR.Open();
+                OracleCommand comando = new OracleCommand("ELIMINARPRO", FR);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("id_p", OracleDbType.Varchar2).Value = txtIDProducto.Text;
+                comando.ExecuteNonQuery();
+                FR.Close();
+
+
+                MessageBox.Show("Producto Eliminado");
+            
+
+
 
         }
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -37,7 +38,7 @@ namespace Ferme.CarpetaProducto
             cargarComboFamilias();
             cargarProveedor();
             cargarTipoP();
-          
+            BtnMostrarListaPrtoduc_Click(null, null);
         }
 
         private void DataGridProducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -180,7 +181,7 @@ namespace Ferme.CarpetaProducto
 
         private async void BtnGuardarProducto_Click(object sender, RoutedEventArgs e)
         {
-            DateTime dateObject = DateTime.Parse(DateActualizarFechaVen.Text); //esta funcion transforma una fecha en formato string a objeto DateTime
+
 
             // Intenta usar estos mensajes para ver el valor que esta tomando una variable determinada
             // await this.ShowMessageAsync("Exito", "Este es el proveedor: " + ComboBoxFamiliaPro.SelectedValue.ToString());
@@ -221,14 +222,27 @@ namespace Ferme.CarpetaProducto
             TIPOS_PRODUCTO TipoP = getTipoByName(ComboBoxTipoP.Text);
             if (TipoP == null)
             {
-                await this.ShowMessageAsync("Exito", "Error al Buscar Tipo Producto");
+                await this.ShowMessageAsync("Error", "Error al Buscar Tipo Producto");
                 return;
             }
 
 
+            if (!this.isNumber(txtStockProductos.Text)) {
+                await this.ShowMessageAsync("Error", "El campo STOCK debe ser un numero");
+                return;
+            }
 
+            if (!this.isNumber(txtActualizarPrecio.Text)) {
+                await this.ShowMessageAsync("Error", "El campo PRECIO debe ser un numero");
+                return;
+            }
 
+            if (!this.isDate(DateActualizarFechaVen.Text)) {
+                await this.ShowMessageAsync("Error", "El campo FECHA VENCIMIENTO debe ser una fecha con formato dd/mm/yyyy");
+                return;
+            }
 
+            DateTime dateObject = DateTime.Parse(DateActualizarFechaVen.Text);
 
 
 
@@ -243,19 +257,40 @@ namespace Ferme.CarpetaProducto
             //cmd.Parameters.Add("P_CODIGO", OracleDbType.Varchar2).Value = txtActualizarNomProdu.Text.Trim();
             cmd.Parameters.Add("p_stock", OracleDbType.Varchar2).Value = txtStockProductos.Text;
             cmd.Parameters.Add("p_nombre", OracleDbType.Varchar2).Value = txtActualizarNomProdu.Text.Trim();
-            cmd.Parameters.Add("p_descripcion", OracleDbType.Varchar2).Value = txtActualizarDescripcion.Text.Trim();
-            cmd.Parameters.Add("p_precio", OracleDbType.Int32).Value = 1;              // int.TryParse(txtActualizarPrecio.Text.Trim(), out defaultNumber);
+            cmd.Parameters.Add("p_descripcion", OracleDbType.Varchar2).Value = txtActualizarDescripcion.Text.Trim() + ".";
+            cmd.Parameters.Add("p_precio", OracleDbType.Int32).Value = Int32.Parse(txtActualizarPrecio.Text);              // int.TryParse(txtActualizarPrecio.Text.Trim(), out defaultNumber);
             cmd.Parameters.Add("p_id_tipoproducto", OracleDbType.Int32).Value = TipoP.ID;     // int.TryParse(txtActualizarTipoProduc.Text, out defaultNumber);
             cmd.Parameters.Add("p_id_familiaproducto", OracleDbType.Int32).Value = FamiliaP.ID;  // int.TryParse(ComboBoxFamiliaPro.SelectedValue.ToString(), out defaultNumber);
             cmd.Parameters.Add("p_id_proveedor", OracleDbType.Int32).Value = ProveedorP.ID;      // int.TryParse(txtActualizarProveedor.Text.Trim(), out defaultNumber);
             cmd.Parameters.Add("P_FECHAVENCIMIENTO", OracleDbType.Date).Value = dateObject;
-            cmd.ExecuteNonQuery();
 
+            try {
+                cmd.ExecuteNonQuery();
+
+                await this.ShowMessageAsync("Exito", "Producto Registrado Correctamente");
+
+                this.FlyModificarProducto.IsOpen = false;
+                this.BtnMostrarListaPrtoduc_Click(sender, e);
+                this.limpiarFormularioProducto();
+            } catch (Exception)
+            {
+                await this.ShowMessageAsync("Error", "Ya existe un producto con esta misma definicion de FAMILIA, TIPO, PROVEEDOR y FECHA VENCIMIENTO. No se creó el producto");
+            }
             FR.Close();
-            await this.ShowMessageAsync("Exito", "Empleado Registrado Correctamente");
-
-
         }
+
+        private void limpiarFormularioProducto()
+        {
+            txtStockProductos.Text = "";
+            txtActualizarNomProdu.Text = "";
+            txtActualizarDescripcion.Text = "";
+            txtActualizarPrecio.Text = "";
+            ComboBoxTipoP.Text = "";
+            ComboBoxFamiliaPro.Text = "";
+            ComboBoxProveedor.Text = "";
+            DateActualizarFechaVen.Text = "";
+        }
+
         private FAMILIAS_PRODUCTO getFamiliaByName(string nombre)
         {
             FAMILIAS_PRODUCTO FamiliaEncontrada = null;
@@ -357,6 +392,25 @@ namespace Ferme.CarpetaProducto
         private void DataGridProducto_AutoGeneratedColumns(object sender, EventArgs e)
         {
 
+        }
+
+        private Boolean isNumber(string text)
+        {
+            if (text.Trim().Equals("")) return false;
+            return text.All(char.IsDigit);
+        }
+
+        private Boolean isDate(string text)
+        {
+            try
+            {
+                DateTime dateObject = DateTime.Parse(DateActualizarFechaVen.Text);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
 

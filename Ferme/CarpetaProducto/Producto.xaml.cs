@@ -15,6 +15,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Forms;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+//using ObservableCollection;
+//using System.Windows.Forms.OpenFileDialog ofd;
 
 
 namespace Ferme.CarpetaProducto
@@ -28,11 +35,35 @@ namespace Ferme.CarpetaProducto
         OracleConnection FR = new OracleConnection("DATA SOURCE = localhost:1521 / xe; PERSIST SECURITY INFO=True; PASSWORD = ferme;  USER ID = FERME ;");
         Entities DB;
         int selectedUserId = 0;
+        private System.Windows.Forms.OpenFileDialog fileDialog;
+        private List<FileStream> imagenesPorCargar = new List<FileStream>();
+
         public Producto()
         {
             InitializeComponent();
             DB = new Entities();
-            
+            cargarComboFamilias();
+            cargarComboProductos_Imagen();
+        }
+
+        private void cargarComboFamilias() {
+            ObservableCollection<string> list = new ObservableCollection<string>();
+
+            foreach(FAMILIAS_PRODUCTO fp in DB.FAMILIAS_PRODUCTO) {
+              list.Add(fp.NOMBRE);
+            }
+            ComboBoxFamiliaPro.ItemsSource = list;
+        }
+
+        private void cargarComboProductos_Imagen()
+        {
+            ObservableCollection<string> list = new ObservableCollection<string>();
+
+            foreach (PRODUCTOS p in DB.PRODUCTOS)
+            {
+                list.Add(p.NOMBRE);
+            }
+            ComboBoxProducto_Imagen.ItemsSource = list;
         }
 
         private void DataGridProducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -106,6 +137,98 @@ namespace Ferme.CarpetaProducto
             adaptador.Fill(tabla);
             DataGridProducto.ItemsSource = tabla.DefaultView;
             
+        }
+
+        private void BtnAgregarNuevaImagen_Click(object sender, RoutedEventArgs e)
+        {
+            this.fileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.fileDialog.DefaultExt = ".jpg"; // Required file extension 
+            this.fileDialog.Filter = "JPG Images (.jpg)|*.jpg"; // Optional file extensions
+
+            if (this.fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                FileStream imageStream = new FileStream(this.fileDialog.FileName, FileMode.Open, FileAccess.Read);
+                this.LabelImagenesCargadas.Content = this.LabelImagenesCargadas.Content + "\n* " + this.fileDialog.FileName;
+                this.imagenesPorCargar.Add(imageStream);
+            }
+        }
+
+        private void BtnEliminarImagenesCargadas_Click(object sender, RoutedEventArgs e)
+        {
+            this.LabelImagenesCargadas.Content = "";
+            this.imagenesPorCargar = new List<FileStream>();
+        }
+
+        private async void BtnGuardarImagenesProducto_Click(object sender, RoutedEventArgs e)
+        {
+            if(this.imagenesPorCargar.Count == 0)
+            {
+                await this.ShowMessageAsync("Error", "No hay imagenes agregadas");
+            }
+
+            PRODUCTOS producto = this.getProductByName(this.ComboBoxProducto_Imagen.Text);
+            foreach (FileStream imagen in this.imagenesPorCargar) 
+            {
+                /* Se convierte imagen a un array de byte */
+                byte[] iBytes = new byte[imagen.Length + 1];
+                imagen.Read(iBytes, 0, System.Convert.ToInt32(imagen.Length));
+
+                /* Inserta imagenes en tabla */
+                var ip = new PRODUCTO_IMAGENES()
+                {
+                    ID = this.getNextImageId(),
+                    ID_PRODUCTO = producto.ID,
+                    ORDER = this.getNextImageOrder(producto),
+                    IMAGEN = iBytes
+                };
+                DB.PRODUCTO_IMAGENES.Add(ip);
+                DB.SaveChanges();
+            }
+
+            /* Se limpia El Flyout*/
+            this.LabelImagenesCargadas.Content = "";
+            this.imagenesPorCargar = new List<FileStream>();
+            this.ComboBoxProducto_Imagen.Text = "";
+
+            await this.ShowMessageAsync("Exito", "Se guardaron sus imagenes en el producto " + producto.NOMBRE);
+
+            FlyImagenes.IsOpen = false;
+        }
+
+        private PRODUCTOS getProductByName(string nombreBuscado)
+        {
+            PRODUCTOS productoEncontrado = null;
+            foreach (PRODUCTOS p in this.DB.PRODUCTOS)
+            {
+                if (p.NOMBRE == nombreBuscado)   productoEncontrado = p;
+            }
+            return productoEncontrado;
+        }
+
+        private int getNextImageId()
+        {
+            int max = 0;
+            foreach (PRODUCTO_IMAGENES pi in DB.PRODUCTO_IMAGENES)
+            {
+                if (pi.ID > max) max = Decimal.ToInt32(pi.ID);
+            }
+            return max+1;
+        }
+
+        private int getNextImageOrder(PRODUCTOS producto)
+        {
+            int order = 0;
+            foreach (PRODUCTO_IMAGENES pi in DB.PRODUCTO_IMAGENES)
+            {
+                if (pi.ID_PRODUCTO == producto.ID && pi.ORDER > order) order = Decimal.ToInt32(pi.ID);
+            }
+            return order + 1;
+        }
+
+
+        private void BtnMostrarFlyImagenes_Click(object sender, RoutedEventArgs e)
+        {
+            FlyImagenes.IsOpen = true;
         }
 
         private async void BtnGuardarProducto_Click(object sender, RoutedEventArgs e)

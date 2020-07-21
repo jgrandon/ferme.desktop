@@ -36,10 +36,6 @@
                     </Button.RenderTransform>
                 </Button>
                 <ComboBox x:Name="ComboBoxFamiliaPro" HorizontalAlignment="Left" Controls:TextBoxHelper.Watermark="Actualice Familia Producto" VerticalAlignment="Top" Width="238" Canvas.Left="91" Canvas.Top="165" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16">
-                    <ComboBoxItem x:Name="item1" Content="Herramientas y maquinaria" HorizontalAlignment="Left" Width="312" Background="#FF2B2828" Foreground="White" BorderBrush="#CC119EDA" Margin="0,0,-2,0" Height="46"/>
-                    <ComboBoxItem x:Name="item2" Content="Electricidad" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
-                    <ComboBoxItem x:Name="item03" Content="Construccion y Ferreteria" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
-                    <ComboBoxItem x:Name="item04" Content="Equipo de proteccion" HorizontalAlignment="Left" Width="302" Background="#FF2B2828" Foreground="White" Height="48" />
                 </ComboBox>
                 <TextBox x:Name="txtActualizarDescripcion" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="Actualice Descripcion del producto" Height="98" TextWrapping="Wrap" Width="238" Background="#FF2B2828" Foreground="White" BorderBrush="{x:Null}" FontFamily="Georgia" FontSize="16" Canvas.Left="375" Canvas.Top="113"/>
                 <DatePicker x:Name="DateActualizarFechaVen" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="377" Canvas.Top="61" RenderTransformOrigin="0.634,0.577" Width="237" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16" Height="26"/>
@@ -48,5 +44,46 @@
         </Controls:Flyout>
         <Label Content="LISTA DE PRODUCTOS" Margin="347,18,318,0" VerticalAlignment="Top" Foreground="White" FontFamily="Georgia" FontSize="24"/>
         <Button x:Name="BtnMostrarListaPrtoduc" Content="MOSTRAR LISTA" HorizontalAlignment="Right" Margin="0,137,376,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnMostrarListaPrtoduc_Click"/>
+        <Button x:Name="BtnAgregarImagen" Content="Agregar Imagen" HorizontalAlignment="Right" Margin="0,137,600,0" VerticalAlignment="Top" Width="138" Foreground="White" Background="#FF1E25BD" BorderBrush="#FF1E25BD" FontFamily="Georgia" RenderTransformOrigin="0.496,2.08" Click="BtnMostrarFlyImagenes_Click"/>
+        <Controls:Flyout x:Name="FlyImagenes" Margin="0,227,0,10" Background="Black" Foreground="#FFF9F6F6" TitleVisibility="Hidden" Header="ACTUALIZAR DATOS" Width="647" Cursor="Hand" HorizontalAlignment="Right" Position="Right" RenderTransformOrigin="0.287,0.579">
+            <Canvas x:Name="canvActuali1" Margin="-12,0,0,0" >
+                <Label Content="Agregar Imagenes" Width="213" Foreground="White" FontFamily="Georgia" FontSize="20" Canvas.Left="235" Canvas.Top="-50"/>
+                <Button x:Name="BtnGuardarImagenesProducto" Content="GUARDAR" Width="128" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Canvas.Left="512" Canvas.Top="231" Height="33" Click="BtnGuardarImagenesProducto_Click" RenderTransformOrigin="-0.112,2.092">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="-1.685"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-2.014"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+                <ComboBox x:Name="ComboBoxProducto_Imagen" HorizontalAlignment="Left" Controls:TextBoxHelper.Watermark="Seleccione un producto" VerticalAlignment="Top" Width="238" Canvas.Left="34" Canvas.Top="48" Background="#FF2B2828" Foreground="White" FontFamily="Georgia" FontSize="16">
+                </ComboBox>
+                <Label Content="Imagenes Cargadas" Width="213" Foreground="White" FontFamily="Georgia" FontSize="20" Canvas.Left="34" Canvas.Top="79"/>
+                <Label x:Name="LabelImagenesCargadas"  Content="" Width="477" Foreground="White" FontFamily="Georgia" FontSize="12" Canvas.Left="34" Canvas.Top="117"/>
+                <Label Content="Producto" Width="213" Foreground="White" FontFamily="Georgia" FontSize="20" Canvas.Left="34" Canvas.Top="10"/>
+                <Button x:Name="BtnAgregarNuevaImagen" Content="AGREGAR" Width="114" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Canvas.Left="520" Canvas.Top="13" Height="33" Click="BtnAgregarNuevaImagen_Click" RenderTransformOrigin="-0.112,2.092">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="-1.685"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-2.014"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+                <Button x:Name="BtnEliminarImagenesCargadas" Content="BORRAR" Width="120" BorderBrush="{x:Null}" Foreground="#FFFBF4F4" FontFamily="Georgia" Controls:ControlsHelper.ContentCharacterCasing="Normal" Background="#FF1E25BD" Canvas.Left="518" Canvas.Top="57" Height="33" Click="BtnEliminarImagenesCargadas_Click" RenderTransformOrigin="-0.112,2.092">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="-1.685" AngleY="0.195"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-2.013" Y="-0.058"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+            </Canvas>
+        </Controls:Flyout>
     </Grid>
 </Controls:MetroWindow>

@@ -268,9 +268,16 @@ namespace Ferme.CarpetaProducto
 
         private async void BtnGuardarImagenesProducto_Click(object sender, RoutedEventArgs e)
         {
-            if(this.imagenesPorCargar.Count == 0)
+            if (this.imagenesPorCargar.Count == 0)
             {
                 await this.ShowMessageAsync("Error", "No hay imagenes agregadas");
+                return;
+            }
+
+            if (this.ComboBoxProducto_Imagen.Text.Trim().Equals(""))
+            {
+                await this.ShowMessageAsync("Error", "Debe seleccionar un producto");
+                return;
             }
 
             PRODUCTOS producto = this.getProductByName(this.ComboBoxProducto_Imagen.Text);
